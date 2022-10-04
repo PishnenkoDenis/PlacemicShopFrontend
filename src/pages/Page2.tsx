@@ -1,14 +1,12 @@
 import React, { memo } from 'react';
 import { Link } from 'react-router-dom';
 
-
-const Page2=()=>{
+function Page2() {
   return (
     <div>
       <Link to="/"> to Page 1:</Link>
-      </div>
-
-
-  )
+    </div>
+  );
 }
+
 export default memo(Page2);

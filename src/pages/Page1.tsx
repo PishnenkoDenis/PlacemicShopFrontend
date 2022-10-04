@@ -1,12 +1,12 @@
-import React,{ memo} from 'react'
-import type { RootState } from '../redux/store';
-import { useSelector, useDispatch } from 'react-redux'
-import { decrement, increment } from '../redux/slices/counter';
+import React, { memo } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
+import type { RootState } from '../redux/store';
+import { decrement, increment } from '../redux/slices/counter';
 
-const Page1 = () => {
-  const count = useSelector((state: RootState) => state.counter.value)
-  const dispatch = useDispatch()
+function Page1() {
+  const count = useSelector((state: RootState) => state.counter.value);
+  const dispatch = useDispatch();
 
   return (
     <div>
@@ -27,7 +27,7 @@ const Page1 = () => {
       </div>
       <Link to="/page2"> to Page 2:</Link>
     </div>
-  )
+  );
 }
 
 export default memo(Page1);

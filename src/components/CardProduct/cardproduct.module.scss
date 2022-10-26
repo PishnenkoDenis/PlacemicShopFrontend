@@ -1,0 +1,136 @@
+@import '../../mixin';
+
+.cardBox {
+  width: 180px;
+  height: 270px;
+  position: relative;
+
+  @include sm {
+    width: 172px;
+  }
+}
+.cardBox:hover {
+  z-index: 500;
+  height: unset;
+}
+.innerContainer {
+  position: absolute;
+  left: 0;
+  top: 0;
+  background: #ffffff;
+  box-shadow: 0 4px 40px rgba(0, 0, 0, 0.12);
+  border-radius: 4px;
+  padding: 12px 10px 10px;
+  display: flex;
+  flex-direction: column;
+  &:hover {
+    padding: 12px 20px 23px;
+    left: -20px;
+  }
+  &:hover .image {
+    width: 180px;
+    height: 180px;
+  }
+  &:hover .discount {
+    top: 5px;
+    right: 7px;
+  }
+
+  @include sm {
+    padding: 11px 5px 10px 9px;
+
+    &:hover {
+      padding: 11px 9px 24px;
+    }
+  }
+}
+.imageProductBox {
+  position: relative;
+  display: flex;
+  align-items: center;
+  align-self: center;
+}
+
+.discount {
+  border: 0.5px solid #ff4343;
+  border-radius: 8px;
+  width: 32px;
+  height: 16px;
+  padding: 2px 4px 2px 6px;
+  font-weight: 500;
+  font-size: 10px;
+  line-height: 12px;
+  position: absolute;
+  top: 4px;
+  right: 3px;
+}
+.price {
+  margin-top: 20px;
+  display: flex;
+  align-items: end;
+}
+.currentPrice {
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 16px;
+  color: #ff4343;
+  margin-right: 22px;
+}
+.currentPriceBlack {
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 16px;
+  color: black;
+  margin-right: 22px;
+}
+.oldPrice {
+  font-weight: 400;
+  font-size: 10px;
+  line-height: 12px;
+  color: rgba(70, 70, 70, 0.55);
+  position: relative;
+}
+.line {
+  position: absolute;
+  top: 4px;
+  left: -2px;
+  width: 37px;
+  border: 1px solid #ff4343;
+  transform: matrix(1, -0.09, 0.08, 1, 0, 0);
+}
+.grade {
+  display: flex;
+  align-items: end;
+  justify-content: flex-start;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 14px;
+  margin-top: 15px;
+}
+.ratingIcon {
+  margin: 0 9px 0 4px;
+}
+.review {
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 14px;
+  color: #000000;
+}
+.shortDesccription {
+  margin-top: 5px;
+  text-align: left;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 124.19%;
+}
+.longDescription {
+  margin-top: 11px;
+  text-align: left;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 124.19%;
+}
+.buttonStyle {
+  width: 180px;
+  margin-top: 13px;
+}

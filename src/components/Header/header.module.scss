@@ -1,0 +1,76 @@
+.header {
+  background-color: #FFFFFF;
+  width: 100%;
+  height: 134px;
+  display: flex;
+  flex-direction:row;
+  padding-top: 15px;
+  justify-content: space-between;
+}
+.headerLeft {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+.headerCenter {
+  width: 624px;
+  padding-left: 0;
+}
+.FAQ {
+  font-weight: 300;
+  font-size: 12px;
+  line-height: 14px;
+}
+.centerTop {
+  margin-bottom: 19px;
+  display: flex;
+  justify-content: flex-start;
+}
+.headerRight {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+.headerRightTop {
+  margin-bottom: 22px;
+}
+.headerRightBottom {
+  display:flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  gap: 50px;
+  max-width: 268px;
+  height: 46px;
+  width: 100%;
+}
+.sidebar {
+  width: 77px;
+  height: 77px;
+  background: linear-gradient(96.78deg, #F64D4D -57.09%, #4D5EF6 101.17%);
+  box-shadow: 0 0 40px rgba(0, 0, 0, 0.12);
+  transform: matrix(-1, 0, 0, 1, 0, 0);
+  display: flex;
+  place-content: center;
+} 
+.headerBottom {
+  display: flex;
+  justify-content: space-between;
+  justify-items: center;
+  align-items: center;
+  margin-bottom: 10px;
+}
+.sidebarIcon {
+  width: 30px;
+  display: flex;
+  align-self: center;
+}
+.logo {
+  width: 188px;
+  height: 63px;
+  padding-left: 32px;
+}
+.dropdownLangBox {
+  display: inline;
+}

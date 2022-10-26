@@ -1,0 +1,37 @@
+@import '../mixin';
+
+.cardProductbox {
+  margin-top: 20px;
+  display: grid;
+  grid-template-columns: repeat( auto-fill, minmax(180px, 1fr));
+  gap: 26px 34px;
+
+  @include md {
+    grid-template-columns: repeat( auto-fill, minmax(172px, 1fr));
+    gap: 10px 16px ;
+  }
+  @include sm {
+    grid-template-columns: repeat( auto-fill, minmax(172px, 1fr));
+    gap: 10px 16px ;
+  }
+}
+.buttonBox {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 17;
+}
+.cardShopsBox {
+  margin-top: 20px;
+  display: grid;
+  grid-template-columns: repeat( auto-fill, minmax(296px, 1fr));
+  gap: 32px 26px;
+  @include md {
+    grid-template-columns: repeat( auto-fill, minmax(235px, 1fr));
+    gap: 27px 14px;
+  }
+}
+.buttonStyle {
+  width: 187px;
+  margin-top: 13px;
+}

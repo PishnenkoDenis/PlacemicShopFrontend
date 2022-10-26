@@ -1,0 +1,21 @@
+.modalBackground {
+  height: 100vh;
+  width: 100vw;
+  background: #00000099;
+  position: fixed;
+  top: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.modal {
+  padding: 28px 30px 37px;
+  width: 684px;
+  background: #FFFFFF;
+  box-shadow: 0 0 40px rgba(0, 0, 0, 0.12);
+  position: relative;
+}
+.cross {
+  position: absolute;
+  right: 20px;
+}

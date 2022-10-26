@@ -24,30 +24,24 @@
     ],
     "rules": {
       "prettier/prettier": "error",
+      "react/require-default-props":"off",
       "no-shadow": "off",
+      "react/function-component-definition": "off",
+      "no-restricted-exports": [0, "never"],
+      "no-underscore-dangle": [0, "never"],
+      "arrow-body-style": [0, "never"],
       "@typescript-eslint/no-shadow": ["error"],
       "@typescript-eslint/no-unused-vars": [
         "error"
       ],
       "@typescript-eslint/no-use-before-define": ["error"],
-      "import/extensions": [
-        "error",
-        "ignorePackages",
-        {
-          "js": "never",
-          "jsx": "never",
-          "ts": "never",
-          "tsx": "never"
-        }
-      ],
+      "import/extensions": [0, "never"],
       "max-len": [
         "error",
         {
           "code": 120
         }
       ],
-      "no-unused-vars": "off",
-      "no-use-before-define": "off",
       "react/jsx-filename-extension": [
         1,
         {

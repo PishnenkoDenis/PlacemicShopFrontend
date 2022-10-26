@@ -1,0 +1,91 @@
+.md {
+  font-weight: 300;
+  font-size: 12px;
+  line-height: 14px;
+}
+.lg {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 16px;
+}
+.dropDownList {
+  position:relative;
+  display: flex;
+  align-items: center;
+  font-family: inherit;
+}
+.button {
+  border:none;
+  height: 100%;
+  background: transparent;
+  outline: none;
+  position:relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  transition: 0.5s;
+  font-family: inherit;
+}
+.list {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  min-width: 100%;
+  max-height: 160px;;
+  bottom: -4px;
+  padding: 10px;
+  transform: translate(0px, 100%);
+  z-index: 2;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.08);
+  border-radius: 4px;
+  background:  #FFFFFF;
+  overflow: hidden auto;
+}
+.listItem {
+  border:none;
+  width: 100%;
+  height: 20px;
+  background:  #FFFFFF; 
+  text-align: left;
+  transition: 0.5s;
+  border-radius: 4px;
+  background:  #FFFFFF;
+  margin-bottom: 10px;
+  white-space: nowrap;
+  display: flex;
+  justify-content: space-between;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+.listItemLang {
+  @extend .listItem;
+  display: block;
+}
+.listItemActive {
+  font-weight: 600;
+}
+.arrow {
+  margin-left: 5px;
+}
+.check {
+  margin-left: 10px;
+}
+//dropdownlistlanguage style
+.dropDownListLang {
+  display: inline-block;
+}
+.selectOption {
+  border-left: 0.5px solid #000000;
+  border-right: 0.5px solid #000000;
+  font-weight: 300;
+  padding: 0 6px;                                                                                                                                                                                                                                                       
+}
+.flagIcon {
+  margin-right: 5px;
+}
+.currencyIcon {
+  margin-left: 5px;
+}

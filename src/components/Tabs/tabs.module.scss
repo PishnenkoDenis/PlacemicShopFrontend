@@ -1,0 +1,26 @@
+.tabs{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.tab{
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  padding: 4px 27px;
+  border: 2px solid #f0e0eb99;
+  height: 41px;
+
+  &:first-child{
+    border-radius: 4px 0px 0px 4px;
+  }
+  &:last-child{
+    border-radius: 0 4px 4px 0;
+  }
+}
+
+.tabActive{
+  background: linear-gradient(96.78deg, rgba(246, 77, 77, 0.2) -57.09%, rgba(77, 94, 246, 0.2) 101.17%);
+  border: 2px solid linear-gradient(96.78deg, rgba(246, 77, 77, 0.2) -57.09%, rgba(77, 94, 246, 0.2) 101.17%);
+  font-weight: 500;
+}

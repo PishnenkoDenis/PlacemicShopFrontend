@@ -1,0 +1,33 @@
+.favorite {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.favoriteText {
+  font-family: 'Roboto';
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 16px;
+  margin-top: 5px;
+}
+.imageContainer {
+  position: relative;
+  width: 27px;
+  height: 25px;
+}
+.favoriteIcon {
+  width: 100%;
+}
+.count {
+  width: 12px;
+  height: 12px;
+  background: #ff4343;
+  border-radius: 50%;
+  font-size: 7px;
+  font-weight: 500;
+  line-height: 12px;
+  color: #ffffff;
+  position: absolute;
+  right: -4px;
+  top: -2px;
+}

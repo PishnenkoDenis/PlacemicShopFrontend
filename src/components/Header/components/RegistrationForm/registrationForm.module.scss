@@ -1,0 +1,53 @@
+.container {
+  display: flex;
+  place-content: center;
+  place-items: center;
+  flex-direction: column;
+  padding: 23px 79px 37px;
+}
+.title {
+  font-weight: 400;
+  font-size: 28px;
+  line-height: 33px;
+  color: #000000;
+}
+.telephone {
+  background: linear-gradient(96.78deg, #f64d4d -57.09%, #4d5ef6 101.17%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 16px;
+  margin-top: 15px;
+}
+.resetPassword {
+  font-weight: 300;
+  font-size: 14px;
+  line-height: 124.19%;
+  color: #000000;
+  margin-top: 47px;
+
+  &.isRegistrationForm {
+    margin-top: 69px;
+  }
+}
+.buttonRegistrationType {
+  margin-top: 14px;
+  width: 180px;
+}
+.submitButton {
+  margin-top: 70px;
+  width: 187px;
+
+  &.isLoginForm {
+    margin-top: 45px;
+  }
+}
+.inputStyle {
+  margin-top: 22px;
+  align-self: flex-start;
+}
+.tabsStyle {
+  margin-top: 15px;
+}

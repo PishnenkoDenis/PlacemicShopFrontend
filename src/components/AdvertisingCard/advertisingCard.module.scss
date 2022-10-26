@@ -1,0 +1,16 @@
+@import "../../mixin";
+
+.advertisingCardIcon {
+  min-width: 296px;
+  min-height: 208px;
+  width: 100%;
+  display: block;
+  height: 208px;
+  object-fit: cover;
+  
+  @include md {
+    min-height: 165px;
+    min-width: 236px;
+    height: 165px;
+  }
+}

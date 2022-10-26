@@ -1,0 +1,51 @@
+@import "../../mixin";
+
+.shopBox {
+  min-width: 296px;
+  height: 208px;
+  background: #FFFFFF;
+  box-shadow: 0 4px 40px rgba(0, 0, 0, 0.12);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 25px 20px 38px;
+
+  @include md {
+    padding: 32px 16px 31px;
+    min-width: 235px;
+    height: 165px;
+    padding: 32px 16px 31px;
+  }
+}
+.shopTop {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+.shopLogo {
+  width: 96px;
+  height: 40px;
+}
+.shopBottom {
+  margin-top: 30px;
+  width: 100%;
+
+  @include md {
+    margin-top: 11px;
+  }
+}
+.imageBox {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+.imageItem {
+  display: block;
+  width: 80px;
+  height: 80px;
+
+  @include md {
+    width: 64px;
+    height: 64px;
+  }
+}

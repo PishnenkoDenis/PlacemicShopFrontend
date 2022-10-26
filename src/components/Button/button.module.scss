@@ -1,0 +1,40 @@
+.medium {
+  height: 32px;
+}
+.large {
+  height: 44px;
+}
+.main {
+  border: none;
+  outline: none;
+  font-size: 14px;
+  line-height: 16px;
+  border-radius: 0;
+}
+.primary {
+  background: linear-gradient(96.78deg, #F64D4D -57.09%, #4D5EF6 101.17%);
+  box-shadow: 0px 0px 40px rgba(0, 0, 0, 0.12);
+  font-weight: 500;
+  color: #FFFFFF;
+}
+.secondary {
+  font-weight: 400;
+  color: #000000;
+  background: linear-gradient(96.78deg, rgba(246, 77, 77, 0.2) -57.09%, rgba(77, 94, 246, 0.2) 101.17%);
+}
+.outlined {
+  font-weight: 400;
+  border: 1.5px solid transparent;
+  border-image-slice: 1;
+  border-width: 1.5px;
+  border-image-source: linear-gradient(96.78deg, #F64D4D -57.09%, #4D5EF6 101.17%);
+  background: #FFFFFF;
+
+  &:hover {
+    font-weight: 600;
+    transition: 0.5s;
+  }
+}
+.isRounded {
+  border-radius: 4px;
+}

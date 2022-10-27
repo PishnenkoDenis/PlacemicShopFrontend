@@ -8,12 +8,15 @@ import React, {
 } from 'react';
 import { Link } from 'react-router-dom';
 import { throttle } from 'lodash';
+import Slider from '../components/Slider/Slider';
 import PopularCategories from '../components/PopularCategories/PopularCategories';
 import CardProduct from '../components/CardProduct/CardProduct';
 import Button from '../components/Button/Button';
 import CardShop from '../components/CardShop/CardShop';
 import AdvertisingCard from '../components/AdvertisingCard/AdvertisingCard';
 import Wrapper from '../components/Wrapper/Wrapper';
+import banner from '../assets/baner1.svg';
+import dog from '../assets/imgShopSale.svg';
 import {
   shops,
   advertising,
@@ -34,6 +37,8 @@ export type TCardProducts = {
   shortDesc: string;
   longDesc: string;
 };
+
+const items = [banner, dog, banner, dog, banner, dog, banner, dog, banner];
 
 function MainPage() {
   const ref = useRef<HTMLDivElement>(null);
@@ -82,8 +87,10 @@ function MainPage() {
 
   return (
     <div>
-      <PopularCategories />
-
+      <section className={styles.navigationSection}>
+        <PopularCategories />
+        <Slider items={items} size="medium" />
+      </section>
       <Wrapper label="Успей купить">
         <div className={styles.cardProductbox}>
           {products.map((item) => (

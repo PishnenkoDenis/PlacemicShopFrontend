@@ -1,9 +1,13 @@
 import React, { memo, useState, useMemo } from 'react';
 import { Link } from 'react-router-dom';
-
 import cn from 'classnames';
+import Slider from '../../../Slider/Slider';
 import styles from './sidebar.module.scss';
 import { temp } from './tempcategories';
+import banner2 from '../../../../assets/baner2.svg';
+import dog from '../../../../assets/imgShopSale.svg';
+
+const items = [banner2, dog, banner2, dog, banner2, dog, banner2, dog, banner2];
 
 const Sidebar = () => {
   const [selectedId, setSelectedId] = useState(1);
@@ -58,6 +62,9 @@ const Sidebar = () => {
               ))}
             </div>
           ))}
+        </div>
+        <div className={styles.sliderBox}>
+          <Slider items={items} size="small" takeArrows="outsideArrows" />
         </div>
       </div>
     </div>

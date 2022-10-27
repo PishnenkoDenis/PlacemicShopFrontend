@@ -1,0 +1,93 @@
+@import '../../mixin';
+//slider
+.sliderBox {
+  position: relative;
+
+  &.small {
+    width: 938px;
+    height: 270px;
+
+    @include lg {
+      width: 541px;
+      height: 199px;
+    }
+  }
+  &.medium {
+    width: 953px;
+    height: 351px;
+
+    @include sm {
+      width: 737px;
+      height: 271px;
+    }
+  }
+}
+.banner {
+  width: 100%;
+  height: 100%;
+}
+.slideItem {
+  height: 100px;
+}
+//arrows
+.arrowBox {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 17px;
+  background: linear-gradient(
+    96.78deg,
+    rgba(246, 77, 77, 0.2) -57.09%,
+    rgba(77, 94, 246, 0.2) 101.17%
+  );
+  border-radius: 166.667px;
+  width: 50px;
+  height: 50px;
+  position: absolute;
+
+  &:hover {
+    background: linear-gradient(96.78deg, #f64d4d -57.09%, #4d5ef6 101.17%);
+  }
+}
+.arrowsBoxLeft {
+  @extend .arrowBox;
+  top: 150px;
+  left: 14px;
+
+  & .arrowLeft {
+    top: 5px;
+    left: 125px;
+  }
+}
+.arrowsBoxRight {
+  @extend .arrowBox;
+  top: 150px;
+  right: 17px;
+
+  & .arrowLeft {
+    top: 5px;
+    left: 125px;
+  }
+}
+.insideArrows {
+  position: absolute;
+  top: 150px;
+  right: 17px;
+
+  @include sm {
+    top: 110px;
+  }
+}
+.outsideArrows {
+  top: 110px;
+
+  @include lg {
+    top: 75px;
+  }
+  &.arrowsBoxLeft {
+    left: -26px;
+  }
+  &.arrowsBoxRight {
+    right: -26px;
+  }
+}

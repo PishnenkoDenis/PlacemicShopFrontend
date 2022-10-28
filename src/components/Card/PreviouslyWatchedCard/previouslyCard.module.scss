@@ -1,0 +1,47 @@
+@import "../../../mixin";
+
+.previouslyWatchedCardBox {
+  display: flex;
+  background: #FFFFFF;
+  box-shadow: 0 0 40px rgba(0, 0, 0, 0.12);
+  border-radius: 4px;
+  padding: 36px 14px;
+  justify-content: center;
+  align-items: center;
+
+  @include md {
+    padding: 26px 24px 17px;
+    flex-direction: column;
+    align-items: unset;
+  }
+}
+.productImage {
+  width: 108px;
+  height: 108px;
+  margin-right: 22px;
+
+  @include md {
+    margin-right: 0;
+  }
+}
+.description {
+  min-width: 83px;
+  width: 83px;
+  font-weight: 300;
+  font-size: 12px;
+  line-height: 124.19%;
+
+  @include md {
+    margin-top: 12px;
+    margin-right: 0;
+  }
+}
+.price {
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 16px;
+
+  @include md {
+    margin-top: 9px;
+  }
+}

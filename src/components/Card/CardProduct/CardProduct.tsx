@@ -1,10 +1,11 @@
 import React, { memo, useState } from 'react';
-import Button from '../Button/Button';
+import Button from '../../Button/Button';
+import { TCardProducts } from '../../../types';
+import starMik from '../../../assets/starMik.svg';
 
-import starMik from '../../assets/starMik.svg';
 import styles from './cardproduct.module.scss';
 
-const CardProduct = ({ item }) => {
+const CardProduct = ({ item }: TCardProducts) => {
   const [open, setOpen] = useState(false);
 
   return (

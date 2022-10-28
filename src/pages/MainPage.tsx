@@ -10,37 +10,23 @@ import { Link } from 'react-router-dom';
 import { throttle } from 'lodash';
 import Slider from '../components/Slider/Slider';
 import PopularCategories from '../components/PopularCategories/PopularCategories';
-import CardProduct from '../components/CardProduct/CardProduct';
+import CardProduct from '../components/Card/CardProduct/CardProduct';
 import Button from '../components/Button/Button';
-import CardShop from '../components/CardShop/CardShop';
-import AdvertisingCard from '../components/AdvertisingCard/AdvertisingCard';
+import CardShop from '../components/Card/CardShop/CardShop';
+import AdvertisingCard from '../components/Card/AdvertisingCard/AdvertisingCard';
 import Wrapper from '../components/Wrapper/Wrapper';
+import DescriptionBlock from '../components/MainPage/DescriptionBlock/DescriptionBlock';
 import banner from '../assets/baner1.svg';
 import dog from '../assets/imgShopSale.svg';
-import {
-  shops,
-  advertising,
-  noveltiesProducts,
-  products,
-} from './mainPageArray';
+import { shops, advertising, noveltiesProducts, products } from '../data/data';
 
 import styles from './index.module.scss';
-
-export type TCardProducts = {
-  id: number;
-  image: string;
-  discount?: number;
-  currentPrice: number;
-  oldPrice?: number;
-  rating: number;
-  review: number;
-  shortDesc: string;
-  longDesc: string;
-};
 
 const items = [banner, dog, banner, dog, banner, dog, banner, dog, banner];
 
 function MainPage() {
+  const screenWidthSm = 732;
+  const screenWidthMd = 1262;
   const ref = useRef<HTMLDivElement>(null);
   const [width, setWidth] = useState(0);
 
@@ -69,10 +55,10 @@ function MainPage() {
 
     advertising.forEach((i, index) => {
       let temp = 3 + 4 * index;
-      if (width < 732) {
+      if (width < screenWidthSm) {
         arrlenght = 4;
         temp = 1 + 2 * index;
-      } else if (width < 1262) {
+      } else if (width < screenWidthMd) {
         temp = 2 + 3 * index;
         arrlenght = 6;
       }
@@ -135,6 +121,23 @@ function MainPage() {
             </Button>
           </Link>
         </div>
+      </Wrapper>
+      <Wrapper label="Рекомендуемые для вас товары">
+        <div className={styles.cardProductbox} ref={ref}>
+          {products.slice(0, 32).map((item) => (
+            <CardProduct item={item} key={item.id} />
+          ))}
+        </div>
+        <div className={styles.buttonBox}>
+          <Link to="/page2">
+            <Button className={styles.buttonStyle} type="outlined" size="large">
+              Вce товары
+            </Button>
+          </Link>
+        </div>
+      </Wrapper>
+      <Wrapper label="Широкий ассортимент и высокое качество">
+        <DescriptionBlock />
       </Wrapper>
     </div>
   );

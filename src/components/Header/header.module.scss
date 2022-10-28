@@ -6,6 +6,8 @@
   flex-direction:row;
   padding-top: 15px;
   justify-content: space-between;
+  z-index: 5;
+  position: relative;
 }
 .headerLeft {
   display: flex;

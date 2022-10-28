@@ -1,9 +1,10 @@
 import React, { memo } from 'react';
 import { Link } from 'react-router-dom';
+import { TCardShop } from '../../../types';
 
 import styles from './cardshop.module.scss';
 
-const CardShop = ({ item }) => {
+const CardShop = ({ item }: TCardShop) => {
   return (
     <div className={styles.shopBox}>
       <div>

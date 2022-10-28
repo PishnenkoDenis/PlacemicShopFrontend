@@ -1,0 +1,19 @@
+@import "../../mixin";
+.backgroundBox {
+  background: linear-gradient(96.78deg, hsla(0, 90%, 63%, 0.1) -57.09%, hsla(234, 90%, 63%, 0.1) 101.17%);
+}
+.container {
+  max-width: 1366px;
+  margin: 0 auto;
+  padding: 21px 42px 53px;
+  
+  @include md {
+    padding: 21px 16px 53px;
+  }
+}
+.previouslyWatchedCardBox {
+  display: flex;
+  gap: 18px;
+  flex-wrap: wrap;
+  margin-top: 40px;
+}

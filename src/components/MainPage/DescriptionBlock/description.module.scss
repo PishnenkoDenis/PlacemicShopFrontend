@@ -1,0 +1,19 @@
+.descriptionBox { 
+  width: 100%;
+  text-align: left;
+  font-weight: 300;
+  font-size: 14px;
+  margin-top: 20px;
+  position: relative;
+}
+.description::after {
+  content: "";
+  position: absolute;
+  bottom: 30px;
+  width: 100%;
+  height: 61px;
+  background: linear-gradient(rgba(255,255,255,0),#fff);
+}
+.background {
+  background: none;
+}

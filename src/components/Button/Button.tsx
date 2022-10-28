@@ -26,6 +26,7 @@ const Button = ({
 
   return (
     <button
+      type="button"
       onClick={onClick}
       className={cn(styles.main, sizeClass, typeClass, roundClass, className)}
     >

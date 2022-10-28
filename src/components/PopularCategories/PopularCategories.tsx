@@ -1,5 +1,5 @@
 import React, { memo, useState } from 'react';
-
+import ButtonCheck from '../Button/ButtonCheck/ButtonCheck';
 import compIcon from '../../assets/compIcon.svg';
 import applisncIcon from '../../assets/appliancesIcon.svg';
 import energIcon from '../../assets/energIcon.svg';
@@ -8,7 +8,6 @@ import men from '../../assets/men.svg';
 import avtoIcon from '../../assets/avtoIcon.svg';
 import healthIcon from '../../assets/healthIcon.svg';
 import sportIcon from '../../assets/sportIcon.svg';
-import checkIcon from '../../assets/checkIcon.svg';
 
 import styles from './categories.module.scss';
 
@@ -30,7 +29,7 @@ const allCategories = [
 ];
 
 type TPopularCategories = {
-  id?: number;
+  id: number;
   text?: string;
   link?: string;
   icon?: string;
@@ -72,14 +71,12 @@ const PopularCategories = ({ id, text, link, icon }: TPopularCategories) => {
           ))}
       </div>
       <div className={styles.allCategoriesBox}>
-        <button
+        <ButtonCheck
           className={styles.allCategories}
           onClick={() => setOpen((prev) => !prev)}
-          type="button"
         >
           Все категории
-        </button>
-        <img className={styles.checkIcon} src={checkIcon} alt="check" />
+        </ButtonCheck>
       </div>
     </div>
   );

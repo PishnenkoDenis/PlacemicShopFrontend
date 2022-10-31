@@ -9,6 +9,7 @@ import { throttle } from 'lodash';
 import { watchedproducts } from '../../data/data';
 import Wrapper from '../Wrapper/Wrapper';
 import PreviouslyWatchedCard from '../Card/PreviouslyWatchedCard/PreviouslyWatchedCard';
+import ContainerBackground from '../ContainerBackground/ContainerBackground';
 
 import styles from './additionalFooter.module.scss';
 
@@ -47,17 +48,15 @@ const AdditionalFooter = () => {
   }, [watchedproducts, width]);
 
   return (
-    <div className={styles.backgroundBox}>
-      <div className={styles.container}>
-        <Wrapper label="Ранее вы смотрели">
-          <div className={styles.previouslyWatchedCardBox} ref={ref}>
-            {watchedProductsFiltered.map((item) => (
-              <PreviouslyWatchedCard item={item} key={item.id} />
-            ))}
-          </div>
-        </Wrapper>
-      </div>
-    </div>
+    <ContainerBackground className={styles.backgroundBox}>
+      <Wrapper label="Ранее вы смотрели">
+        <div className={styles.previouslyWatchedCardBox} ref={ref}>
+          {watchedProductsFiltered.map((item) => (
+            <PreviouslyWatchedCard item={item} key={item.id} />
+          ))}
+        </div>
+      </Wrapper>
+    </ContainerBackground>
   );
 };
 

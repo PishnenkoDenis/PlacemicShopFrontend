@@ -1,0 +1,41 @@
+@import '../../mixin';
+
+.background {
+  background: linear-gradient(96.78deg, #f64d4d -57.09%, #4d5ef6 101.17%);
+}
+.footerTop {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+  @include md {
+    flex-direction: column;
+  }
+}
+.connection {
+  display: flex;
+  flex-direction: column;
+  min-width: 403px;
+
+  @include md {
+    margin-top: 38px;
+    flex-direction: row;
+    max-width: 100%;
+    justify-content: space-between;
+  }
+}
+.footerBottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-top: 60px;
+
+  @include md {
+    margin-top: 39px;
+  }
+}
+.copyrightSvg {
+  @include md {
+    margin-right: 78px;
+  }
+}

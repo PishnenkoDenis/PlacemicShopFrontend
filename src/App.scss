@@ -1,4 +1,5 @@
 @import "./mixin";
+
 .App {
   text-align: center;
   max-width: 1366px;
@@ -6,7 +7,7 @@
   padding: 0 43px;
   position: relative;
 }
-  
+
 .App {
   @include md {
     padding: 0 16px;
@@ -28,6 +29,7 @@ input, button {
     animation: App-logo-float infinite 3s ease-in-out;
   }
 }
+
 .App-header {
   min-height: 100vh;
   display: flex;

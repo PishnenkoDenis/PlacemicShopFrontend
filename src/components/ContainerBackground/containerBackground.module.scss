@@ -1,0 +1,11 @@
+@import '../../mixin';
+
+.footerContainer {
+  max-width: 1366px;
+  margin: 0 auto;
+  padding: 39px 43px;
+
+  @include md {
+    padding: 21px 16px 38px;
+  }
+}

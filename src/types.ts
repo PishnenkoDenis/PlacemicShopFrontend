@@ -29,3 +29,16 @@ export type TPreviouslyWatchedCard = {
   shortDesc: string;
   currentPrice: number;
 };
+
+export type TSubService = {
+  id: number;
+  title: string;
+  link: string;
+};
+
+export type TFooterService = {
+  id: number;
+  title: string;
+  link: string;
+  subservices: TSubService[];
+};

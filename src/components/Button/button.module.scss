@@ -11,9 +11,15 @@
   line-height: 16px;
   border-radius: 0;
 }
+.gradient {
+  background: linear-gradient(96.78deg, #F64D4D -57.09%, #4D5EF6 101.17%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
 .primary {
   background: linear-gradient(96.78deg, #F64D4D -57.09%, #4D5EF6 101.17%);
-  box-shadow: 0px 0px 40px rgba(0, 0, 0, 0.12);
+  box-shadow: 0 0 40px rgba(0, 0, 0, 0.12);
   font-weight: 500;
   color: #FFFFFF;
 }
@@ -21,6 +27,11 @@
   font-weight: 400;
   color: #000000;
   background: linear-gradient(96.78deg, rgba(246, 77, 77, 0.2) -57.09%, rgba(77, 94, 246, 0.2) 101.17%);
+}
+.contained {
+  background: #FFFFFF;
+  border: 0.7px solid #FFFFFF;
+  box-shadow: 0 0 40px rgba(0, 0, 0, 0.12);
 }
 .outlined {
   font-weight: 400;

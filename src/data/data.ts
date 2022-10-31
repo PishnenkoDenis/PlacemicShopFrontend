@@ -519,3 +519,92 @@ export const watchedproducts = [
     shortDesc: 'Футболка с дизайнерским принтом Super Shape 05',
   },
 ];
+
+export const services = [
+  {
+    id: 1,
+    title: ' Покупателям',
+    link: '/page2',
+    subservices: [
+      {
+        id: 1,
+        title: ' Как это работает',
+        link: '/page2',
+      },
+      {
+        id: 2,
+        title: ' Защита покупателя',
+        link: '/page2',
+      },
+      {
+        id: 3,
+        title: ' Условия оплаты',
+        link: '/page2',
+      },
+      {
+        id: 4,
+        title: 'Условия использования',
+        link: '/page2',
+      },
+      {
+        id: 5,
+        title: 'Регистрация аккаунта',
+        link: '/page2',
+      },
+    ],
+  },
+  {
+    id: 2,
+    title: 'Поставщикам',
+    link: '/page2',
+    subservices: [
+      {
+        id: 1,
+        title: ' Как стать продавцом',
+        Link: '/page2',
+      },
+      {
+        id: 2,
+        title: ' Правила участия',
+        Link: '/page2',
+      },
+      {
+        id: 3,
+        title: ' Личный кабинет продавца',
+        Link: '/page2',
+      },
+    ],
+  },
+  {
+    id: 3,
+    title: 'О компании',
+    link: '/page2',
+    subservices: [
+      {
+        id: 1,
+        title: ' О PlaceMilk',
+        Link: '/page2',
+      },
+      {
+        id: 2,
+        title: ' Новости',
+        Link: '/page2',
+      },
+      {
+        id: 3,
+        title: ' Часто задаваемые вопросы',
+        Link: '/page2',
+      },
+      {
+        id: 4,
+        title: 'Служба поддержки',
+        link: '/page2',
+      },
+      {
+        id: 5,
+        title: ' Сooбщить о нарушении авторских прав',
+        link: '/page2',
+      },
+    ],
+  },
+];

@@ -1,4 +1,4 @@
-import React, { memo, useState } from 'react';
+import React, { memo, useCallback, useState } from 'react';
 
 import cn from 'classnames';
 import Tabs from '../../../Tabs/Tabs';
@@ -36,6 +36,14 @@ const RegistrationForm = () => {
   const onChangeEmail = (e) => {
     setEmail(e.target.value);
   };
+  const resetForm = useCallback(() => {
+    setEmail('');
+    setTelephone('');
+    setPassword('');
+    setLoginType(EMAIL);
+    setCity('');
+    setConfirm('');
+  }, []);
 
   const onChangePassword = (e) => {
     setPassword(e.target.value);
@@ -137,9 +145,10 @@ const RegistrationForm = () => {
       <Button
         type="secondary"
         className={styles.buttonRegistrationType}
-        onClick={() =>
-          setFormType((prev) => (prev === LOGIN ? REGISTRATION : LOGIN))
-        }
+        onClick={() => {
+          setFormType((prev) => (prev === LOGIN ? REGISTRATION : LOGIN));
+          resetForm();
+        }}
         isRounded
       >
         {isLoginFormType ? 'Зарегистрироваться' : 'Войти'}

@@ -4,38 +4,25 @@
   width: 180px;
   height: 270px;
   position: relative;
-
-  @include sm {
-    width: 172px;
-  }
-}
-.cardBox:hover {
-  z-index: 500;
-  height: unset;
 }
 .innerContainer {
-  position: absolute;
-  left: 0;
-  top: 0;
+  position: relative;
   background: #ffffff;
   box-shadow: 0 4px 40px rgba(0, 0, 0, 0.12);
   border-radius: 4px;
   padding: 12px 10px 10px;
   display: flex;
   flex-direction: column;
+
   &:hover {
+    transform: scale(1.22);
+    z-index: 2;
     padding: 12px 20px 23px;
-    left: -20px;
-  }
-  &:hover .image {
-    width: 180px;
-    height: 180px;
   }
   &:hover .discount {
     top: 5px;
     right: 7px;
   }
-
   @include sm {
     padding: 11px 5px 10px 9px;
 
@@ -131,6 +118,6 @@
   line-height: 124.19%;
 }
 .buttonStyle {
-  width: 180px;
+  width: 100%;
   margin-top: 13px;
 }

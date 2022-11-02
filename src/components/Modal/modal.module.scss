@@ -7,11 +7,12 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  z-index: 5;
 }
 .modal {
   padding: 28px 30px 37px;
   width: 684px;
-  background: #FFFFFF;
+  background: #ffffff;
   box-shadow: 0 0 40px rgba(0, 0, 0, 0.12);
   position: relative;
 }

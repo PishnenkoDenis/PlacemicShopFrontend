@@ -1,7 +1,8 @@
-import React, { memo } from 'react';
+import React, { memo, useState } from 'react';
 
 import cn from 'classnames';
-import password from '../../assets/password.svg';
+import { ReactComponent as PasswordSvgActive } from '../../assets/passwordActive.svg';
+import { ReactComponent as PasswordSvg } from '../../assets/password.svg';
 import styles from './input.module.scss';
 
 type TInput = {
@@ -25,6 +26,11 @@ const Input = ({
   width = 296,
   className,
 }: TInput) => {
+  const [visible, setVisible] = useState(false);
+
+  const visibleHandler = () => {
+    setVisible(!visible);
+  };
   return (
     <div className={cn(styles.container, className)}>
       {label && (
@@ -38,11 +44,15 @@ const Input = ({
         placeholder={placeholder}
         style={{ width }}
         value={value}
-        type={isPassword ? 'password' : ''}
+        type={isPassword && !visible ? 'password' : 'text'}
       />
       {isPassword && (
-        <div>
-          <img className={styles.passwordIcon} src={password} alt="password" />
+        <div onClick={visibleHandler}>
+          {visible ? (
+            <PasswordSvgActive className={styles.passwordIcon} />
+          ) : (
+            <PasswordSvg className={styles.passwordIcon} />
+          )}
         </div>
       )}
     </div>

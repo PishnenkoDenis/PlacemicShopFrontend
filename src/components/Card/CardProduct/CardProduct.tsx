@@ -55,7 +55,7 @@ const CardProduct = ({ item }: TCardProducts) => {
           <>
             <div className={styles.longDescription}>{item.longDesc}</div>
             <div className={styles.buttonBox}>
-              <Button className={styles.buttonStyle} size="large">
+              <Button className={styles.buttonStyle} size="medium">
                 В корзину
               </Button>
             </div>

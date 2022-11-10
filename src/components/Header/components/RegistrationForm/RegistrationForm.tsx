@@ -126,6 +126,8 @@ const RegistrationForm = () => {
       </Button>
       {isLoginFormType && (
         <div
+          role="button"
+          tabIndex={0}
           className={styles.telephone}
           onClick={() =>
             setLoginType((prev) => (prev === EMAIL ? TELEPHONE : EMAIL))

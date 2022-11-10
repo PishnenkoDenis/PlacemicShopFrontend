@@ -47,7 +47,7 @@ const Input = ({
         type={isPassword && !visible ? 'password' : 'text'}
       />
       {isPassword && (
-        <div onClick={visibleHandler}>
+        <div onClick={visibleHandler} role="button" tabIndex={0}>
           {visible ? (
             <PasswordSvgActive className={styles.passwordIcon} />
           ) : (

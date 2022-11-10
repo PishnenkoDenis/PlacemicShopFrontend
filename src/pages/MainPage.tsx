@@ -74,7 +74,7 @@ function MainPage() {
   return (
     <div>
       <section className={styles.navigationSection}>
-        <PopularCategories />
+        <PopularCategories id={0} />
         <Slider items={items} size="medium" />
       </section>
       <Wrapper label="Успей купить">

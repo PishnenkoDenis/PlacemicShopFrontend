@@ -51,6 +51,8 @@ const Header = () => {
     <header className={styles.header}>
       <div className={styles.headerLeft}>
         <div
+          role="button"
+          tabIndex={0}
           className={styles.sidebar}
           onClick={(e) => {
             e.stopPropagation();

@@ -19,6 +19,8 @@ const Tabs = ({ onChange, options, selectedId, className }: TTabs) => {
     <div className={cn(styles.tabs, className)}>
       {options?.map((option) => (
         <div
+          role="button"
+          tabIndex={0}
           className={cn(
             styles.tab,
             selectedId === option.id && styles.tabActive

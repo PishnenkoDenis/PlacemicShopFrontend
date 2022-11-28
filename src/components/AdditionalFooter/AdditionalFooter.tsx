@@ -8,8 +8,8 @@ import React, {
 import { throttle } from 'lodash';
 import { watchedproducts } from '../../data/data';
 import Wrapper from '../Wrapper/Wrapper';
-import PreviouslyWatchedCard from '../Card/PreviouslyWatchedCard/PreviouslyWatchedCard';
-import ContainerBackground from '../ContainerBackground/ContainerBackground';
+import PreviouslyWatchedCard from '../Card/PreviouslyWatchedCard';
+import ContainerBackground from '../ContainerBackground';
 
 import styles from './additionalFooter.module.scss';
 

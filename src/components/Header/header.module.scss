@@ -1,23 +1,40 @@
+@import '../../mixin';
+
 .header {
-  background-color: #FFFFFF;
+  background-color: #ffffff;
   width: 100%;
   height: 134px;
   display: flex;
-  flex-direction:row;
+  flex-direction: row;
   padding-top: 15px;
   justify-content: space-between;
   z-index: 5;
   position: relative;
+
+  @include sm {
+    height: 91px;
+  }
 }
 .headerLeft {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+  padding-left: 45px;
+  margin-right: 31px;
+
+  @include md {
+    padding-left: 16px;
+    margin-right: 18px;
+  }
 }
 .headerCenter {
   width: 624px;
   padding-left: 0;
+
+  @include md {
+    margin-bottom: 13px;
+  }
 }
 .FAQ {
   font-weight: 300;
@@ -28,17 +45,36 @@
   margin-bottom: 19px;
   display: flex;
   justify-content: flex-start;
+
+  @include sm {
+    margin-bottom: 9px;
+  }
 }
 .headerRight {
   display: flex;
   flex-direction: column;
   align-items: flex-end;
+  padding-right: 45px;
+  margin-left: 45px;
+
+  @include md {
+    padding-right: 16px;
+    margin-left: 18px;
+  }
 }
 .headerRightTop {
   margin-bottom: 22px;
+
+  @include md {
+    margin-bottom: 19px;
+  }
+
+  @include sm {
+    margin-bottom: unset;
+  }
 }
 .headerRightBottom {
-  display:flex;
+  display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
@@ -46,16 +82,25 @@
   max-width: 268px;
   height: 46px;
   width: 100%;
+
+  @include md {
+    gap: 35px;
+  }
 }
 .sidebar {
   width: 77px;
   height: 77px;
-  background: linear-gradient(96.78deg, #F64D4D -57.09%, #4D5EF6 101.17%);
+  background: linear-gradient(96.78deg, #f64d4d -57.09%, #4d5ef6 101.17%);
   box-shadow: 0 0 40px rgba(0, 0, 0, 0.12);
   transform: matrix(-1, 0, 0, 1, 0, 0);
   display: flex;
   place-content: center;
-} 
+
+  @include sm {
+    width: 44px;
+    height: 44px;
+  }
+}
 .headerBottom {
   display: flex;
   justify-content: space-between;
@@ -67,12 +112,26 @@
   width: 30px;
   display: flex;
   align-self: center;
+
+  @include sm {
+    width: 15px;
+  }
 }
 .logo {
   width: 188px;
   height: 63px;
   padding-left: 32px;
+
+  @include sm {
+    padding-left: 14px;
+    width: 119.17px;
+    height: 40px;
+  }
 }
 .dropdownLangBox {
   display: inline;
+}
+.dropdownlist {
+  justify-content: left;
+  margin-right: 20px;
 }

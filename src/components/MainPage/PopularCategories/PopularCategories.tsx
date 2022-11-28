@@ -1,13 +1,13 @@
 import React, { memo, useState } from 'react';
-import ButtonCheck from '../Button/ButtonCheck/ButtonCheck';
-import compIcon from '../../assets/compIcon.svg';
-import applisncIcon from '../../assets/appliancesIcon.svg';
-import energIcon from '../../assets/energIcon.svg';
-import menuCategories from '../../assets/menuCategories.svg';
-import men from '../../assets/men.svg';
-import avtoIcon from '../../assets/avtoIcon.svg';
-import healthIcon from '../../assets/healthIcon.svg';
-import sportIcon from '../../assets/sportIcon.svg';
+import ButtonCheck from '../../Button/ButtonCheck';
+import compIcon from '../../../assets/compIcon.svg';
+import applisncIcon from '../../../assets/appliancesIcon.svg';
+import energIcon from '../../../assets/energIcon.svg';
+import menuCategories from '../../../assets/menuCategories.svg';
+import men from '../../../assets/men.svg';
+import avtoIcon from '../../../assets/avtoIcon.svg';
+import healthIcon from '../../../assets/healthIcon.svg';
+import sportIcon from '../../../assets/sportIcon.svg';
 
 import styles from './categories.module.scss';
 
@@ -74,8 +74,9 @@ const PopularCategories = ({ id, text, link, icon }: TPopularCategories) => {
         <ButtonCheck
           className={styles.allCategories}
           onClick={() => setOpen((prev) => !prev)}
+          open={open}
         >
-          Все категории
+          {open ? 'Скрыть' : 'Все категории'}
         </ButtonCheck>
       </div>
     </div>

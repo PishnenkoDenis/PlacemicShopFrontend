@@ -3,23 +3,66 @@
   align-items: center;
   position: relative;
 }
+
 .input {
-  border: 0.5px solid #00000099;
-  border-radius: 4px;
+  width: 296px;
   height: 32px;
   font-weight: 300;
   font-size: 14px;
   line-height: 16px;
   padding: 6px 10px;
+  &.invalid {
+    border: 0.5px solid red;
+    border-radius: 4px;
+  }
 }
+
 .label {
+  width: 110px;
   font-weight: 400;
   font-size: 14px;
   line-height: 16px;
   color: #000000;
 }
+
 .passwordIcon {
   position: absolute;
   right: 14px;
   top: 11px;
 }
+.buttonEmailBox {
+  display: flex;
+}
+
+.svgButtonStyle {
+  display: block;
+  &:hover {
+    box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.08);
+  }
+}
+
+input::-webkit-calendar-picker-indicator {
+  position: absolute;
+  background: transparent;
+  right: 0;
+  top: 2;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  cursor: pointer;
+}
+.errorWrapper {
+  position: relative;
+}
+
+.validateStyle {
+  position: absolute;
+  top: -2px;
+  left: 50%;
+  transform: translate(-50%, -100%);
+  font-size: 14px;
+  color: red;
+  white-space: nowrap;
+}
+

@@ -1,16 +1,18 @@
-import React, { memo } from 'react';
-
+import React, { memo, ReactNode } from 'react';
 import cn from 'classnames';
-import { ReactComponent as CheckIcon } from '../../../assets/checkIcon.svg';
+import { ReactComponent as ArrowDownSvg } from '../../../assets/arrowDown.svg';
+import { ReactComponent as ArrowUpSvg } from '../../../assets/arrowUp.svg';
+
 import styles from './buttoncheck.module.scss';
 
 type TButtonCheck = {
-  children: any;
+  children: ReactNode;
   className?: string;
-  onClick: () => {};
+  onClick: () => void;
+  open: boolean;
 };
 
-const ButtonCheck = ({ onClick, children, className }: TButtonCheck) => {
+const ButtonCheck = ({ open, onClick, children, className }: TButtonCheck) => {
   return (
     <div className={styles.allCategoriesBox}>
       <button
@@ -20,7 +22,7 @@ const ButtonCheck = ({ onClick, children, className }: TButtonCheck) => {
       >
         {children}
       </button>
-      <CheckIcon className={styles.checkIcon} />
+      {open ? <ArrowUpSvg /> : <ArrowDownSvg />}
     </div>
   );
 };

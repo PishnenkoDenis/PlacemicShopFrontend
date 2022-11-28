@@ -298,6 +298,11 @@ export const temp = [
             subcategoria: 'Триммеры',
             link: '/page2',
           },
+          {
+            id: 4,
+            subcategoria: ' Аксессуары для электробритв',
+            link: '/page2',
+          },
         ],
       },
       {
@@ -324,7 +329,7 @@ export const temp = [
       },
       {
         id: 4,
-        subtitle: 'Товары для здоровья',
+        subtitle: 'Товары для ухода',
         link: '/page2',
         subcategories: [
           {
@@ -346,6 +351,38 @@ export const temp = [
       },
       {
         id: 5,
+        subtitle: 'Товары для здоровья',
+        link: '/page2',
+        subcategories: [
+          {
+            id: 1,
+            subcategoria: 'Электрощипцы и плойки',
+            link: '/page2',
+          },
+          {
+            id: 2,
+            subcategoria: 'Электрощипцы и плойки',
+            link: '/page2',
+          },
+          {
+            id: 3,
+            subcategoria: 'Электрощипцы и плойки',
+            link: '/page2',
+          },
+          {
+            id: 4,
+            subcategoria: 'Электрощипцы и плойки',
+            link: '/page2',
+          },
+          {
+            id: 5,
+            subcategoria: 'Аксессуары для электробритв',
+            link: '/page2',
+          },
+        ],
+      },
+      {
+        id: 6,
         subtitle: 'Товары для детей',
         link: '/page2',
         subcategories: [
@@ -362,6 +399,95 @@ export const temp = [
           {
             id: 3,
             subcategoria: 'Электрощипцы и плойки',
+            link: '/page2',
+          },
+        ],
+      },
+      {
+        id: 7,
+        subtitle: 'Товары для фитнеса',
+        link: '/page2',
+        subcategories: [
+          {
+            id: 1,
+            subcategoria: 'Электрощипцы и плойки',
+            link: '/page2',
+          },
+          {
+            id: 2,
+            subcategoria: 'Электрощипцы и плойки',
+            link: '/page2',
+          },
+          {
+            id: 3,
+            subcategoria: 'Электрощипцы и плойки',
+            link: '/page2',
+          },
+          {
+            id: 4,
+            subcategoria: 'Электрощипцы и плойки',
+            link: '/page2',
+          },
+          {
+            id: 5,
+            subcategoria: 'Электрощипцы и плойки',
+            link: '/page2',
+          },
+          {
+            id: 6,
+            subcategoria: 'Электрощипцы и плойки',
+            link: '/page2',
+          },
+          {
+            id: 7,
+            subcategoria: 'Электрощипцы и плойки',
+            link: '/page2',
+          },
+          {
+            id: 8,
+            subcategoria: 'Электрощипцы и плойки',
+            link: '/page2',
+          },
+        ],
+      },
+      {
+        id: 8,
+        subtitle: 'Товары для детей',
+        link: '/page2',
+        subcategories: [
+          {
+            id: 1,
+            subcategoria: 'Видеоняни',
+            link: '/page2',
+          },
+          {
+            id: 2,
+            subcategoria: 'Электрощипцы и плойки',
+            link: '/page2',
+          },
+          {
+            id: 3,
+            subcategoria: 'Электрощипцы и плойки',
+            link: '/page2',
+          },
+          {
+            id: 4,
+            subcategoria: 'Электрощипцы и плойки',
+            link: '/page2',
+          },
+          {
+            id: 5,
+            subcategoria: 'Электрощипцы и плойки',
+            link: '/page2',
+          },
+          {
+            id: 6,
+            subcategoria: 'Электрощипцы и плойки',
+            link: '/page2',
+          },
+          {
+            id: 8,
+            subcategoria: 'Детский проектор',
             link: '/page2',
           },
         ],

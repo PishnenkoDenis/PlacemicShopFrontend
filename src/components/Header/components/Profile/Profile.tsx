@@ -5,7 +5,12 @@ import styles from './profile.module.scss';
 
 const Profile = ({ onClick }) => {
   return (
-    <div onClick={onClick}>
+    <div
+      role="button"
+      tabIndex={0}
+      className={styles.profileBox}
+      onClick={onClick}
+    >
       <ProfileSvg className={styles.profileIcon} />
       <div className={styles.profileText}>Войти</div>
     </div>

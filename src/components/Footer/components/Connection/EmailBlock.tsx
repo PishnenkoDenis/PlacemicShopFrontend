@@ -1,9 +1,12 @@
-import React, { memo } from 'react';
+import React, { memo, useState } from 'react';
 import Button from '../../../Button/Button';
+import Input from '../../../Input/Input';
+import { validateEmail } from '../../../../utils';
 
 import styles from './connection.module.scss';
 
 const EmailBlock = () => {
+  const [email, setEmail] = useState('');
   return (
     <div className={styles.emailBox}>
       <span className={styles.labelEmail}>
@@ -11,9 +14,13 @@ const EmailBlock = () => {
       </span>
       <div className={styles.inputBox}>
         <div className={styles.inputInner}>
-          <input
+          <Input
+            value={email}
+            onChange={setEmail}
             placeholder="konstantinkonstantinov@yandex.ru"
-            className={styles.input}
+            type="email"
+            borderClass={styles.border}
+            validate={validateEmail}
           />
         </div>
         <Button

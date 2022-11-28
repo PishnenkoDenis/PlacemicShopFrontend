@@ -1,0 +1,13 @@
+@import '../../mixin';
+
+.container {
+  display: flex;
+  justify-content: space-between;
+}
+.content {
+  width: calc(100% - 297px);
+
+  @include md {
+    width: calc(100% - 200px);
+  }
+}

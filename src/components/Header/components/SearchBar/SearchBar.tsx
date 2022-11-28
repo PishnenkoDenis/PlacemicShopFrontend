@@ -15,7 +15,7 @@ const options = [
 ];
 
 const SearchBar = () => {
-  const [value, setValue] = useState('Везде');
+  const [value, setValue] = useState(0);
 
   return (
     <div className={styles.searchBox}>
@@ -26,12 +26,11 @@ const SearchBar = () => {
           value={value}
           onChange={setValue}
           options={options}
+          alignText={styles.textCenter}
         />
       </div>
       <input className={styles.serchBoxInput} />
-      <div className={styles.buttonIcon}>
-        <SearchIcon />
-      </div>
+      <SearchIcon className={styles.buttonIcon} />
     </div>
   );
 };

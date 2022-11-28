@@ -1,4 +1,6 @@
-.descriptionBox { 
+@import '../../../mixin';
+
+.descriptionBox {
   width: 100%;
   text-align: left;
   font-weight: 300;
@@ -7,13 +9,17 @@
   position: relative;
 }
 .description::after {
-  content: "";
+  content: '';
   position: absolute;
   bottom: 30px;
   width: 100%;
   left: 0;
   height: 61px;
-  background: linear-gradient(rgba(255,255,255,0),#fff);
+  background: linear-gradient(rgba(255, 255, 255, 0), #fff);
+
+  @include lg {
+    height: 96px;
+  }
 }
 .background {
   background: none;

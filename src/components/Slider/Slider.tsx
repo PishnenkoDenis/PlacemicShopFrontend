@@ -20,7 +20,6 @@ const Slider = ({
 
   const takeArrowsClass = styles[takeArrows];
   const sizeClass = styles[size];
-
   const nextSlide = useCallback(() => {
     setSelectedId((prev) => (prev !== items.length - 1 ? prev + 1 : 0));
   }, []);
@@ -33,7 +32,7 @@ const Slider = ({
       <img className={styles.banner} src={items[selectedId]} alt="icon" />
       <button
         type="button"
-        className={cn(styles.arrowsBoxLeft, styles.arrowLeft, takeArrowsClass)}
+        className={cn(styles.arrowsBoxLeft, takeArrowsClass)}
         onClick={previousSlide}
       >
         <ArrowLeft />

@@ -9,7 +9,7 @@ const container = document.getElementById('root')!;
 const root = createRoot(container);
 
 const client = new ApolloClient({
-  uri: 'https://277b-80-72-27-34.eu.ngrok.io/',
+  uri: process.env.REACT_APP_URL,
   cache: new InMemoryCache(),
 });
 

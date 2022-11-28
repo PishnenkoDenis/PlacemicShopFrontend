@@ -1,10 +1,17 @@
-import { gql } from '@apollo/client';
+// import { gql } from '@apollo/client';
 
-const FavoritesProduct = gql`
-  query Getproduct {
-    product {
-      id
-      breed
-    }
-  }
-`;
+// export const POST_USER = gql`
+//   query {
+//     postUsers {
+//       id
+//       fullName
+//       email
+//       birthday
+//       phone
+//       avatar
+//       role
+//       address
+//     }
+//   }
+// `;
+

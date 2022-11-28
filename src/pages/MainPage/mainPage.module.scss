@@ -1,8 +1,11 @@
-@import '../mixin';
+@import '../../mixin';
 
 .navigationSection {
   display: flex;
   justify-content: space-between;
+  gap: 30px;
+  align-items: center;
+
   @include md {
     justify-content: center;
   }

@@ -1,6 +1,8 @@
 import React, { memo, useCallback, useState } from 'react';
 
 import cn from 'classnames';
+// import { useMutation } from '@apollo/client';
+// import { CREATE_USER } from '../../../../graphQl/mutation';
 import Tabs from '../../../Tabs/Tabs';
 import Input from '../../../Input/Input';
 import Button from '../../../Button/Button';
@@ -19,6 +21,10 @@ const LOGIN = 'login';
 const REGISTRATION = 'registation';
 
 const RegistrationForm = () => {
+  // const [newUser] = useMutation(CREATE_USER);
+
+  // const newUser = () => {};
+
   const [formType, setFormType] = useState(LOGIN);
   const [email, setEmail] = useState('');
   const [telephone, setTelephone] = useState('');
@@ -33,7 +39,7 @@ const RegistrationForm = () => {
   const isLoginFormType = formType === LOGIN;
   const title = isLoginFormType ? 'Вход' : 'Регистрация';
 
-  const onChangeEmail = (e) => {
+  const onChangeEmail = (e: React.ChangeEvent<HTMLInputElement>) => {
     setEmail(e.target.value);
   };
   const resetForm = useCallback(() => {
@@ -44,21 +50,6 @@ const RegistrationForm = () => {
     setCity('');
     setConfirm('');
   }, []);
-
-  const onChangePassword = (e) => {
-    setPassword(e.target.value);
-  };
-  const onChangeTelephone = (e) => {
-    setTelephone(e.target.value);
-  };
-
-  const onChangeCity = (e) => {
-    setCity(e.target.value);
-  };
-
-  const onChangeConfirm = (e) => {
-    setConfirm(e.target.value);
-  };
 
   return (
     <div className={styles.container}>
@@ -76,16 +67,18 @@ const RegistrationForm = () => {
           label="E-mail"
           placeholder="Введите E-mail"
           value={email}
-          onChange={onChangeEmail}
+          onChange={setEmail}
           className={styles.inputStyle}
+          borderClass={styles.border}
         />
       ) : (
         <Input
           label="По телефону"
           placeholder="Введите телефон"
           value={telephone}
-          onChange={onChangeTelephone}
+          onChange={setTelephone}
           className={styles.inputStyle}
+          borderClass={styles.border}
         />
       )}
       {!isLoginFormType && (
@@ -93,8 +86,9 @@ const RegistrationForm = () => {
           label="Город"
           placeholder="Введите город"
           value={city}
-          onChange={onChangeCity}
+          onChange={setCity}
           className={styles.inputStyle}
+          borderClass={styles.border}
         />
       )}
       <Input
@@ -102,8 +96,9 @@ const RegistrationForm = () => {
         placeholder="Введите пароль"
         isPassword
         value={password}
-        onChange={onChangePassword}
+        onChange={setPassword}
         className={styles.inputStyle}
+        borderClass={styles.border}
       />
       {!isLoginFormType && (
         <Input
@@ -111,8 +106,9 @@ const RegistrationForm = () => {
           placeholder="Введите пароль"
           value={confirm}
           isPassword
-          onChange={onChangeConfirm}
+          onChange={setConfirm}
           className={styles.inputStyle}
+          borderClass={styles.border}
         />
       )}
       <Button

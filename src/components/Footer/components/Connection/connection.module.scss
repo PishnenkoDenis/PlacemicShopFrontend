@@ -13,22 +13,16 @@
 .labelEmail {
   color: #ffffff;
 }
-.inputInner {
-  color: #ffffff;
-  width: 260px;
-  height: 35px;
-  border: 0.7px solid #ffffff;
-  filter: drop-shadow(0px 0px 40px rgba(0, 0, 0, 0.12));
-}
-.input {
-  height: 35px;
-  width: 100%;
-  padding: 9px 19px;
+.border {
   font-style: italic;
+  color: #ffffff;
+  padding: 9px 19px;
   font-size: 14px;
   line-height: 16px;
-  color: #ffffff;
   background: transparent;
+  border: 0.7px solid #ffffff;
+  border-radius: unset;
+
   &::-webkit-input-placeholder {
     color: #ffffff;
   }
@@ -36,11 +30,12 @@
     color: #ffffff;
   }
 }
+
 .buttonStyle {
   width: 130px;
 }
 
-//SocialNetwork 
+//SocialNetwork
 .socialBox {
   margin-top: 21px;
   color: #ffffff;

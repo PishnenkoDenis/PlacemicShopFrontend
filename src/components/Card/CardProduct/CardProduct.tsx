@@ -1,5 +1,5 @@
 import React, { memo, useState } from 'react';
-import Button from '../../Button/Button';
+import Button from '../../Button';
 import { TCardProducts } from '../../../types';
 import starMik from '../../../assets/starMik.svg';
 

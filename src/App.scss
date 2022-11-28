@@ -1,4 +1,4 @@
-@import "./mixin";
+@import './mixin';
 
 .App {
   text-align: center;
@@ -19,7 +19,8 @@
   pointer-events: none;
 }
 
-input, button {
+input,
+button {
   border: none;
   outline: none;
 }

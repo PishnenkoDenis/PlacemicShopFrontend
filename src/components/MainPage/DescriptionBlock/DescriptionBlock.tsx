@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import ButtonCheck from '../../Button/ButtonCheck/ButtonCheck';
+import ButtonCheck from '../../Button/ButtonCheck';
 import text from '../../../assets/local/descriptionBlock.json';
 import styles from './description.module.scss';
 
@@ -14,13 +14,16 @@ const DescriptionBlock = () => {
       >
         {text.description}
       </div>
-      {isAllDescription && <div> {text.description}</div>}
+      {isAllDescription && <div>{text.description}</div>}
       <div>
         <ButtonCheck
           className={styles.buttonCheck}
-          onClick={() => setOpen((prev) => !prev)}
+          onClick={() => {
+            setOpen((prev) => !prev);
+          }}
+          open={open}
         >
-          Читать полностью
+          {open ? 'Скрыть' : 'Читать полностью'}
         </ButtonCheck>
       </div>
     </div>

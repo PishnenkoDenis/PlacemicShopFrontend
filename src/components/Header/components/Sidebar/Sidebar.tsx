@@ -18,7 +18,12 @@ const Sidebar = () => {
   );
 
   return (
-    <div className={styles.sidebarBox} onClick={(e) => e.stopPropagation()}>
+    <div
+      role="button"
+      tabIndex={0}
+      className={styles.sidebarBox}
+      onClick={(e) => e.stopPropagation()}
+    >
       <div className={styles.sidebarInner}>
         {temp.map((item) => (
           <li
@@ -64,7 +69,7 @@ const Sidebar = () => {
           ))}
         </div>
         <div className={styles.sliderBox}>
-          <Slider items={items} size="small" takeArrows="outsideArrows" />
+          <Slider items={items} takeArrows="outsideArrows" />
         </div>
       </div>
     </div>

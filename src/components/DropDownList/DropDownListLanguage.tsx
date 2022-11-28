@@ -43,8 +43,8 @@ const DropDownListLanguage = ({
         <FlagRu className={styles.flagIcon} />
         <span className={styles.selectOption}>{selectedOption.value}</span>
         <RubleIcon className={styles.currencyIcon} />
-        <img className={styles.arrow} src={arrow} alt="arrow" />
       </button>
+      <img className={styles.arrow} src={arrow} alt="arrow" />
       {open && (
         <div className={styles.list}>
           {options.map((option) => (

@@ -8,25 +8,30 @@ import React, {
 } from 'react';
 import { Link } from 'react-router-dom';
 import { throttle } from 'lodash';
-import Slider from '../components/Slider/Slider';
-import PopularCategories from '../components/PopularCategories/PopularCategories';
-import CardProduct from '../components/Card/CardProduct/CardProduct';
-import Button from '../components/Button/Button';
-import CardShop from '../components/Card/CardShop/CardShop';
-import AdvertisingCard from '../components/Card/AdvertisingCard/AdvertisingCard';
-import Wrapper from '../components/Wrapper/Wrapper';
-import DescriptionBlock from '../components/MainPage/DescriptionBlock/DescriptionBlock';
-import banner from '../assets/baner1.svg';
-import dog from '../assets/imgShopSale.svg';
-import { shops, advertising, noveltiesProducts, products } from '../data/data';
+import Slider from '../../components/Slider/Slider';
+import {
+  products,
+  shops,
+  advertising,
+  noveltiesProducts,
+  recomProducts,
+} from '../../data/data';
+import PopularCategories from '../../components/MainPage/PopularCategories/PopularCategories';
+import CardProduct from '../../components/Card/CardProduct/CardProduct';
+import Button from '../../components/Button/Button';
+import CardShop from '../../components/Card/CardShop/CardShop';
+import AdvertisingCard from '../../components/Card/AdvertisingCard/AdvertisingCard';
+import Wrapper from '../../components/Wrapper/Wrapper';
+import DescriptionBlock from '../../components/MainPage/DescriptionBlock/DescriptionBlock';
+import banner from '../../assets/baner1.svg';
+import dog from '../../assets/imgShopSale.svg';
+import { SCREEN_WIDTH } from '../../constants';
 
-import styles from './index.module.scss';
+import styles from './mainPage.module.scss';
 
 const items = [banner, dog, banner, dog, banner, dog, banner, dog, banner];
 
 function MainPage() {
-  const screenWidthSm = 732;
-  const screenWidthMd = 1262;
   const ref = useRef<HTMLDivElement>(null);
   const [width, setWidth] = useState(0);
 
@@ -55,10 +60,10 @@ function MainPage() {
 
     advertising.forEach((i, index) => {
       let temp = 3 + 4 * index;
-      if (width < screenWidthSm) {
+      if (width < SCREEN_WIDTH.sm) {
         arrlenght = 4;
         temp = 1 + 2 * index;
-      } else if (width < screenWidthMd) {
+      } else if (width < SCREEN_WIDTH.md) {
         temp = 2 + 3 * index;
         arrlenght = 6;
       }
@@ -71,15 +76,41 @@ function MainPage() {
     });
   }, [width]);
 
+  const productsFiltered = useMemo(() => {
+    let arrlenght = 12;
+    if (width < SCREEN_WIDTH.default) {
+      arrlenght = 8;
+    }
+    return [...products].splice(0, arrlenght);
+  }, [products, width]);
+
+  const noveltiesProductsFiltered = useMemo(() => {
+    let arrlenght = 12;
+    if (width < SCREEN_WIDTH.default) {
+      arrlenght = 8;
+    }
+    return [...noveltiesProducts].splice(0, arrlenght);
+  }, [noveltiesProducts, width]);
+
+  const recomProductsFiltered = useMemo(() => {
+    let arrlenght = 36;
+    if (width < SCREEN_WIDTH.default) {
+      arrlenght = 24;
+    }
+    return [...recomProducts].splice(0, arrlenght);
+  }, [recomProducts, width]);
+
   return (
     <div>
       <section className={styles.navigationSection}>
         <PopularCategories id={0} />
-        <Slider items={items} size="medium" />
+        <div className={styles.sliderWrapper}>
+          <Slider items={items} size="medium" />
+        </div>
       </section>
       <Wrapper label="Успей купить">
         <div className={styles.cardProductbox}>
-          {products.map((item) => (
+          {productsFiltered.map((item) => (
             <CardProduct item={item} key={item.id} />
           ))}
         </div>
@@ -93,7 +124,7 @@ function MainPage() {
       </Wrapper>
       <Wrapper label="Новинки">
         <div className={styles.cardProductbox}>
-          {noveltiesProducts.slice(0, 12).map((item) => (
+          {noveltiesProductsFiltered.map((item) => (
             <CardProduct item={item} key={item.id} />
           ))}
         </div>
@@ -124,7 +155,7 @@ function MainPage() {
       </Wrapper>
       <Wrapper label="Рекомендуемые для вас товары">
         <div className={styles.cardProductbox} ref={ref}>
-          {products.slice(0, 32).map((item) => (
+          {recomProductsFiltered.map((item) => (
             <CardProduct item={item} key={item.id} />
           ))}
         </div>

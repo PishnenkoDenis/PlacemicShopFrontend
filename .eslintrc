@@ -25,6 +25,7 @@
     "rules": {
       "jsx-a11y/click-events-have-key-events": [0, "never"],
       "prettier/prettier": "error",
+      "jsx-a11y/label-has-associated-control": "off",
       "react/require-default-props":"off",
       "no-shadow": "off",
       "react/function-component-definition": "off",

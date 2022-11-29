@@ -93,7 +93,7 @@ const Header = () => {
           <Basket count={1} />
           {open && (
             <Modal onClose={handleClose}>
-              <RegistrationForm />
+              <RegistrationForm closeModal={setOpen} />
             </Modal>
           )}
         </div>

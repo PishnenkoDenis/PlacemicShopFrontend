@@ -1,0 +1,29 @@
+@import '../../mixin';
+
+.pageWrapper {
+  height: 628px;
+  display: flex;
+
+ .container {
+  width: 297px;
+  text-align: left;
+  margin-top: 67px;
+
+  @include md {
+   width: 200px;
+  }
+
+ }
+  .list {
+    margin-bottom: 17px;
+ }
+  .item {
+    font-size: 16px;
+    line-height: 19px;
+    color: #000000;
+  }
+  .activeListItems {
+    font-weight: 500;
+  }
+
+}

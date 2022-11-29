@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+
 import AdditionalFooter from './components/AdditionalFooter';
 import MainPage from './pages/MainPage';
 import Page2 from './pages/Page2';
@@ -11,8 +12,13 @@ import FAQPage from './pages/FAQ/FAQPage';
 import Company from './pages/Company';
 import SupportPage from './pages/SupportPage';
 import FeedbackPage from './pages/FeedbackPage';
-
 import './App.scss';
+import SellerPage from './pages/SellerPage';
+import ProductsPage from './pages/ProductsPage';
+import SettingsPage from './pages/SettingsPage';
+import OrderPage from './pages/OrderPage';
+import MessagesPage from './pages/MessagesPage';
+import CommentsPage from './pages/CommentsPage';
 
 function App() {
   return (
@@ -28,6 +34,13 @@ function App() {
           <Route path="company" element={<Company />} />
           <Route path="support" element={<SupportPage />} />
           <Route path="feedback" element={<FeedbackPage />} />
+          <Route path="sellerpage" element={<SellerPage />}>
+            <Route path="products" element={<ProductsPage />} />
+            <Route path="settings" element={<SettingsPage />} />
+            <Route path="orders" element={<OrderPage />} />
+            <Route path="messages" element={<MessagesPage />} />
+            <Route path="comments" element={<CommentsPage />} />
+          </Route>
         </Routes>
       </div>
       <AdditionalFooter />

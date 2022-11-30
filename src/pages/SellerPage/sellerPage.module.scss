@@ -2,7 +2,9 @@
 
 .pageWrapper {
   height: 628px;
+  width: 100%;
   display: flex;
+  justify-content: space-between;
 
  .container {
   width: 297px;
@@ -13,7 +15,6 @@
    width: 200px;
   }
 
- }
   .list {
     margin-bottom: 17px;
  }
@@ -21,9 +22,12 @@
     font-size: 16px;
     line-height: 19px;
     color: #000000;
+
+    &:focus {
+      font-weight: 500;
+    }
   }
-  .activeListItems {
-    font-weight: 500;
-  }
+
+ }
 
 }

@@ -1,6 +1,6 @@
 import React, { memo } from 'react';
 import { Outlet } from 'react-router';
-import { NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 import styles from './sellerPage.module.scss';
 
@@ -18,16 +18,9 @@ function SellerPage() {
       <div className={styles.container}>
         {sideMenu.map((item) => (
           <li className={styles.list} key={item.id}>
-            <div className={styles.item}>
-              <NavLink
-                to={`/sellerpage/${item.path}`}
-                className={({ isActive }) =>
-                  isActive ? 'activeListItems' : ''
-                }
-              >
-                {item.tab}
-              </NavLink>
-            </div>
+            <Link to={`/sellerpage/${item.path}`} className={styles.item}>
+              {item.tab}
+            </Link>
           </li>
         ))}
       </div>

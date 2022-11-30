@@ -19,6 +19,10 @@ import SettingsPage from './pages/SettingsPage';
 import OrderPage from './pages/OrderPage';
 import MessagesPage from './pages/MessagesPage';
 import CommentsPage from './pages/CommentsPage';
+import ProductListPage from './pages/ProductListPage';
+import ProductsLoadingPage from './pages/ProductsLoadingPage';
+import CharacteristicsPage from './pages/CharacteristicsPage';
+import DiscountsPage from './pages/DiscountsPage';
 
 function App() {
   return (
@@ -35,7 +39,15 @@ function App() {
           <Route path="support" element={<SupportPage />} />
           <Route path="feedback" element={<FeedbackPage />} />
           <Route path="sellerpage" element={<SellerPage />}>
-            <Route path="products" element={<ProductsPage />} />
+            <Route path="products" element={<ProductsPage />}>
+              <Route path="product_list" element={<ProductListPage />} />
+              <Route
+                path="products_loading"
+                element={<ProductsLoadingPage />}
+              />
+              <Route path="characteristics" element={<CharacteristicsPage />} />
+              <Route path="discounts" element={<DiscountsPage />} />
+            </Route>
             <Route path="settings" element={<SettingsPage />} />
             <Route path="orders" element={<OrderPage />} />
             <Route path="messages" element={<MessagesPage />} />

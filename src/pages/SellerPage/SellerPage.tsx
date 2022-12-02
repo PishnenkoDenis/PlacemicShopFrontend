@@ -1,5 +1,5 @@
 import React, { memo } from 'react';
-import { Outlet } from 'react-router';
+import { Outlet, useParams } from 'react-router';
 import { Link } from 'react-router-dom';
 
 import styles from './sellerPage.module.scss';
@@ -13,12 +13,13 @@ const sideMenu = [
 ];
 
 function SellerPage() {
+  const { id } = useParams();
   return (
     <div className={styles.pageWrapper}>
       <div className={styles.container}>
         {sideMenu.map((item) => (
           <li className={styles.list} key={item.id}>
-            <Link to={`/sellerpage/${item.path}`} className={styles.item}>
+            <Link to={`/sellerpage/${id}/${item.path}`} className={styles.item}>
               {item.tab}
             </Link>
           </li>

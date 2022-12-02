@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 import AdditionalFooter from './components/AdditionalFooter';
@@ -38,7 +38,7 @@ function App() {
           <Route path="company" element={<Company />} />
           <Route path="support" element={<SupportPage />} />
           <Route path="feedback" element={<FeedbackPage />} />
-          <Route path="sellerpage" element={<SellerPage />}>
+          <Route path="sellerpage/:id" element={<SellerPage />}>
             <Route path="products" element={<ProductsPage />}>
               <Route path="product_list" element={<ProductListPage />} />
               <Route

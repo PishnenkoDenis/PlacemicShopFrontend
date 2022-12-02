@@ -1,4 +1,4 @@
-import React, { memo, useCallback, useContext, useState } from 'react';
+import React, { memo, useCallback, useState } from 'react';
 
 import cn from 'classnames';
 import { useMutation } from '@apollo/client';
@@ -10,6 +10,7 @@ import Input from '../../../Input/Input';
 import Button from '../../../Button/Button';
 
 import styles from './registrationForm.module.scss';
+import { SELLER_ROLE } from '../../../../constants';
 
 const options = [
   { id: 1, label: 'По E-mail' },
@@ -52,9 +53,10 @@ const RegistrationForm = ({ closeModal }) => {
     setSellerName(name);
   };
 
-  const setAfterAuthAction = () => {
+  const setAfterAuthAction = (role: string, id: number) => {
     closeModal(false);
-    navigate('sellerpage');
+    if (role === SELLER_ROLE) navigate(`/sellerpage/${id}`);
+    else navigate('/');
   };
 
   const register = (e: Event) => {
@@ -71,8 +73,7 @@ const RegistrationForm = ({ closeModal }) => {
     }).then(({ data }) => {
       const { id, role, fullName } = data.createUser;
       setUserData(id, role, fullName);
-      setAfterAuthAction();
-      console.log(data);
+      setAfterAuthAction(role, id);
     });
   };
 
@@ -88,8 +89,7 @@ const RegistrationForm = ({ closeModal }) => {
     }).then(({ data }) => {
       const { id, role } = data.loginUser;
       setUserData(id, role);
-      setAfterAuthAction();
-      console.log(id, role);
+      setAfterAuthAction(role, id);
     });
   };
 

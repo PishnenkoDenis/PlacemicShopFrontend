@@ -1,6 +1,6 @@
 import { gql } from '@apollo/client';
 
-const POST_USER = gql`
+export const POST_USER = gql`
   query {
     postUsers {
       id
@@ -15,4 +15,13 @@ const POST_USER = gql`
   }
 `;
 
-export default POST_USER;
+export const GET_DISCOUNTS = gql`
+  query getDiscounts($userId: Int!) {
+    getDiscounts(userId: $userId) {
+      id
+      discountName
+      procent
+      condition
+    }
+  }
+`;

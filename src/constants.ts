@@ -6,3 +6,4 @@ export const SCREEN_WIDTH = {
   sm: 732,
   md: 1262,
 };
+export const SELLER_ROLE = 'seller';

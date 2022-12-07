@@ -10,9 +10,9 @@ import {
   validateProcentNumber,
 } from '../../utils';
 import styles from './discountForm.module.scss';
-import { UPDATE_DISCOUNT } from '../../graphQl/mutation';
+import { ADD_DISCOUNT, UPDATE_DISCOUNT } from '../../graphQl/mutation';
 
-const DiscountForm = ({ isEdit, propId, closeModal }) => {
+const DiscountForm = ({ isEdit, propId, closeModal, refetch, setError }) => {
   const { id } = useParams();
   const userId = Number(id);
 
@@ -27,6 +27,8 @@ const DiscountForm = ({ isEdit, propId, closeModal }) => {
 
   const [updateDiscount] = useMutation(UPDATE_DISCOUNT);
 
+  const [addDiscount] = useMutation(ADD_DISCOUNT);
+
   const update = () => {
     updateDiscount({
       variables: {
@@ -38,9 +40,41 @@ const DiscountForm = ({ isEdit, propId, closeModal }) => {
         },
         id: Number(propId),
       },
-    }).then(() => {
-      closeModal();
-    });
+    })
+      .then(() => {
+        closeModal();
+        refetch();
+      })
+      .catch((error) => {
+        setError(error.message);
+        closeModal();
+      });
+  };
+
+  const create = () => {
+    addDiscount({
+      variables: {
+        discount: {
+          discountName,
+          procent: Number(procent),
+          condition: Number(condition),
+          userId,
+        },
+      },
+    })
+      .then(() => {
+        closeModal();
+        refetch();
+      })
+      .catch((error) => {
+        setError(error.message);
+        closeModal();
+      });
+  };
+
+  const createOrUpdateDiscount = () => {
+    if (isEdit) update();
+    else create();
   };
 
   return (
@@ -132,7 +166,7 @@ const DiscountForm = ({ isEdit, propId, closeModal }) => {
         <Button
           type="primary"
           className={styles.button}
-          onClick={() => update()}
+          onClick={() => createOrUpdateDiscount()}
         >
           Сохранить
         </Button>

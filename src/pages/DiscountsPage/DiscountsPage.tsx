@@ -25,10 +25,10 @@ const DiscountsPage = () => {
   const userId = Number(id);
 
   const [discountList, setDiscountList] = useState<IDiscount[]>([]);
-  const [openModal, setOpenModal] = useState(false);
-  const [edition, setEdition] = useState(false);
+  const [openModal, setOpenModal] = useState<boolean>(false);
+  const [edition, setEdition] = useState<boolean>(false);
   const [itemId, setItemId] = useState<any>('');
-  const [validateError, setValidateError] = useState(null);
+  const [validateError, setValidateError] = useState<any>(null);
 
   const { data, error, loading, refetch } = useQuery(GET_DISCOUNTS, {
     variables: { userId },
@@ -93,7 +93,7 @@ const DiscountsPage = () => {
             <div className={styles.discountItem} key={item.id}>
               <span>{item.discountName}</span>
               <div className={styles.rightContainer}>
-                <span>{`${item.procent} /${item.condition} шт.`}</span>
+                <span>{`${item.procent}% /${item.condition} шт.`}</span>
                 <div className={styles.iconsContainer}>
                   <div
                     role="button"

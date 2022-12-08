@@ -32,7 +32,8 @@
         max-width: 495px;
         width: 100%;
 
-        .tabItem {
+        .tabItem,
+        .active {
           display: flex;
           align-items: center;
           justify-content: center;
@@ -42,14 +43,13 @@
           line-height: 16px;
           color: #000000;
           padding: 5px 21px;
-          
-
-          &:focus{
-            background: linear-gradient(96.78deg, rgba(246, 77, 77, 0.2) -57.09%, rgba(77, 94, 246, 0.2) 101.17%);
-            border-radius: 4px 4px 0px 0px;
-            font-weight: 500;
-          }
         }
+      }
+
+      .active{
+        background: linear-gradient(96.78deg, rgba(246, 77, 77, 0.2) -57.09%, rgba(77, 94, 246, 0.2) 101.17%);
+        border-radius: 4px 4px 0px 0px;
+        font-weight: 500;
       }
 
       .border {

@@ -1,5 +1,5 @@
 import React, { memo } from 'react';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import Button from '../Button';
 
 import styles from './discountsHeader.module.scss';
@@ -21,13 +21,15 @@ const DiscountsHeader = () => {
       <div className={styles.downside}>
         <div className={styles.tabs}>
           {tabs.map((item) => (
-            <Link
+            <NavLink
               key={item.name}
               to={`${item.path}`}
-              className={styles.tabItem}
+              className={({ isActive }) =>
+                isActive ? styles.active : styles.tabItem
+              }
             >
               <span>{item.name}</span>
-            </Link>
+            </NavLink>
           ))}
         </div>
         <div className={styles.border} />

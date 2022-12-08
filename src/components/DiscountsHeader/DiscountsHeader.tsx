@@ -1,5 +1,5 @@
-import React, { memo } from 'react';
-import { NavLink } from 'react-router-dom';
+import React, { memo, useCallback } from 'react';
+import { NavLink, useNavigate } from 'react-router-dom';
 import Button from '../Button';
 
 import styles from './discountsHeader.module.scss';
@@ -12,14 +12,17 @@ const tabs = [
 ];
 
 const DiscountsHeader = () => {
-  const { pathname } = useLocation();
-  console.log(pathname);
+  const navigate = useNavigate();
+
+  const navigateToSupport = useCallback(() => navigate('/support'), [navigate]);
 
   return (
     <div className={styles.wrapper}>
       <div className={styles.upside}>
         <span className={styles.title}>Скидки</span>
-        <Button type="help">Помощь</Button>
+        <Button type="help" onClick={navigateToSupport}>
+          Помощь
+        </Button>
       </div>
       <div className={styles.downside}>
         <div className={styles.tabs}>

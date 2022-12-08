@@ -12,6 +12,9 @@ const tabs = [
 ];
 
 const DiscountsHeader = () => {
+  const { pathname } = useLocation();
+  console.log(pathname);
+
   return (
     <div className={styles.wrapper}>
       <div className={styles.upside}>

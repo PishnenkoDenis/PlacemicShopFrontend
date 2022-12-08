@@ -42,13 +42,12 @@ const DiscountForm = ({ isEdit, propId, closeModal, refetch, setError }) => {
       },
     })
       .then(() => {
-        closeModal();
         refetch();
       })
       .catch((error) => {
         setError(error.message);
-        closeModal();
-      });
+      })
+      .finally(() => closeModal());
   };
 
   const create = () => {
@@ -63,13 +62,12 @@ const DiscountForm = ({ isEdit, propId, closeModal, refetch, setError }) => {
       },
     })
       .then(() => {
-        closeModal();
         refetch();
       })
       .catch((error) => {
         setError(error.message);
-        closeModal();
-      });
+      })
+      .finally(() => closeModal());
   };
 
   const createOrUpdateDiscount = () => {

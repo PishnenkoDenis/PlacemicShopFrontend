@@ -25,10 +25,10 @@ const DiscountsPage = () => {
   const userId = Number(id);
 
   const [discountList, setDiscountList] = useState<IDiscount[]>([]);
-  const [openModal, setOpenModal] = useState(false);
-  const [edition, setEdition] = useState(false);
+  const [openModal, setOpenModal] = useState<boolean>(false);
+  const [edition, setEdition] = useState<boolean>(false);
   const [itemId, setItemId] = useState<any>('');
-  const [validateError, setValidateError] = useState(null);
+  const [validateError, setValidateError] = useState<any>(null);
 
   const { data, error, loading, refetch } = useQuery(GET_DISCOUNTS, {
     variables: { userId },

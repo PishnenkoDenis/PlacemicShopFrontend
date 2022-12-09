@@ -1,6 +1,7 @@
 import React, { memo, useCallback, useState } from 'react';
 
 import cn from 'classnames';
+
 import { useMutation } from '@apollo/client';
 import { useNavigate } from 'react-router';
 
@@ -8,13 +9,17 @@ import { CREATE_USER, LOGIN_USER } from '../../../../graphQl/mutation';
 import Tabs from '../../../Tabs/Tabs';
 import Input from '../../../Input/Input';
 import Button from '../../../Button/Button';
-
+import DropDownList from '../../../DropDownList/DropDownList';
 import styles from './registrationForm.module.scss';
 import { SELLER_ROLE } from '../../../../constants';
 
 const options = [
   { id: 1, label: 'По E-mail' },
   { id: 2, label: 'По телефону' },
+];
+const optionsRole = [
+  { id: 1, value: 'Покупатель' },
+  { id: 2, value: 'Продавец' },
 ];
 
 const EMAIL = 1;
@@ -32,7 +37,7 @@ const RegistrationForm = ({ closeModal }) => {
   const [userRole, setUserRole] = useState('');
   const [sellerId, setSellerId] = useState(0);
   const [sellerName, setSellerName] = useState('');
-
+  
   const [formType, setFormType] = useState(LOGIN);
   const [email, setEmail] = useState('');
   const [telephone, setTelephone] = useState('');
@@ -40,6 +45,7 @@ const RegistrationForm = ({ closeModal }) => {
   const [loginType, setLoginType] = useState(EMAIL);
   const [city, setCity] = useState('');
   const [confirm, setConfirm] = useState('');
+  const [role, setRole] = useState(1);
 
   const isEmail = loginType === EMAIL;
   const changeLoginTypeMessage = isEmail ? 'По номеру телефона' : 'По E-mail';
@@ -109,7 +115,6 @@ const RegistrationForm = ({ closeModal }) => {
     setCity('');
     setConfirm('');
   }, []);
-
   return (
     <div className={styles.container}>
       <div className={styles.title}>{title}</div>
@@ -159,6 +164,16 @@ const RegistrationForm = ({ closeModal }) => {
         className={styles.inputStyle}
         borderClass={styles.border}
       />
+      <div className={styles.dropdownlistBox}>
+        <span className={styles.label}> Я</span>
+        <DropDownList
+          className={styles.dropdownListSize}
+          border={styles.borderDropdownList}
+          value={role}
+          onChange={setRole}
+          options={optionsRole}
+        />
+      </div>
       {!isLoginFormType && (
         <Input
           label="Подтвердить"

@@ -47,7 +47,6 @@ const ProfileSetting = () => {
   const refDate = useRef(null);
   const refEmail = useRef(null);
   const refPhone = useRef(null);
-
   return (
     <div>
       <Wrapper className={styles.alignText} isLine label="Личная информация">

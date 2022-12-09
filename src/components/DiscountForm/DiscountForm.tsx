@@ -1,4 +1,4 @@
-import React, { memo, useState } from 'react';
+import React, { memo, useEffect, useState } from 'react';
 import { useParams } from 'react-router';
 import { useMutation } from '@apollo/client';
 
@@ -12,7 +12,7 @@ import {
 import styles from './discountForm.module.scss';
 import { ADD_DISCOUNT, UPDATE_DISCOUNT } from '../../graphQl/mutation';
 
-const DiscountForm = ({ isEdit, propId, closeModal, refetch, setError }) => {
+const DiscountForm = ({ isEdit, propId, closeModal, refetch }) => {
   const { id } = useParams();
   const userId = Number(id);
 
@@ -25,9 +25,18 @@ const DiscountForm = ({ isEdit, propId, closeModal, refetch, setError }) => {
   const [condition, setCondition] = useState<any>(null);
   const [validCondition, setValidCondition] = useState<any>(true);
 
+  const [validateError, setValidateError] = useState<string>('');
+
   const [updateDiscount] = useMutation(UPDATE_DISCOUNT);
 
   const [addDiscount] = useMutation(ADD_DISCOUNT);
+
+  let timerId: any = null;
+
+  const setError = (message: string) => {
+    setValidateError(message);
+    timerId = setTimeout(() => setValidateError(''), 2000);
+  };
 
   const update = () => {
     updateDiscount({
@@ -43,11 +52,11 @@ const DiscountForm = ({ isEdit, propId, closeModal, refetch, setError }) => {
     })
       .then(() => {
         refetch();
+        closeModal();
       })
       .catch((error) => {
         setError(error.message);
-      })
-      .finally(() => closeModal());
+      });
   };
 
   const create = () => {
@@ -63,17 +72,23 @@ const DiscountForm = ({ isEdit, propId, closeModal, refetch, setError }) => {
     })
       .then(() => {
         refetch();
+        closeModal();
       })
       .catch((error) => {
         setError(error.message);
-      })
-      .finally(() => closeModal());
+      });
   };
 
   const createOrUpdateDiscount = () => {
     if (isEdit) update();
     else create();
   };
+
+  useEffect(() => {
+    return () => {
+      clearTimeout(timerId);
+    };
+  }, []);
 
   return (
     <div className={styles.wrapper}>
@@ -160,6 +175,9 @@ const DiscountForm = ({ isEdit, propId, closeModal, refetch, setError }) => {
               )}
             </div>
           </div>
+          {validateError && (
+            <span className={styles.errorValidate}>{validateError}</span>
+          )}
         </div>
         <Button
           type="primary"

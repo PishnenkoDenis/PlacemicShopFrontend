@@ -28,7 +28,6 @@ const DiscountsPage = () => {
   const [openModal, setOpenModal] = useState<boolean>(false);
   const [edition, setEdition] = useState<boolean>(false);
   const [itemId, setItemId] = useState<any>('');
-  const [validateError, setValidateError] = useState<any>(null);
 
   const { data, error, loading, refetch } = useQuery(GET_DISCOUNTS, {
     variables: { userId },
@@ -71,10 +70,6 @@ const DiscountsPage = () => {
 
   if (error) {
     return <span>{`Error: ${error.message}`}</span>;
-  }
-
-  if (validateError) {
-    return <span>{`Error: ${validateError}`}</span>;
   }
 
   return (
@@ -123,7 +118,6 @@ const DiscountsPage = () => {
             propId={itemId}
             closeModal={handleClose}
             refetch={refetch}
-            setError={setValidateError}
           />
         </Modal>
       )}

@@ -10,8 +10,8 @@ import basketIcon from '../../assets/Basket.svg';
 import styles from './discountsPage.module.scss';
 import Modal from '../../components/Modal';
 import DiscountForm from '../../components/DiscountForm';
-import { GET_DISCOUNTS } from '../../graphQl/queries';
-import { DELETE_DISCOUNT } from '../../graphQl/mutation';
+import GET_DISCOUNTS from '../../graphQl/getDiscounts';
+import DELETE_DISCOUNT from '../../graphQl/deleteDiscount';
 
 interface IDiscount {
   id: number;
@@ -27,7 +27,7 @@ const DiscountsPage = () => {
   const [discountList, setDiscountList] = useState<IDiscount[]>([]);
   const [openModal, setOpenModal] = useState<boolean>(false);
   const [edition, setEdition] = useState<boolean>(false);
-  const [itemId, setItemId] = useState<any>('');
+  const [itemId, setItemId] = useState<number>(0);
 
   const { data, error, loading, refetch } = useQuery(GET_DISCOUNTS, {
     variables: { userId },
@@ -55,11 +55,11 @@ const DiscountsPage = () => {
       variables: {
         id: targetId,
       },
-    }).then(() => refetch());
+    }).then(refetch);
   };
 
   useEffect(() => {
-    if (loading === false) {
+    if (!loading) {
       setDiscountList(data.getDiscounts);
     }
   }, [data]);

@@ -1,4 +1,4 @@
-import React, { memo, useEffect, useState } from 'react';
+import React, { memo, useState } from 'react';
 import { useParams } from 'react-router';
 import { useMutation } from '@apollo/client';
 
@@ -7,23 +7,25 @@ import {
   setAndValidateInputs,
   validateConditionNumber,
   validateDiscountName,
-  validateProcentNumber,
+  validatePercentNumber,
 } from '../../utils';
 import styles from './discountForm.module.scss';
-import { ADD_DISCOUNT, UPDATE_DISCOUNT } from '../../graphQl/mutation';
+import UPDATE_DISCOUNT from '../../graphQl/updateDiscount';
+import ADD_DISCOUNT from '../../graphQl/addDiscount';
+import { INPUT_NUMBER, INPUT_TEXT } from '../../constants';
 
 const DiscountForm = ({ isEdit, propId, closeModal, refetch }) => {
   const { id } = useParams();
   const userId = Number(id);
 
-  const [discountName, setDiscountName] = useState<any>('');
-  const [validName, setValidName] = useState<any>(true);
+  const [discountName, setDiscountName] = useState<string>('');
+  const [validName, setValidName] = useState<boolean>(true);
 
-  const [procent, setProcent] = useState<any>(null);
-  const [validProcent, setValidProcent] = useState<any>(true);
+  const [percent, setPercent] = useState<number | null>(null);
+  const [validPercent, setValidPercent] = useState<boolean>(true);
 
-  const [condition, setCondition] = useState<any>(null);
-  const [validCondition, setValidCondition] = useState<any>(true);
+  const [condition, setCondition] = useState<number | null>(null);
+  const [validCondition, setValidCondition] = useState<boolean>(true);
 
   const [validateError, setValidateError] = useState<string>('');
 
@@ -31,11 +33,9 @@ const DiscountForm = ({ isEdit, propId, closeModal, refetch }) => {
 
   const [addDiscount] = useMutation(ADD_DISCOUNT);
 
-  let timerId: any = null;
-
-  const setError = (message: string) => {
-    setValidateError(message);
-    timerId = setTimeout(() => setValidateError(''), 2000);
+  const executeAfterResponse = () => {
+    refetch();
+    closeModal();
   };
 
   const update = () => {
@@ -43,19 +43,18 @@ const DiscountForm = ({ isEdit, propId, closeModal, refetch }) => {
       variables: {
         dto: {
           discountName,
-          procent: Number(procent),
-          condition: Number(condition),
+          percent,
+          condition,
           userId,
         },
         id: Number(propId),
       },
     })
       .then(() => {
-        refetch();
-        closeModal();
+        executeAfterResponse();
       })
       .catch((error) => {
-        setError(error.message);
+        setValidateError(error.message);
       });
   };
 
@@ -64,31 +63,25 @@ const DiscountForm = ({ isEdit, propId, closeModal, refetch }) => {
       variables: {
         discount: {
           discountName,
-          procent: Number(procent),
-          condition: Number(condition),
+          percent,
+          condition,
           userId,
         },
       },
     })
       .then(() => {
-        refetch();
-        closeModal();
+        executeAfterResponse();
       })
       .catch((error) => {
-        setError(error.message);
+        setValidateError(error.message);
       });
   };
 
   const createOrUpdateDiscount = () => {
+    if (validateError) setValidateError('');
     if (isEdit) update();
     else create();
   };
-
-  useEffect(() => {
-    return () => {
-      clearTimeout(timerId);
-    };
-  }, []);
 
   return (
     <div className={styles.wrapper}>
@@ -111,7 +104,8 @@ const DiscountForm = ({ isEdit, propId, closeModal, refetch }) => {
                     e,
                     setDiscountName,
                     setValidName,
-                    validateDiscountName
+                    validateDiscountName,
+                    INPUT_TEXT
                   )
                 }
               />
@@ -132,18 +126,19 @@ const DiscountForm = ({ isEdit, propId, closeModal, refetch }) => {
                   name="procent"
                   id="procent"
                   placeholder="Введите число"
-                  value={procent}
+                  value={percent}
                   onChange={(e) =>
                     setAndValidateInputs(
                       e,
-                      setProcent,
-                      setValidProcent,
-                      validateProcentNumber
+                      setPercent,
+                      setValidPercent,
+                      validatePercentNumber,
+                      INPUT_NUMBER
                     )
                   }
                 />
               </div>
-              {!validProcent && (
+              {!validPercent && (
                 <span className={styles.errorText}>
                   Введите значение от 0 до 100
                 </span>
@@ -163,7 +158,8 @@ const DiscountForm = ({ isEdit, propId, closeModal, refetch }) => {
                       e,
                       setCondition,
                       setValidCondition,
-                      validateConditionNumber
+                      validateConditionNumber,
+                      INPUT_NUMBER
                     )
                   }
                 />

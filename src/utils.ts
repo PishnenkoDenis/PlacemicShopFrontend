@@ -1,4 +1,5 @@
 import React, { ChangeEvent } from 'react';
+import { INPUT_NUMBER } from './constants';
 
 export const validateFirstName = (value: string) => {
   return /[а-яёА-ЯЁ]+/.test(value);
@@ -22,7 +23,7 @@ export const validatePhone = (value: string) => {
 
 export const isEmpty = (value: string) => value.trim().length;
 
-export const validateProcentNumber = (value: string) => Number(value) < 100;
+export const validatePercentNumber = (value: string) => Number(value) < 100;
 
 export const validateConditionNumber = (value: string) => Number(value) > 1;
 
@@ -34,10 +35,12 @@ export const setAndValidateInputs = (
   e: ChangeEvent<HTMLInputElement>,
   setCallback: React.Dispatch<any>,
   validateCallback: React.Dispatch<any>,
-  validateFunc: (arg0: any) => any
+  validateFunc: (arg0: any) => any,
+  inputType: string
 ) => {
   const { value } = e.target;
   const valid = validateFunc(value);
-  setCallback(value);
+  if (inputType === INPUT_NUMBER) setCallback(Number(value));
+  else setCallback(value);
   validateCallback(valid);
 };

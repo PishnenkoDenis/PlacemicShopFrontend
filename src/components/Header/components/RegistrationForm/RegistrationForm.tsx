@@ -4,7 +4,8 @@ import cn from 'classnames';
 import { useMutation } from '@apollo/client';
 import { useNavigate } from 'react-router';
 
-import { CREATE_USER, LOGIN_USER } from '../../../../graphQl/mutation';
+import CREATE_USER from '../../../../graphQl/createUser';
+import LOGIN_USER from '../../../../graphQl/loginUser';
 import Tabs from '../../../Tabs/Tabs';
 import Input from '../../../Input/Input';
 import Button from '../../../Button/Button';

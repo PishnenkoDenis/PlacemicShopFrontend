@@ -12,7 +12,7 @@ import Input from '../../../Input';
 import Button from '../../../Button';
 import DropDownList from '../../../DropDownList/DropDownList';
 import styles from './registrationForm.module.scss';
-import { SELLER_ROLE } from '../../../../constants';
+import { ALREADY_REGISTERED, ENTER, FORGOT_PASSWORD, REGISTER, SELLER_ROLE } from '../../../../constants';
 import APP_ROUTE_PATHS from '../../../../appRoutePaths';
 
 const options = [
@@ -205,7 +205,7 @@ const RegistrationForm = ({ setModalCondition }) => {
         }}
         size="large"
       >
-        {isLoginFormType ? 'Войти' : 'Зарегистрироваться'}
+        {isLoginFormType ? ENTER : REGISTER}
       </Button>
       {isLoginFormType && (
         <div
@@ -225,7 +225,7 @@ const RegistrationForm = ({ setModalCondition }) => {
           !isLoginFormType && styles.isRegistrationForm
         )}
       >
-        {isLoginFormType ? 'Забыли пароль?' : 'Уже зарегистрированы?'}
+        {isLoginFormType ? FORGOT_PASSWORD : ALREADY_REGISTERED}
       </div>
       <Button
         type="secondary"
@@ -236,7 +236,7 @@ const RegistrationForm = ({ setModalCondition }) => {
         }}
         isRounded
       >
-        {isLoginFormType ? 'Зарегистрироваться' : 'Войти'}
+        {isLoginFormType ? REGISTER : ENTER}
       </Button>
       {errorMessage && <span>{errorMessage}</span>}
     </div>

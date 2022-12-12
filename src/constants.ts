@@ -13,3 +13,9 @@ export const INPUT_NUMBER = 'number';
 
 export const EDIT_DISCOUNT = 'Редактировать скидку';
 export const ADD_DISCOUNT = 'Добавить скидку';
+
+export const ENTER = 'Войти';
+export const REGISTER = 'Зарегистрироваться';
+
+export const FORGOT_PASSWORD = 'Забыли пароль?';
+export const ALREADY_REGISTERED = 'Уже зарегистрированы?';

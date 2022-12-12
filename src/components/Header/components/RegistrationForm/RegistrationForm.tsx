@@ -1,6 +1,7 @@
 import React, { memo, useCallback, useState } from 'react';
 
 import cn from 'classnames';
+
 import { useMutation } from '@apollo/client';
 import { useNavigate } from 'react-router';
 
@@ -9,13 +10,17 @@ import LOGIN_USER from '../../../../graphQl/loginUser';
 import Tabs from '../../../Tabs';
 import Input from '../../../Input';
 import Button from '../../../Button';
-
+import DropDownList from '../../../DropDownList/DropDownList';
 import styles from './registrationForm.module.scss';
 import { SELLER_ROLE } from '../../../../constants';
 
 const options = [
   { id: 1, label: 'По E-mail' },
   { id: 2, label: 'По телефону' },
+];
+const optionsRole = [
+  { id: 1, value: 'Покупатель' },
+  { id: 2, value: 'Продавец' },
 ];
 
 const EMAIL = 1;
@@ -118,7 +123,6 @@ const RegistrationForm = ({ setModalCondition }) => {
     setCity('');
     setConfirm('');
   }, []);
-
   return (
     <div className={styles.container}>
       <div className={styles.title}>{title}</div>
@@ -168,6 +172,16 @@ const RegistrationForm = ({ setModalCondition }) => {
         className={styles.inputStyle}
         borderClass={styles.border}
       />
+      <div className={styles.dropdownlistBox}>
+        <span className={styles.label}> Я</span>
+        <DropDownList
+          className={styles.dropdownListSize}
+          border={styles.borderDropdownList}
+          value={role}
+          onChange={setRole}
+          options={optionsRole}
+        />
+      </div>
       {!isLoginFormType && (
         <Input
           label="Подтвердить"

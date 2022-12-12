@@ -56,3 +56,26 @@
   border: 0.5px solid #00000099;
   border-radius: 4px;
 }
+
+.label {
+  font-size: 14px;
+  line-height: 16px;
+  width: 113px;
+  font-weight: 400;
+}
+
+.dropdownlistBox {
+  display: flex;
+  margin-top: 17px;
+  align-items: center;
+}
+
+.borderDropdownList {
+  border: 0.5px solid rgba(0, 0, 0, 0.6);
+  border-radius: 4px;
+  padding: 7px 10px;
+  width: 296px;
+  justify-content: space-between;
+  font-size: 14px;
+  line-height: 16px;
+}

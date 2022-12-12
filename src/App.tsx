@@ -23,6 +23,7 @@ import ProductListPage from './pages/ProductListPage';
 import ProductsLoadingPage from './pages/ProductsLoadingPage';
 import CharacteristicsPage from './pages/CharacteristicsPage';
 import DiscountsPage from './pages/DiscountsPage';
+import APP_ROUTE_PATHS from './appRoutePaths';
 
 function App() {
   return (
@@ -30,28 +31,37 @@ function App() {
       <Header />
       <div className="App">
         <Routes>
-          <Route path="/" element={<MainPage />} />
-          <Route path="page2" element={<Page2 />} />
-          <Route path="userpage" element={<UserPage />} />
-          <Route path="news" element={<NewsPage />} />
-          <Route path="faq" element={<FAQPage />} />
-          <Route path="company" element={<Company />} />
-          <Route path="support" element={<SupportPage />} />
-          <Route path="feedback" element={<FeedbackPage />} />
-          <Route path="sellerpage/:id" element={<SellerPage />}>
-            <Route path="products" element={<ProductsPage />}>
-              <Route path="product_list" element={<ProductListPage />} />
+          <Route path={APP_ROUTE_PATHS.main_page} element={<MainPage />} />
+          <Route path={APP_ROUTE_PATHS.page_2} element={<Page2 />} />
+          <Route path={APP_ROUTE_PATHS.user_page} element={<UserPage />} />
+          <Route path={APP_ROUTE_PATHS.news} element={<NewsPage />} />
+          <Route path={APP_ROUTE_PATHS.faq} element={<FAQPage />} />
+          <Route path={APP_ROUTE_PATHS.company} element={<Company />} />
+          <Route path={APP_ROUTE_PATHS.support} element={<SupportPage />} />
+          <Route path={APP_ROUTE_PATHS.feedback} element={<FeedbackPage />} />
+          <Route path={APP_ROUTE_PATHS.sellerpage_id} element={<SellerPage />}>
+            <Route path={APP_ROUTE_PATHS.products} element={<ProductsPage />}>
               <Route
-                path="products_loading"
+                path={APP_ROUTE_PATHS.product_list}
+                element={<ProductListPage />}
+              />
+              <Route
+                path={APP_ROUTE_PATHS.products_loading}
                 element={<ProductsLoadingPage />}
               />
-              <Route path="characteristics" element={<CharacteristicsPage />} />
-              <Route path="discounts" element={<DiscountsPage />} />
+              <Route
+                path={APP_ROUTE_PATHS.characteristics}
+                element={<CharacteristicsPage />}
+              />
+              <Route
+                path={APP_ROUTE_PATHS.discounts}
+                element={<DiscountsPage />}
+              />
             </Route>
-            <Route path="settings" element={<SettingsPage />} />
-            <Route path="orders" element={<OrderPage />} />
-            <Route path="messages" element={<MessagesPage />} />
-            <Route path="comments" element={<CommentsPage />} />
+            <Route path={APP_ROUTE_PATHS.settings} element={<SettingsPage />} />
+            <Route path={APP_ROUTE_PATHS.orders} element={<OrderPage />} />
+            <Route path={APP_ROUTE_PATHS.messages} element={<MessagesPage />} />
+            <Route path={APP_ROUTE_PATHS.comments} element={<CommentsPage />} />
           </Route>
         </Routes>
       </div>

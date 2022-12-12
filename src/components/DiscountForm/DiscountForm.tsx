@@ -11,8 +11,13 @@ import {
 } from '../../utils';
 import styles from './discountForm.module.scss';
 import UPDATE_DISCOUNT from '../../graphQl/updateDiscount';
-import ADD_DISCOUNT from '../../graphQl/addDiscount';
-import { INPUT_NUMBER, INPUT_TEXT } from '../../constants';
+import ADD_TO_DISCOUNT from '../../graphQl/addDiscount';
+import {
+  EDIT_DISCOUNT,
+  INPUT_NUMBER,
+  INPUT_TEXT,
+  ADD_DISCOUNT,
+} from '../../constants';
 
 const DiscountForm = ({ isEdit, propId, closeModal, refetch }) => {
   const { id } = useParams();
@@ -31,50 +36,48 @@ const DiscountForm = ({ isEdit, propId, closeModal, refetch }) => {
 
   const [updateDiscount] = useMutation(UPDATE_DISCOUNT);
 
-  const [addDiscount] = useMutation(ADD_DISCOUNT);
+  const [addDiscount] = useMutation(ADD_TO_DISCOUNT);
 
   const executeAfterResponse = () => {
     refetch();
     closeModal();
   };
 
-  const update = () => {
-    updateDiscount({
-      variables: {
-        dto: {
-          discountName,
-          percent,
-          condition,
-          userId,
+  const update = async () => {
+    try {
+      await updateDiscount({
+        variables: {
+          dto: {
+            discountName,
+            percent,
+            condition,
+            userId,
+          },
+          id: Number(propId),
         },
-        id: Number(propId),
-      },
-    })
-      .then(() => {
-        executeAfterResponse();
-      })
-      .catch((error) => {
-        setValidateError(error.message);
       });
+      executeAfterResponse();
+    } catch (error) {
+      setValidateError(error.message);
+    }
   };
 
-  const create = () => {
-    addDiscount({
-      variables: {
-        discount: {
-          discountName,
-          percent,
-          condition,
-          userId,
+  const create = async () => {
+    try {
+      await addDiscount({
+        variables: {
+          discount: {
+            discountName,
+            percent,
+            condition,
+            userId,
+          },
         },
-      },
-    })
-      .then(() => {
-        executeAfterResponse();
-      })
-      .catch((error) => {
-        setValidateError(error.message);
       });
+      executeAfterResponse();
+    } catch (error) {
+      setValidateError(error.message);
+    }
   };
 
   const createOrUpdateDiscount = () => {
@@ -86,7 +89,7 @@ const DiscountForm = ({ isEdit, propId, closeModal, refetch }) => {
   return (
     <div className={styles.wrapper}>
       <span className={styles.title}>
-        {isEdit ? 'Редактировать скидку' : 'Добавить скидку'}
+        {isEdit ? EDIT_DISCOUNT : ADD_DISCOUNT}
       </span>
       <form className={styles.form}>
         <div className={styles.inputContainer}>
@@ -123,8 +126,8 @@ const DiscountForm = ({ isEdit, propId, closeModal, refetch }) => {
                 <span>Процент скидки, %</span>
                 <input
                   type="number"
-                  name="procent"
-                  id="procent"
+                  name="percent"
+                  id="percent"
                   placeholder="Введите число"
                   value={percent}
                   onChange={(e) =>
@@ -178,7 +181,7 @@ const DiscountForm = ({ isEdit, propId, closeModal, refetch }) => {
         <Button
           type="primary"
           className={styles.button}
-          onClick={() => createOrUpdateDiscount()}
+          onClick={createOrUpdateDiscount}
         >
           Сохранить
         </Button>

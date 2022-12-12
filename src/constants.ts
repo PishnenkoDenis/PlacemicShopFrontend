@@ -10,3 +10,6 @@ export const SELLER_ROLE = 'seller';
 
 export const INPUT_TEXT = 'text';
 export const INPUT_NUMBER = 'number';
+
+export const EDIT_DISCOUNT = 'Редактировать скидку';
+export const ADD_DISCOUNT = 'Добавить скидку';

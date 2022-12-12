@@ -16,7 +16,7 @@ import DELETE_DISCOUNT from '../../graphQl/deleteDiscount';
 interface IDiscount {
   id: number;
   discountName: string;
-  procent: number;
+  percent: number;
   condition: number;
 }
 
@@ -88,7 +88,7 @@ const DiscountsPage = () => {
             <div className={styles.discountItem} key={item.id}>
               <span>{item.discountName}</span>
               <div className={styles.rightContainer}>
-                <span>{`${item.procent}% /${item.condition} шт.`}</span>
+                <span>{`${item.percent}% /${item.condition} шт.`}</span>
                 <div className={styles.iconsContainer}>
                   <div
                     role="button"

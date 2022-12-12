@@ -5,7 +5,7 @@ const GET_DISCOUNTS = gql`
     getDiscounts(userId: $userId) {
       id
       discountName
-      procent
+      percent
       condition
     }
   }

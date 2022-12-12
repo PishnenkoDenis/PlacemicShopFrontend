@@ -1,5 +1,7 @@
 import React, { memo, useCallback } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
+import APP_ROUTE_PATHS from '../../appRoutePaths';
+
 import Button from '../Button';
 
 import styles from './discountsHeader.module.scss';
@@ -14,7 +16,10 @@ const tabs = [
 const DiscountsHeader = () => {
   const navigate = useNavigate();
 
-  const navigateToSupport = useCallback(() => navigate('/support'), [navigate]);
+  const navigateToSupport = useCallback(
+    () => navigate(`/${APP_ROUTE_PATHS.support}`),
+    [navigate]
+  );
 
   return (
     <div className={styles.wrapper}>

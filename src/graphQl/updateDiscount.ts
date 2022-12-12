@@ -5,7 +5,7 @@ const UPDATE_DISCOUNT = gql`
     updateDiscount(dto: $dto, id: $id) {
       id
       condition
-      procent
+      percent
       discountName
     }
   }

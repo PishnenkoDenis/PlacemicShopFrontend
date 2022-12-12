@@ -6,9 +6,9 @@ import { useNavigate } from 'react-router';
 
 import CREATE_USER from '../../../../graphQl/createUser';
 import LOGIN_USER from '../../../../graphQl/loginUser';
-import Tabs from '../../../Tabs/Tabs';
-import Input from '../../../Input/Input';
-import Button from '../../../Button/Button';
+import Tabs from '../../../Tabs';
+import Input from '../../../Input';
+import Button from '../../../Button';
 
 import styles from './registrationForm.module.scss';
 import { SELLER_ROLE } from '../../../../constants';
@@ -24,23 +24,25 @@ const TELEPHONE = 2;
 const LOGIN = 'login';
 const REGISTRATION = 'registation';
 
-const RegistrationForm = ({ closeModal }) => {
+const RegistrationForm = ({ setModalCondition }) => {
   const navigate = useNavigate();
 
   const [newUser] = useMutation(CREATE_USER);
   const [loginUser] = useMutation(LOGIN_USER);
 
-  const [userRole, setUserRole] = useState('');
-  const [sellerId, setSellerId] = useState(0);
-  const [sellerName, setSellerName] = useState('');
+  const [userRole, setUserRole] = useState<string>('');
+  const [sellerId, setSellerId] = useState<number>(0);
+  const [sellerName, setSellerName] = useState<string>('');
 
-  const [formType, setFormType] = useState(LOGIN);
-  const [email, setEmail] = useState('');
-  const [telephone, setTelephone] = useState('');
-  const [password, setPassword] = useState('');
-  const [loginType, setLoginType] = useState(EMAIL);
-  const [city, setCity] = useState('');
-  const [confirm, setConfirm] = useState('');
+  const [formType, setFormType] = useState<string>(LOGIN);
+  const [email, setEmail] = useState<string>('');
+  const [telephone, setTelephone] = useState<string>('');
+  const [password, setPassword] = useState<string>('');
+  const [loginType, setLoginType] = useState<number>(EMAIL);
+  const [city, setCity] = useState<string>('');
+  const [confirm, setConfirm] = useState<string>('');
+
+  const [errorMessage, setErrorMessage] = useState<string>('');
 
   const isEmail = loginType === EMAIL;
   const changeLoginTypeMessage = isEmail ? 'По номеру телефона' : 'По E-mail';
@@ -48,50 +50,56 @@ const RegistrationForm = ({ closeModal }) => {
   const isLoginFormType = formType === LOGIN;
   const title = isLoginFormType ? 'Вход' : 'Регистрация';
 
-  const setUserData = (id: number, role: string, name: string = 'NoName') => {
+  const setUserData = (id: number, role: string, name: string = '') => {
     setSellerId(id);
     setUserRole(role);
     setSellerName(name);
   };
 
   const setAfterAuthAction = (role: string, id: number) => {
-    closeModal(false);
+    setModalCondition(false);
     if (role === SELLER_ROLE) navigate(`/sellerpage/${id}`);
     else navigate('/');
   };
 
-  const register = (e: Event) => {
+  const register = async (e: Event) => {
     e.preventDefault();
-    newUser({
-      variables: {
-        user: {
-          email,
-          password,
-          fullName: 'TestName',
-          role: 'seller',
+    try {
+      const { data } = await newUser({
+        variables: {
+          user: {
+            email,
+            password,
+            fullName,
+            role,
+          },
         },
-      },
-    }).then(({ data }) => {
+      });
       const { id, role, fullName } = data.createUser;
       setUserData(id, role, fullName);
       setAfterAuthAction(role, id);
-    });
+    } catch (error) {
+      setErrorMessage(error.message);
+    }
   };
 
-  const login = (e: Event) => {
+  const login = async (e: Event) => {
     e.preventDefault();
-    loginUser({
-      variables: {
-        user: {
-          email,
-          password,
+    try {
+      const { data } = await loginUser({
+        variables: {
+          user: {
+            email,
+            password,
+          },
         },
-      },
-    }).then(({ data }) => {
+      });
       const { id, role } = data.loginUser;
       setUserData(id, role);
       setAfterAuthAction(role, id);
-    });
+    } catch (error) {
+      setErrorMessage(error.message);
+    }
   };
 
   const loginOrRegisterUser = (e: Event) => {
@@ -215,6 +223,7 @@ const RegistrationForm = ({ closeModal }) => {
       >
         {isLoginFormType ? 'Зарегистрироваться' : 'Войти'}
       </Button>
+      {errorMessage && <span>{errorMessage}</span>}
     </div>
   );
 };

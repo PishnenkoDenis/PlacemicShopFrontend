@@ -13,6 +13,7 @@ import Button from '../../../Button';
 import DropDownList from '../../../DropDownList/DropDownList';
 import styles from './registrationForm.module.scss';
 import { SELLER_ROLE } from '../../../../constants';
+import APP_ROUTE_PATHS from '../../../../appRoutePaths';
 
 const options = [
   { id: 1, label: 'По E-mail' },
@@ -63,7 +64,7 @@ const RegistrationForm = ({ setModalCondition }) => {
 
   const setAfterAuthAction = (role: string, id: number) => {
     setModalCondition(false);
-    if (role === SELLER_ROLE) navigate(`/sellerpage/${id}`);
+    if (role === SELLER_ROLE) navigate(`${APP_ROUTE_PATHS.sellerpage}/${id}`);
     else navigate('/');
   };
 

@@ -12,6 +12,7 @@ import Modal from '../../components/Modal';
 import DiscountForm from '../../components/DiscountForm';
 import GET_DISCOUNTS from '../../graphQl/getDiscounts';
 import DELETE_DISCOUNT from '../../graphQl/deleteDiscount';
+import { NONE_OF_DISCOUNTS } from '../../constants';
 
 interface IDiscount {
   id: number;
@@ -83,7 +84,7 @@ const DiscountsPage = () => {
         Добавить скидку
       </Button>
       <div className={styles.discountList}>
-        {discountList.length &&
+        {discountList.length ? (
           discountList.map((item) => (
             <div className={styles.discountItem} key={item.id}>
               <span>{item.discountName}</span>
@@ -109,7 +110,10 @@ const DiscountsPage = () => {
                 </div>
               </div>
             </div>
-          ))}
+          ))
+        ) : (
+          <span className={styles.noDiscounts}>{NONE_OF_DISCOUNTS}</span>
+        )}
       </div>
       {openModal && (
         <Modal onClose={handleClose}>

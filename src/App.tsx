@@ -39,7 +39,10 @@ function App() {
           <Route path={APP_ROUTE_PATHS.company} element={<Company />} />
           <Route path={APP_ROUTE_PATHS.support} element={<SupportPage />} />
           <Route path={APP_ROUTE_PATHS.feedback} element={<FeedbackPage />} />
-          <Route path={APP_ROUTE_PATHS.sellerpage} element={<SellerPage />}>
+          <Route
+            path={`${APP_ROUTE_PATHS.sellerpage}/:id`}
+            element={<SellerPage />}
+          >
             <Route path={APP_ROUTE_PATHS.products} element={<ProductsPage />}>
               <Route
                 path={APP_ROUTE_PATHS.product_list}

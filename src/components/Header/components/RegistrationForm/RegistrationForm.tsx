@@ -178,8 +178,8 @@ const RegistrationForm = ({ setModalCondition }) => {
         <DropDownList
           className={styles.dropdownListSize}
           border={styles.borderDropdownList}
-          value={role}
-          onChange={setRole}
+          value={userRole}
+          onChange={setUserRole}
           options={optionsRole}
         />
       </div>

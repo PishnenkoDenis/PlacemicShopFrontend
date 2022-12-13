@@ -7,7 +7,7 @@ enum APP_ROUTE_PATHS {
   company = 'company',
   support = 'support',
   feedback = 'feedback',
-  sellerpage = 'sellerpage/:id',
+  sellerpage = 'sellerpage',
   products = 'products',
   product_list = 'product_list',
   products_loading = 'products_loading',

@@ -87,3 +87,12 @@ input::-webkit-calendar-picker-indicator {
   align-items: center;
 }
 
+.validateStyleUpperError {
+  position: absolute;
+  left: 24%;
+  top: 2%;
+  font-size: 14px;
+  color: red;
+  z-index: 5;
+  white-space: nowrap;
+}

@@ -1,7 +1,6 @@
 import React, { memo, useCallback, useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import cn from 'classnames';
-
 import { useMutation } from '@apollo/client';
 import { useNavigate } from 'react-router';
 
@@ -124,6 +123,7 @@ const RegistrationForm = ({ setModalCondition }{ onClose }) => {
   const onChangeEmail = (e: React.ChangeEvent<HTMLInputElement>) => {
     setEmail(e.target.value);
   };
+  
   const resetForm = useCallback(() => {
     setEmail('');
     setTelephone('');
@@ -132,6 +132,50 @@ const RegistrationForm = ({ setModalCondition }{ onClose }) => {
     setCity('');
     setConfirm('');
   }, []);
+
+  const [createUser] = useMutation(CREATE_USER);
+  const [loginUser, { loading, error }] = useMutation(LOGIN_USER);
+
+  const navigate = useNavigate();
+
+  const loginHandler = () => {
+    loginUser({
+      variables: {
+        user: {
+          email,
+          password,
+        },
+      },
+    })
+      .then((user) => {
+        navigate('/userpage');
+        onClose();
+      })
+      .catch();
+  };
+
+  const addUser = () => {
+    createUser({
+      variables: {
+        user: {
+          fullName: 'test',
+          email,
+          role: optionsRole.find((item) => item.id === role)?.value,
+          password,
+        },
+      },
+    }).then((user) => {
+      navigate('/');
+      onClose();
+    });
+  };
+
+  useEffect(() => {
+    if (error) {
+      setMessage(Boolean(error));
+    }
+  }, [error]);
+
   return (
     <div className={styles.container}>
       <div className={styles.title}>{title}</div>
@@ -143,64 +187,87 @@ const RegistrationForm = ({ setModalCondition }{ onClose }) => {
           className={styles.tabsStyle}
         />
       )}
-      {isEmail ? (
+
+      <div className={styles.inputsBox}>
+        {isEmail ? (
+          <Input
+            key={`${isLoginFormType}`}
+            label="E-mail"
+            placeholder="Введите E-mail"
+            value={email}
+            onChange={setEmail}
+            className={styles.inputStyle}
+            borderClass={styles.border}
+            validate={validateEmail}
+            isUpperError
+          />
+        ) : (
+          <Input
+            key={`${isLoginFormType}`}
+            label="По телефону"
+            placeholder="Введите телефон"
+            value={telephone}
+            onChange={setTelephone}
+            className={styles.inputStyle}
+            borderClass={styles.border}
+            isUpperError
+            type="tel"
+            validate={validatePhone}
+          />
+        )}
+        {!isLoginFormType && (
+          <Input
+            label="Город"
+            placeholder="Введите город"
+            value={city}
+            onChange={setCity}
+            className={styles.inputStyle}
+            borderClass={styles.border}
+            isUpperError
+            validate={isEmpty}
+          />
+        )}
+
         <Input
-          label="E-mail"
-          placeholder="Введите E-mail"
-          value={email}
-          onChange={setEmail}
-          className={styles.inputStyle}
-          borderClass={styles.border}
-        />
-      ) : (
-        <Input
-          label="По телефону"
-          placeholder="Введите телефон"
-          value={telephone}
-          onChange={setTelephone}
-          className={styles.inputStyle}
-          borderClass={styles.border}
-        />
-      )}
-      {!isLoginFormType && (
-        <Input
-          label="Город"
-          placeholder="Введите город"
-          value={city}
-          onChange={setCity}
-          className={styles.inputStyle}
-          borderClass={styles.border}
-        />
-      )}
-      <Input
-        label="Пароль"
-        placeholder="Введите пароль"
-        isPassword
-        value={password}
-        onChange={setPassword}
-        className={styles.inputStyle}
-        borderClass={styles.border}
-      />
-      <div className={styles.dropdownlistBox}>
-        <span className={styles.label}> Я</span>
-        <DropDownList
-          className={styles.dropdownListSize}
-          border={styles.borderDropdownList}
-          value={userRole}
-          onChange={setUserRole}
-          options={optionsRole}
-        />
-      </div>
-      {!isLoginFormType && (
-        <Input
-          label="Подтвердить"
+          key={`${isLoginFormType}password`}
+          label="Пароль"
           placeholder="Введите пароль"
-          value={confirm}
           isPassword
-          onChange={setConfirm}
+          value={password}
+          onChange={setPassword}
           className={styles.inputStyle}
           borderClass={styles.border}
+          validate={validatePassword}
+          isUpperError
         />
+        {!isLoginFormType && (
+          <>
+            <Input
+              label="Подтвердить"
+              placeholder="Введите пароль"
+              value={confirm}
+              isPassword
+              onChange={setConfirm}
+              className={styles.inputStyle}
+              borderClass={styles.border}
+              validate={validatePasswordConfirm(password)}
+              isUpperError
+            />
+            <div className={styles.dropdownlistBox}>
+              <span className={styles.label}>Я</span>
+              <DropDownList
+                className={styles.dropdownListSize}
+                border={styles.borderDropdownList}
+                value={role}
+                onChange={setRole}
+                options={optionsRole}
+              />
+            </div>
+          </>
+        )}
+      </div>
+      {message && (
+        <div className={styles.validateStyle}>Неправильный логин и пароль</div>
       )}
       <Button
         

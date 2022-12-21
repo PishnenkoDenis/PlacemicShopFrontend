@@ -24,7 +24,7 @@ type TInput = {
   label?: string | undefined;
   placeholder?: string | undefined;
   onChange: (e: string) => void;
-  borderInput?: string;
+  borderInput?: string | undefined;
   value: string;
   className?: string;
   labelClassName?: string;

@@ -31,10 +31,9 @@ const currency = [
   { id: 2, value: ' Евро ' },
 ];
 
-<<<<<<< HEAD
 const maxDate = new Date();
 const minDate = new Date('1980-06-06');
-=======
+
 const optionsCountries = Country.getAllCountries().map(
   ({ name, isoCode }, index) => ({
     id: index,
@@ -42,7 +41,6 @@ const optionsCountries = Country.getAllCountries().map(
     isoCode,
   })
 );
->>>>>>> 226bc72aab02dedfc34a6e027c7eb6ee266d9c0d
 
 const ProfileSetting = () => {
   const [firstName, setFirstName] = useState('');
@@ -209,12 +207,8 @@ const ProfileSetting = () => {
             labelClassName={styles.labelWidth}
             inputClassName={styles.inputWidth}
             borderClass={styles.border}
-<<<<<<< HEAD
-            validate={validateFirstName}
-=======
             validate={validateString}
             isUpperError
->>>>>>> 226bc72aab02dedfc34a6e027c7eb6ee266d9c0d
           />
           <Input
             ref={refLastName}
@@ -225,12 +219,8 @@ const ProfileSetting = () => {
             labelClassName={styles.labelWidth}
             inputClassName={styles.inputWidth}
             borderClass={styles.border}
-<<<<<<< HEAD
-            validate={validatLastName}
-=======
             validate={validateString}
             isUpperError
->>>>>>> 226bc72aab02dedfc34a6e027c7eb6ee266d9c0d
           />
           <Input
             ref={refMiddleName}
@@ -241,12 +231,8 @@ const ProfileSetting = () => {
             labelClassName={styles.labelWidth}
             inputClassName={styles.inputWidth}
             borderClass={styles.border}
-<<<<<<< HEAD
-            validate={validateMiddleName}
-=======
             validate={validateString}
             isUpperError
->>>>>>> 226bc72aab02dedfc34a6e027c7eb6ee266d9c0d
           />
         </div>
         <div className={styles.dateBox}>

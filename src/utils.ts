@@ -53,6 +53,12 @@ export const validatePassword = (value: string) => {
   return /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/.test(value);
 };
 
+export const isEmpty = (value: string) => value.trim().length;
+
+export const validatePassword = (value: string) => {
+  return /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/.test(value);
+};
+
 export const validatePasswordConfirm = (password: string) => {
   return (confirm: string) => password === confirm;
 }

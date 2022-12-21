@@ -10,6 +10,7 @@ import Modal from '../Modal/Modal';
 import RegistrationForm from './components/RegistrationForm/RegistrationForm';
 import Sidebar from './components/Sidebar/Sidebar';
 import { ReactComponent as MenuSvg } from '../../assets/menu.svg';
+
 import styles from './header.module.scss';
 
 const options = [
@@ -92,7 +93,7 @@ const Header = () => {
           <Basket count={1} />
           {open && (
             <Modal onClose={handleClose}>
-              <RegistrationForm onClose={handleClose} />
+              <RegistrationForm setModalCondition={setOpen} />
             </Modal>
           )}
         </div>

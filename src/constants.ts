@@ -6,3 +6,18 @@ export const SCREEN_WIDTH = {
   sm: 732,
   md: 1262,
 };
+export const SELLER_ROLE = 'seller';
+
+export const INPUT_TEXT = 'text';
+export const INPUT_NUMBER = 'number';
+
+export const EDIT_DISCOUNT = 'Редактировать скидку';
+export const ADD_DISCOUNT = 'Добавить скидку';
+
+export const ENTER = 'Войти';
+export const REGISTER = 'Зарегистрироваться';
+
+export const FORGOT_PASSWORD = 'Забыли пароль?';
+export const ALREADY_REGISTERED = 'Уже зарегистрированы?';
+
+export const NONE_OF_DISCOUNTS = 'Нет ни одной скидки';

@@ -2,7 +2,10 @@ import React, { memo, useCallback, useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import cn from 'classnames';
 import { useMutation } from '@apollo/client';
-import { CREATE_USER, LOGIN_USER } from '../../../../graphQl/mutation';
+import { useNavigate } from 'react-router';
+
+import CREATE_USER from '../../../../graphQl/createUser';
+import LOGIN_USER from '../../../../graphQl/loginUser';
 import Tabs from '../../../Tabs';
 import Input from '../../../Input';
 import Button from '../../../Button';
@@ -14,8 +17,9 @@ import {
   validatePassword,
   validatePasswordConfirm,
 } from '../../../../utils';
-
 import styles from './registrationForm.module.scss';
+import { ALREADY_REGISTERED, ENTER, FORGOT_PASSWORD, REGISTER, SELLER_ROLE } from '../../../../constants';
+import APP_ROUTE_PATHS from '../../../../appRoutePaths';
 
 const options = [
   { id: 1, label: 'По E-mail' },
@@ -32,15 +36,25 @@ const TELEPHONE = 2;
 const LOGIN = 'login';
 const REGISTRATION = 'registation';
 
-const RegistrationForm = ({ onClose }) => {
-  const [formType, setFormType] = useState(LOGIN);
-  const [email, setEmail] = useState('');
-  const [telephone, setTelephone] = useState('');
-  const [password, setPassword] = useState('');
-  const [loginType, setLoginType] = useState(EMAIL);
-  const [city, setCity] = useState('');
-  const [confirm, setConfirm] = useState('');
-  const [role, setRole] = useState(1);
+const RegistrationForm = ({ setModalCondition }{ onClose }) => {
+  const navigate = useNavigate();
+
+  const [newUser] = useMutation(CREATE_USER);
+  const [loginUser] = useMutation(LOGIN_USER);
+
+  const [userRole, setUserRole] = useState<string>('');
+  const [sellerId, setSellerId] = useState<number>(0);
+  const [sellerName, setSellerName] = useState<string>('');
+
+  const [formType, setFormType] = useState<string>(LOGIN);
+  const [email, setEmail] = useState<string>('');
+  const [telephone, setTelephone] = useState<string>('');
+  const [password, setPassword] = useState<string>('');
+  const [loginType, setLoginType] = useState<number>(EMAIL);
+  const [city, setCity] = useState<string>('');
+  const [confirm, setConfirm] = useState<string>('');
+
+  const [errorMessage, setErrorMessage] = useState<string>('');
   const [message, setMessage] = useState(false);
 
   const isEmail = loginType === EMAIL;
@@ -49,6 +63,67 @@ const RegistrationForm = ({ onClose }) => {
   const isLoginFormType = formType === LOGIN;
   const title = isLoginFormType ? 'Вход' : 'Регистрация';
 
+  const setUserData = (id: number, role: string, name: string = '') => {
+    setSellerId(id);
+    setUserRole(role);
+    setSellerName(name);
+  };
+
+  const setAfterAuthAction = (role: string, id: number) => {
+    setModalCondition(false);
+    if (role === SELLER_ROLE) navigate(`${APP_ROUTE_PATHS.sellerpage}/${id}`);
+    else navigate('/');
+  };
+
+  const register = async (e: Event) => {
+    e.preventDefault();
+    try {
+      const { data } = await newUser({
+        variables: {
+          user: {
+            email,
+            password,
+            fullName,
+            role,
+          },
+        },
+      });
+      const { id, role, fullName } = data.createUser;
+      setUserData(id, role, fullName);
+      setAfterAuthAction(role, id);
+    } catch (error) {
+      setErrorMessage(error.message);
+    }
+  };
+
+  const login = async (e: Event) => {
+    e.preventDefault();
+    try {
+      const { data } = await loginUser({
+        variables: {
+          user: {
+            email,
+            password,
+          },
+        },
+      });
+      const { id, role } = data.loginUser;
+      setUserData(id, role);
+      setAfterAuthAction(role, id);
+    } catch (error) {
+      setErrorMessage(error.message);
+    }
+  };
+
+  const loginOrRegisterUser = (e: Event) => {
+    if (isLoginFormType) login(e);
+    else register(e);
+  };
+
+  const onChangeEmail = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setEmail(e.target.value);
+  };
+  
   const resetForm = useCallback(() => {
     setEmail('');
     setTelephone('');
@@ -112,6 +187,7 @@ const RegistrationForm = ({ onClose }) => {
           className={styles.tabsStyle}
         />
       )}
+
       <div className={styles.inputsBox}>
         {isEmail ? (
           <Input
@@ -151,6 +227,7 @@ const RegistrationForm = ({ onClose }) => {
             validate={isEmpty}
           />
         )}
+
         <Input
           key={`${isLoginFormType}password`}
           label="Пароль"
@@ -193,20 +270,18 @@ const RegistrationForm = ({ onClose }) => {
         <div className={styles.validateStyle}>Неправильный логин и пароль</div>
       )}
       <Button
-        onClick={() => {
-          if (formType === LOGIN) {
-            loginHandler();
-          } else {
-            addUser();
-          }
-        }}
+        
         className={cn(
           styles.submitButton,
           isLoginFormType && styles.isLoginForm
         )}
+        onClick={(e: Event) => {
+          loginOrRegisterUser(e);
+          resetForm();
+        }}
         size="large"
       >
-        {isLoginFormType ? 'Войти' : 'Зарегистрироваться'}
+        {isLoginFormType ? ENTER : REGISTER}
       </Button>
       {isLoginFormType && (
         <div
@@ -227,7 +302,7 @@ const RegistrationForm = ({ onClose }) => {
           !isLoginFormType && styles.isRegistrationForm
         )}
       >
-        {isLoginFormType ? 'Забыли пароль?' : 'Уже зарегистрированы?'}
+        {isLoginFormType ? FORGOT_PASSWORD : ALREADY_REGISTERED}
       </div>
       <Button
         type="secondary"
@@ -239,8 +314,9 @@ const RegistrationForm = ({ onClose }) => {
         }}
         isRounded
       >
-        {isLoginFormType ? 'Зарегистрироваться' : 'Войти'}
+        {isLoginFormType ? REGISTER : ENTER}
       </Button>
+      {errorMessage && <span>{errorMessage}</span>}
     </div>
   );
 };

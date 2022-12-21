@@ -1,8 +1,6 @@
 import React, { memo, useCallback, useState } from 'react';
 
 import cn from 'classnames';
-// import { useMutation } from '@apollo/client';
-// import { CREATE_USER } from '../../../../graphQl/mutation';
 import Tabs from '../../../Tabs';
 import Input from '../../../Input';
 import Button from '../../../Button';
@@ -41,7 +39,7 @@ const RegistrationForm = () => {
   const isLoginFormType = formType === LOGIN;
   const title = isLoginFormType ? 'Вход' : 'Регистрация';
 
-  const onChangeEmail = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const onChangeEmail = (e) => {
     setEmail(e.target.value);
   };
   const resetForm = useCallback(() => {
@@ -52,6 +50,22 @@ const RegistrationForm = () => {
     setCity('');
     setConfirm('');
   }, []);
+
+  const onChangePassword = (e) => {
+    setPassword(e.target.value);
+  };
+  const onChangeTelephone = (e) => {
+    setTelephone(e.target.value);
+  };
+
+  const onChangeCity = (e) => {
+    setCity(e.target.value);
+  };
+
+  const onChangeConfirm = (e) => {
+    setConfirm(e.target.value);
+  };
+
   return (
     <div className={styles.container}>
       <div className={styles.title}>{title}</div>
@@ -77,7 +91,7 @@ const RegistrationForm = () => {
           label="По телефону"
           placeholder="Введите телефон"
           value={telephone}
-          onChange={setTelephone}
+          onChange={onChangeTelephone}
           className={styles.inputStyle}
           borderClass={styles.border}
         />
@@ -87,7 +101,7 @@ const RegistrationForm = () => {
           label="Город"
           placeholder="Введите город"
           value={city}
-          onChange={setCity}
+          onChange={onChangeCity}
           className={styles.inputStyle}
           borderClass={styles.border}
         />
@@ -97,7 +111,7 @@ const RegistrationForm = () => {
         placeholder="Введите пароль"
         isPassword
         value={password}
-        onChange={setPassword}
+        onChange={onChangePassword}
         className={styles.inputStyle}
         borderClass={styles.border}
       />

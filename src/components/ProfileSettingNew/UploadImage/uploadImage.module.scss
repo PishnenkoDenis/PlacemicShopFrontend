@@ -1,0 +1,24 @@
+.uploadAvatarWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.iconBox {
+  color: white;
+  border-radius: 50%;
+  margin-top: 15px;
+}
+
+.icon {
+  border-radius: 50%;
+  height: 200px;
+  width: 200px;
+  object-fit: cover;
+}
+
+.button {
+  display: flex;
+  align-items: center;
+  padding: 20px;
+  margin-top: 15px;
+}

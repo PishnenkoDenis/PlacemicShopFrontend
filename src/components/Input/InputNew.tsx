@@ -1,11 +1,11 @@
 import React, {
   memo,
-  useId,
+  // useId,
   useState,
   forwardRef,
   useImperativeHandle,
 } from 'react';
-
+import { useField } from 'formik';
 import cn from 'classnames';
 import { ReactComponent as PasswordSvgActive } from '../../assets/passwordActive.svg';
 import { ReactComponent as PasswordSvg } from '../../assets/password.svg';
@@ -17,23 +17,19 @@ import {
   DIGITS_REGEX,
   PHONE_NUMBER_REGEX,
 } from '../../constants';
+
 import styles from './input.module.scss';
 
-type TInput = {
-  label?: string | undefined;
-  placeholder?: string | undefined;
-  onChange: (e: string) => void;
-  value: string;
-  className?: string;
-  labelClassName?: string;
-  inputClassName?: string;
-  validate?: (e: string) => boolean;
+type TInputNew = {
+  label?: string;
+  id?: number;
+  name: string;
   type?: string;
-  isPassword?: boolean;
+  placeholder?: string;
+  props?: string;
   withEdit?: boolean;
-  borderClass?: string;
-  isUpperError?: boolean;
-  errorMessage?: string;
+  isPassword?: boolean;
+  validate?: (e: string) => boolean;
 };
 
 const maskPhoneNumber = (value: string): string => {
@@ -49,77 +45,56 @@ const maskPhoneNumber = (value: string): string => {
   if (!zoneCode) {
     return '';
   }
-
   const firstNumberChunk = match[2];
   const secondNumberChunk = match[3];
   const thirdNumberChunk = match[4];
-
   const matchSecondNumberChunk = secondNumberChunk
     ? `-${secondNumberChunk}`
     : '';
   const matchThirdNumberChunk = thirdNumberChunk ? `-${thirdNumberChunk}` : '';
-
   if (firstNumberChunk) {
     const phoneNumber = `${firstNumberChunk}${matchSecondNumberChunk}${matchThirdNumberChunk}`;
     return `${COUNTRY_CODE} (${zoneCode}) ${phoneNumber}`;
   }
-
   return `${COUNTRY_CODE} (${zoneCode}`;
 };
-
-const Input = (
-  {
-    label,
-    placeholder,
-    isPassword,
-    value,
-    onChange,
-    className,
-    labelClassName,
-    inputClassName,
-    validate: validateOuter,
-    type = 'text',
-    withEdit,
-    borderClass,
-    isUpperError = false,
-    errorMessage = 'Некорректные данные',
-  }: TInput,
-  ref: any
-) => {
+const InputNew = ({ label, ...props }: TInputNew, ref: any) => {
   const [visible, setVisible] = useState(false);
   const [visibleEmailSvg, setVisibleEmailSvg] = useState(false);
   const [error, setError] = useState(false);
-  const id = useId();
-
+  const [field, meta] = useField(props);
+  // console.log('props', props);
   const validate = (e) => {
-    if (validateOuter && !validateOuter(e.target.value)) {
+    if (validateOuter && !validateOuter(e)) {
       setError(true);
     }
   };
   const onChangeInner = (e) => {
     if (type === 'tel') {
-      onChange(maskPhoneNumber(e.target.value));
+      onchange(maskPhoneNumber(e));
     } else {
-      onChange(e.target.value);
+      onChange(e);
     }
-    if (validateOuter && validateOuter(e.target.value)) {
+    // if (type === 'tel') {
+    //   onChange(maskPhoneNumber(e.target.value));
+    // } else {
+    //   onChange(e.target.value);
+    // }
+    if (validateOuter && validateOuter(e)) {
       setError(false);
     }
   };
-
   const visibleHandler = () => {
     setVisible(!visible);
   };
-
   const visibleEmailSvgHandler = () => {
     if (error) return;
     setVisibleEmailSvg(!visibleEmailSvg);
   };
-
   useImperativeHandle(ref, () => ({
     validate: () => {
       if (validateOuter) {
-        if (validateOuter(value)) {
+        if (validateOuter(e.target.value)) {
           setError(false);
         } else {
           setError(true);
@@ -127,51 +102,33 @@ const Input = (
       }
     },
   }));
-
+  // console.log(meta);
   return (
-    <div className={styles.errorWrapper}>
-      {error && <div className={cn(styles.validateStyle)}>{errorMessage}</div>}
-      <div className={cn(styles.container, className)}>
-        {label && (
-          <div className={cn(styles.label, labelClassName)}>{label}</div>
-        )}
+    <div className={styles.container}>
+      <label className={styles.label} htmlFor={props.id || props.name}>
+        {label}
+      </label>
+      <div className={styles.buttonInner}>
         <input
-          id={id}
-          className={cn(
-            styles.input,
-            error && styles.invalid,
-            inputClassName,
-            borderClass
-          )}
-          onChange={onChangeInner}
-          placeholder={placeholder}
-          value={value}
-          type={isPassword && !visible ? 'password' : type}
-          onBlur={validate}
-          disabled={withEdit ? !visibleEmailSvg : false}
+          className={cn(styles.input, error && styles.invalid)}
+          {...field}
+          {...props}
+          type={props.isPassword && !visible ? 'password' : props.type}
+          disabled={props.withEdit ? !visibleEmailSvg : false}
         />
-        {type === 'date' && (
-          <label htmlFor={id}>
-            <СalendarSvg className={styles.svgButtonStyle} />
-          </label>
+        {meta.touched && meta.error ? (
+          <div className={cn(styles.validateStyle)}>{meta.error}</div>
+        ) : null}
+        {props.withEdit && (
+          <div onClick={visibleEmailSvgHandler} role="button" tabIndex={0}>
+            {visibleEmailSvg ? (
+              <SuccessfullySvg className={styles.successfullySvg} />
+            ) : (
+              <PenSvg className={styles.svgButtonStyle} />
+            )}
+          </div>
         )}
-        <div
-          onClick={visibleEmailSvgHandler}
-          role="button"
-          tabIndex={0}
-          className={styles.buttonEmailBox}
-        >
-          {withEdit && (
-            <>
-              {visibleEmailSvg ? (
-                <SuccessfullySvg className={styles.successfullySvg} />
-              ) : (
-                <PenSvg className={styles.svgButtonStyle} />
-              )}
-            </>
-          )}
-        </div>
-        {isPassword && (
+        {props.isPassword && (
           <div onClick={visibleHandler} role="button" tabIndex={0}>
             {visible ? (
               <PasswordSvgActive className={styles.passwordIcon} />
@@ -184,4 +141,4 @@ const Input = (
     </div>
   );
 };
-export default memo(forwardRef(Input));
+export default memo(forwardRef(InputNew));

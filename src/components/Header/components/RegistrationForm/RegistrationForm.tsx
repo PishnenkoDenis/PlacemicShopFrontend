@@ -1,8 +1,7 @@
-import React, { memo, useCallback, useState, useEffect } from 'react';
+import React, { memo, useCallback, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import cn from 'classnames';
 import { useMutation } from '@apollo/client';
-import { useNavigate } from 'react-router';
 
 import CREATE_USER from '../../../../graphQl/createUser';
 import LOGIN_USER from '../../../../graphQl/loginUser';
@@ -13,12 +12,18 @@ import DropDownList from '../../../DropDownList/DropDownList';
 import {
   validateEmail,
   validatePhone,
-  isEmpty,
   validatePassword,
   validatePasswordConfirm,
 } from '../../../../utils';
 import styles from './registrationForm.module.scss';
-import { ALREADY_REGISTERED, ENTER, FORGOT_PASSWORD, REGISTER, SELLER_ROLE } from '../../../../constants';
+import {
+  ALREADY_REGISTERED,
+  CUSTOMER_ROLE,
+  ENTER,
+  FORGOT_PASSWORD,
+  REGISTER,
+  SELLER_ROLE,
+} from '../../../../constants';
 import APP_ROUTE_PATHS from '../../../../appRoutePaths';
 
 const options = [
@@ -36,7 +41,7 @@ const TELEPHONE = 2;
 const LOGIN = 'login';
 const REGISTRATION = 'registation';
 
-const RegistrationForm = ({ setModalCondition }{ onClose }) => {
+const RegistrationForm = ({ setModalCondition, onClose }) => {
   const navigate = useNavigate();
 
   const [newUser] = useMutation(CREATE_USER);
@@ -44,7 +49,9 @@ const RegistrationForm = ({ setModalCondition }{ onClose }) => {
 
   const [userRole, setUserRole] = useState<string>('');
   const [sellerId, setSellerId] = useState<number>(0);
-  const [sellerName, setSellerName] = useState<string>('');
+  const [userName, setUserName] = useState<string>('');
+
+  const [formRole, setFormRole] = useState<string>('');
 
   const [formType, setFormType] = useState<string>(LOGIN);
   const [email, setEmail] = useState<string>('');
@@ -55,7 +62,6 @@ const RegistrationForm = ({ setModalCondition }{ onClose }) => {
   const [confirm, setConfirm] = useState<string>('');
 
   const [errorMessage, setErrorMessage] = useState<string>('');
-  const [message, setMessage] = useState(false);
 
   const isEmail = loginType === EMAIL;
   const changeLoginTypeMessage = isEmail ? 'По номеру телефона' : 'По E-mail';
@@ -63,15 +69,18 @@ const RegistrationForm = ({ setModalCondition }{ onClose }) => {
   const isLoginFormType = formType === LOGIN;
   const title = isLoginFormType ? 'Вход' : 'Регистрация';
 
-  const setUserData = (id: number, role: string, name: string = '') => {
+  const setUserData = (id: number, argRole: string, name: string = 'Name') => {
     setSellerId(id);
-    setUserRole(role);
-    setSellerName(name);
+    setUserRole(argRole);
+    setUserName(name);
   };
 
-  const setAfterAuthAction = (role: string, id: number) => {
+  const setAfterAuthAction = (argRole: string, id: number) => {
     setModalCondition(false);
-    if (role === SELLER_ROLE) navigate(`${APP_ROUTE_PATHS.sellerpage}/${id}`);
+    if (argRole === SELLER_ROLE)
+      navigate(`${APP_ROUTE_PATHS.sellerpage}/${id}`);
+    else if (isLoginFormType && argRole === CUSTOMER_ROLE)
+      navigate(APP_ROUTE_PATHS.user_page);
     else navigate('/');
   };
 
@@ -83,8 +92,8 @@ const RegistrationForm = ({ setModalCondition }{ onClose }) => {
           user: {
             email,
             password,
-            fullName,
-            role,
+            fullName: 'Name',
+            role: optionsRole.find((item) => item.id === formRole)?.value,
           },
         },
       });
@@ -123,7 +132,7 @@ const RegistrationForm = ({ setModalCondition }{ onClose }) => {
   const onChangeEmail = (e: React.ChangeEvent<HTMLInputElement>) => {
     setEmail(e.target.value);
   };
-  
+
   const resetForm = useCallback(() => {
     setEmail('');
     setTelephone('');
@@ -132,49 +141,6 @@ const RegistrationForm = ({ setModalCondition }{ onClose }) => {
     setCity('');
     setConfirm('');
   }, []);
-
-  const [createUser] = useMutation(CREATE_USER);
-  const [loginUser, { loading, error }] = useMutation(LOGIN_USER);
-
-  const navigate = useNavigate();
-
-  const loginHandler = () => {
-    loginUser({
-      variables: {
-        user: {
-          email,
-          password,
-        },
-      },
-    })
-      .then((user) => {
-        navigate('/userpage');
-        onClose();
-      })
-      .catch();
-  };
-
-  const addUser = () => {
-    createUser({
-      variables: {
-        user: {
-          fullName: 'test',
-          email,
-          role: optionsRole.find((item) => item.id === role)?.value,
-          password,
-        },
-      },
-    }).then((user) => {
-      navigate('/');
-      onClose();
-    });
-  };
-
-  useEffect(() => {
-    if (error) {
-      setMessage(Boolean(error));
-    }
-  }, [error]);
 
   return (
     <div className={styles.container}>
@@ -224,7 +190,6 @@ const RegistrationForm = ({ setModalCondition }{ onClose }) => {
             className={styles.inputStyle}
             borderClass={styles.border}
             isUpperError
-            validate={isEmpty}
           />
         )}
 
@@ -258,19 +223,15 @@ const RegistrationForm = ({ setModalCondition }{ onClose }) => {
               <DropDownList
                 className={styles.dropdownListSize}
                 border={styles.borderDropdownList}
-                value={role}
-                onChange={setRole}
+                value={formRole}
+                onChange={setFormRole}
                 options={optionsRole}
               />
             </div>
           </>
         )}
       </div>
-      {message && (
-        <div className={styles.validateStyle}>Неправильный логин и пароль</div>
-      )}
       <Button
-        
         className={cn(
           styles.submitButton,
           isLoginFormType && styles.isLoginForm
@@ -308,7 +269,6 @@ const RegistrationForm = ({ setModalCondition }{ onClose }) => {
         type="secondary"
         className={styles.buttonRegistrationType}
         onClick={() => {
-          setMessage();
           setFormType((prev) => (prev === LOGIN ? REGISTRATION : LOGIN));
           resetForm();
         }}

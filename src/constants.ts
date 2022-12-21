@@ -7,6 +7,7 @@ export const SCREEN_WIDTH = {
   md: 1262,
 };
 export const SELLER_ROLE = 'seller';
+export const CUSTOMER_ROLE = 'Покупатель';
 
 export const INPUT_TEXT = 'text';
 export const INPUT_NUMBER = 'number';

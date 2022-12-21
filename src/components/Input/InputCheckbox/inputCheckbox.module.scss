@@ -1,0 +1,56 @@
+.inputCheckboxInner{
+  margin-top: 20px;
+}
+
+.labelCheckbox {
+  font-size: 14px;
+  line-height: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.labelCheckboxTitle {
+  @extend .labelCheckbox; 
+    font-weight: 400;
+}
+
+.inputCheckbox {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+}
+
+.inputCheckboxStyle {
+  width: 20px;
+  height: 20px;
+  opacity: 0.6;
+  border: 0.5px solid #000000;
+  border-radius: 4px;
+}
+
+.inputCheckboxStyleChecked {
+  position: relative;
+  border-radius: 4px;
+  width: 20px;
+  height: 20px;
+  border: double  0.5px transparent;
+  background-image:  linear-gradient(white, white),
+     linear-gradient(96.78deg, #F64D4D -57.09%, #4D5EF6 101.17%);
+  background-origin: border-box;
+  background-clip: content-box, border-box;
+}
+
+.inputCheckbox:checked + .inputCheckboxStyleChecked::before {
+  content: '';
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  top: 43%;
+  left: 60%;
+  transform: translate(-50%, -50%);
+  background-image: url(../../../assets/iconCheck.svg);
+  z-index: 5;
+}

@@ -14,6 +14,12 @@
   align-items: center;
   font-family: inherit;
 }
+.label {
+  font-size: 14px;
+  line-height: 16px;
+  width: 150px;
+}
+
 .button {
   border: none;
   height: 100%;
@@ -22,7 +28,6 @@
   position: relative;
   display: flex;
   align-items: center;
-  // justify-content: center;
   width: 100%;
   transition: 0.5s;
   font-family: inherit;
@@ -79,7 +84,6 @@
 }
 .selectOption {
   border-left: 0.5px solid #000000;
-  border-right: 0.5px solid #000000;
   font-weight: 300;
   padding: 0 6px;
 }

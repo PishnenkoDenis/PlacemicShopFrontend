@@ -1261,3 +1261,153 @@ export const services = [
     ],
   },
 ];
+
+export const userData = [
+  {
+    label: 'Имя',
+    name: 'firstName',
+    placeholder: 'Имя',
+  },
+  {
+    label: 'Фамилия',
+    name: 'lastName',
+    placeholder: 'Фамилия',
+  },
+  {
+    label: 'Отчество',
+    name: 'middleName',
+    placeholder: 'Отчество',
+  },
+];
+
+export const userDataInfo = [
+  {
+    label: 'Дата рождения',
+    name: 'dateOfBirth',
+    placeholder: 'Дата рождения',
+    type: 'date',
+  },
+  {
+    label: 'E-mail',
+    name: 'email',
+    placeholder: 'example@store.ru',
+    type: 'email',
+  },
+  {
+    label: 'Телефон',
+    name: 'phone',
+    placeholder: 'Введите телефон',
+    type: 'tel',
+  },
+];
+
+export const notificationsData = [
+  {
+    label: 'Оповещать на E-mail',
+    name: 'notifyEmail',
+    list: [
+      {
+        label: 'Информация о заказах',
+        name: 'orderInfoEmail',
+      },
+      {
+        label: 'Сообщения',
+        name: 'messagesEmail',
+      },
+      {
+        label: 'Новости и акции',
+        name: 'newsEmail',
+      },
+    ],
+  },
+  {
+    label: 'Оповещать по Push-уведомлениям',
+    name: 'notifyPush',
+    list: [
+      {
+        label: 'Информация о заказах',
+        name: 'orderInfoPush',
+      },
+      {
+        label: 'Сообщения',
+        name: 'messagesPush',
+      },
+      {
+        label: 'Новости и акции',
+        name: 'newsPush',
+      },
+    ],
+  },
+  {
+    label: 'Оповещать на телефон',
+    name: 'notifyPhone',
+    list: [
+      {
+        label: 'Информация о заказах',
+        name: 'orderInfoPhone',
+      },
+      {
+        label: 'Сообщения',
+        name: 'messagesPhone',
+      },
+      {
+        label: 'Новости и акции',
+        name: 'newsPhone',
+      },
+    ],
+  },
+];
+
+export const deliveryAddressData = [
+  {
+    label: 'Улица',
+    name: 'street',
+    placeholder: 'Улица',
+  },
+  {
+    label: 'Дом',
+    name: 'house',
+    placeholder: 'Дом',
+  },
+  {
+    label: 'Корпус',
+    name: 'frame',
+    placeholder: 'Корпус',
+  },
+  {
+    label: 'Квартира',
+    name: 'apartment',
+    placeholder: 'Квартира',
+  },
+];
+
+export const dropdownlistUserData = [
+  {
+    label: 'Выбрать язык',
+    name: 'language',
+    lists: [
+      {
+        id: 1,
+        value: 'Русский',
+      },
+      {
+        id: 2,
+        value: 'Английский',
+      },
+    ],
+  },
+  {
+    label: 'Выбрать валюту',
+    name: 'currency',
+    lists: [
+      {
+        id: 1,
+        value: 'Российский рубль (₽)',
+      },
+      {
+        id: 2,
+        value: 'Евро',
+      },
+    ],
+  },
+];

@@ -1,5 +1,5 @@
-import React, { memo, useCallback, useState } from 'react';
-
+import React, { memo, useCallback, useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import cn from 'classnames';
 
 import { useMutation } from '@apollo/client';
@@ -11,6 +11,13 @@ import Tabs from '../../../Tabs';
 import Input from '../../../Input';
 import Button from '../../../Button';
 import DropDownList from '../../../DropDownList/DropDownList';
+import {
+  validateEmail,
+  validatePhone,
+  isEmpty,
+  validatePassword,
+  validatePasswordConfirm,
+} from '../../../../utils';
 import styles from './registrationForm.module.scss';
 import { ALREADY_REGISTERED, ENTER, FORGOT_PASSWORD, REGISTER, SELLER_ROLE } from '../../../../constants';
 import APP_ROUTE_PATHS from '../../../../appRoutePaths';
@@ -30,7 +37,7 @@ const TELEPHONE = 2;
 const LOGIN = 'login';
 const REGISTRATION = 'registation';
 
-const RegistrationForm = ({ setModalCondition }) => {
+const RegistrationForm = ({ setModalCondition }{ onClose }) => {
   const navigate = useNavigate();
 
   const [newUser] = useMutation(CREATE_USER);
@@ -49,6 +56,7 @@ const RegistrationForm = ({ setModalCondition }) => {
   const [confirm, setConfirm] = useState<string>('');
 
   const [errorMessage, setErrorMessage] = useState<string>('');
+  const [message, setMessage] = useState(false);
 
   const isEmail = loginType === EMAIL;
   const changeLoginTypeMessage = isEmail ? 'По номеру телефона' : 'По E-mail';
@@ -195,6 +203,7 @@ const RegistrationForm = ({ setModalCondition }) => {
         />
       )}
       <Button
+        
         className={cn(
           styles.submitButton,
           isLoginFormType && styles.isLoginForm
@@ -212,9 +221,10 @@ const RegistrationForm = ({ setModalCondition }) => {
           role="button"
           tabIndex={0}
           className={styles.telephone}
-          onClick={() =>
-            setLoginType((prev) => (prev === EMAIL ? TELEPHONE : EMAIL))
-          }
+          onClick={() => {
+            resetForm();
+            setLoginType((prev) => (prev === EMAIL ? TELEPHONE : EMAIL));
+          }}
         >
           {changeLoginTypeMessage}
         </div>
@@ -231,6 +241,7 @@ const RegistrationForm = ({ setModalCondition }) => {
         type="secondary"
         className={styles.buttonRegistrationType}
         onClick={() => {
+          setMessage();
           setFormType((prev) => (prev === LOGIN ? REGISTRATION : LOGIN));
           resetForm();
         }}

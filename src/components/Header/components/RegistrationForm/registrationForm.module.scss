@@ -1,15 +1,21 @@
 .container {
   display: flex;
   place-content: center;
-  place-items: center;
+  align-items: center;
   flex-direction: column;
   padding: 23px 79px 37px;
 }
+
 .title {
   font-weight: 400;
   font-size: 28px;
   line-height: 33px;
   color: #000000;
+}
+.inputsBox {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
 }
 .telephone {
   background: linear-gradient(96.78deg, #f64d4d -57.09%, #4d5ef6 101.17%);
@@ -21,6 +27,7 @@
   line-height: 16px;
   margin-top: 15px;
 }
+
 .resetPassword {
   font-weight: 300;
   font-size: 14px;
@@ -32,10 +39,12 @@
     margin-top: 69px;
   }
 }
+
 .buttonRegistrationType {
   margin-top: 14px;
   width: 180px;
 }
+
 .submitButton {
   margin-top: 70px;
   width: 187px;
@@ -44,10 +53,12 @@
     margin-top: 45px;
   }
 }
+
 .inputStyle {
   margin-top: 22px;
   align-self: flex-start;
 }
+
 .tabsStyle {
   margin-top: 15px;
 }
@@ -60,7 +71,7 @@
 .label {
   font-size: 14px;
   line-height: 16px;
-  width: 113px;
+  width: 110px;
   font-weight: 400;
 }
 
@@ -79,3 +90,9 @@
   font-size: 14px;
   line-height: 16px;
 }
+.validateStyle {
+  margin-top: 10px;
+  font-size: 14px;
+  color: red;
+}
+

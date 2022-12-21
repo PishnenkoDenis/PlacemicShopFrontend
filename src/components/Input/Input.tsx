@@ -4,6 +4,7 @@ import React, {
   useState,
   forwardRef,
   useImperativeHandle,
+  useEffect,
 } from 'react';
 
 import cn from 'classnames';
@@ -23,6 +24,7 @@ type TInput = {
   label?: string | undefined;
   placeholder?: string | undefined;
   onChange: (e: string) => void;
+  borderInput?: string;
   value: string;
   className?: string;
   labelClassName?: string;
@@ -34,6 +36,8 @@ type TInput = {
   borderClass?: string;
   isUpperError?: boolean;
   errorMessage?: string;
+  max?: any;
+  min?: any;
 };
 
 const maskPhoneNumber = (value: string): string => {
@@ -83,6 +87,8 @@ const Input = (
     borderClass,
     isUpperError = false,
     errorMessage = 'Некорректные данные',
+    max,
+    min,
   }: TInput,
   ref: any
 ) => {
@@ -91,13 +97,27 @@ const Input = (
   const [error, setError] = useState(false);
   const id = useId();
 
+  useEffect(() => {
+    if (value === '') {
+      setError(false);
+    }
+  }, [value]);
+
   const validate = (e) => {
     if (validateOuter && !validateOuter(e.target.value)) {
       setError(true);
     }
   };
+
   const onChangeInner = (e) => {
+    if (
+      type === 'date' &&
+      (new Date(e.target.value) < min || new Date(e.target.value) > max)
+    ) {
+      return;
+    }
     if (type === 'tel') {
+      setError(false);
       onChange(maskPhoneNumber(e.target.value));
     } else {
       onChange(e.target.value);
@@ -127,10 +147,18 @@ const Input = (
       }
     },
   }));
-
   return (
     <div className={styles.errorWrapper}>
-      {error && <div className={cn(styles.validateStyle)}>{errorMessage}</div>}
+      {error && (
+        <div
+          className={cn({
+            [styles.validateStyleUpperError]: isUpperError,
+            [styles.validateStyle]: !isUpperError,
+          })}
+        >
+          {errorMessage}
+        </div>
+      )}
       <div className={cn(styles.container, className)}>
         {label && (
           <div className={cn(styles.label, labelClassName)}>{label}</div>
@@ -149,6 +177,8 @@ const Input = (
           type={isPassword && !visible ? 'password' : type}
           onBlur={validate}
           disabled={withEdit ? !visibleEmailSvg : false}
+          max={max}
+          min={min}
         />
         {type === 'date' && (
           <label htmlFor={id}>

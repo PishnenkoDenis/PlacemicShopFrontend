@@ -1,10 +1,19 @@
-import React, { memo, useCallback, useState } from 'react';
-
+import React, { memo, useCallback, useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import cn from 'classnames';
+// import { useMutation } from '@apollo/client';
+// import { CREATE_USER } from '../../../../graphQl/mutation';
 import Tabs from '../../../Tabs';
 import Input from '../../../Input';
 import Button from '../../../Button';
 import DropDownList from '../../../DropDownList/DropDownList';
+import {
+  validateEmail,
+  validatePhone,
+  isEmpty,
+  validatePassword,
+  validatePasswordConfirm,
+} from '../../../../utils';
 
 import styles from './registrationForm.module.scss';
 
@@ -23,7 +32,7 @@ const TELEPHONE = 2;
 const LOGIN = 'login';
 const REGISTRATION = 'registation';
 
-const RegistrationForm = () => {
+const RegistrationForm = ({ onClose }) => {
   const [formType, setFormType] = useState(LOGIN);
   const [email, setEmail] = useState('');
   const [telephone, setTelephone] = useState('');
@@ -32,6 +41,7 @@ const RegistrationForm = () => {
   const [city, setCity] = useState('');
   const [confirm, setConfirm] = useState('');
   const [role, setRole] = useState(1);
+  const [message, setMessage] = useState(false);
 
   const isEmail = loginType === EMAIL;
   const changeLoginTypeMessage = isEmail ? 'По номеру телефона' : 'По E-mail';
@@ -39,7 +49,7 @@ const RegistrationForm = () => {
   const isLoginFormType = formType === LOGIN;
   const title = isLoginFormType ? 'Вход' : 'Регистрация';
 
-  const onChangeEmail = (e) => {
+  const onChangeEmail = (e: React.ChangeEvent<HTMLInputElement>) => {
     setEmail(e.target.value);
   };
   const resetForm = useCallback(() => {
@@ -50,22 +60,6 @@ const RegistrationForm = () => {
     setCity('');
     setConfirm('');
   }, []);
-
-  const onChangePassword = (e) => {
-    setPassword(e.target.value);
-  };
-  const onChangeTelephone = (e) => {
-    setTelephone(e.target.value);
-  };
-
-  const onChangeCity = (e) => {
-    setCity(e.target.value);
-  };
-
-  const onChangeConfirm = (e) => {
-    setConfirm(e.target.value);
-  };
-
   return (
     <div className={styles.container}>
       <div className={styles.title}>{title}</div>
@@ -91,7 +85,7 @@ const RegistrationForm = () => {
           label="По телефону"
           placeholder="Введите телефон"
           value={telephone}
-          onChange={onChangeTelephone}
+          onChange={setTelephone}
           className={styles.inputStyle}
           borderClass={styles.border}
         />
@@ -101,7 +95,7 @@ const RegistrationForm = () => {
           label="Город"
           placeholder="Введите город"
           value={city}
-          onChange={onChangeCity}
+          onChange={setCity}
           className={styles.inputStyle}
           borderClass={styles.border}
         />
@@ -111,7 +105,7 @@ const RegistrationForm = () => {
         placeholder="Введите пароль"
         isPassword
         value={password}
-        onChange={onChangePassword}
+        onChange={setPassword}
         className={styles.inputStyle}
         borderClass={styles.border}
       />
@@ -137,6 +131,13 @@ const RegistrationForm = () => {
         />
       )}
       <Button
+        onClick={() => {
+          if (formType === LOGIN) {
+            loginHandler();
+          } else {
+            addUser();
+          }
+        }}
         className={cn(
           styles.submitButton,
           isLoginFormType && styles.isLoginForm
@@ -150,9 +151,10 @@ const RegistrationForm = () => {
           role="button"
           tabIndex={0}
           className={styles.telephone}
-          onClick={() =>
-            setLoginType((prev) => (prev === EMAIL ? TELEPHONE : EMAIL))
-          }
+          onClick={() => {
+            resetForm();
+            setLoginType((prev) => (prev === EMAIL ? TELEPHONE : EMAIL));
+          }}
         >
           {changeLoginTypeMessage}
         </div>
@@ -169,6 +171,7 @@ const RegistrationForm = () => {
         type="secondary"
         className={styles.buttonRegistrationType}
         onClick={() => {
+          setMessage();
           setFormType((prev) => (prev === LOGIN ? REGISTRATION : LOGIN));
           resetForm();
         }}

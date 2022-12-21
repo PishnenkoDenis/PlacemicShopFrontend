@@ -48,3 +48,11 @@ export const signupSchema = Yup.object().shape({
     .matches(/^\d+$/, 'Некорректные данные')
     .required('Required'),
 });
+
+export const validatePassword = (value: string) => {
+  return /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/.test(value);
+};
+
+export const validatePasswordConfirm = (password: string) => {
+  return (confirm: string) => password === confirm;
+}

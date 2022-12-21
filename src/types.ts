@@ -42,3 +42,8 @@ export type TFooterService = {
   link: string;
   subservices: TSubService[];
 };
+export interface IUser {
+  id: number;
+  avatar: string;
+  fullName: string;
+}

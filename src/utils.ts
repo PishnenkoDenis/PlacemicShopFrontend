@@ -51,6 +51,36 @@ export const signupSchema = Yup.object().shape({
     .required('Required'),
 });
 
+export const validateShopSettings = Yup.object().shape({
+  title: Yup.string().required('Required'),
+  description: Yup.string().required('Required'),
+  logo: Yup.mixed().nullable(),
+  userId: Yup.number().required('Required'),
+  wallpaper: Yup.mixed().nullable(),
+  telephone: Yup.number().required('Required'),
+  email: Yup.string().email('Invalid email address').required('Required'),
+  address: Yup.string().required('Required'),
+  language: Yup.string().required('Required'),
+  currency: Yup.string().required('Required'),
+  legalEntity: Yup.string().required('Required'),
+  inn: Yup.number().min(10, 'INN must have 10 numbers').required('Required'),
+  kpp: Yup.number().min(9, 'INN must have 9 numbers').required('Required'),
+  legalAddress: Yup.string().required('Required'),
+  bank: Yup.string().required('Required'),
+  bik: Yup.number().min(9, 'INN must have 9 numbers').required('Required'),
+  checkAccount: Yup.string()
+    .length(20, 'Account must have 20 numbers')
+    .required('Required'),
+  corpAccount: Yup.string()
+    .length(20, 'Account must have 20 numbers')
+    .required('Required'),
+  notifyEmail: Yup.array().ensure().max(3).nullable(),
+  notifyPush: Yup.array().ensure().max(3).nullable(),
+  notifyTelephone: Yup.array().ensure().max(3).nullable(),
+  newPassword: Yup.string().nullable(),
+  oldPassword: Yup.string().nullable(),
+});
+
 export const validatePassword = (value: string) => {
   return /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/.test(value);
 };
@@ -72,7 +102,6 @@ export const validatLastName = (value: string) => {
 export const validateMiddleName = (value: string) => {
   return /[а-яёА-ЯЁ]+/.test(value);
 };
-
 
 export const validatePercentNumber = (value: string) => Number(value) < 100;
 

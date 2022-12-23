@@ -6,6 +6,7 @@ import sale2 from '../assets/imageSaleGirls.svg';
 
 import nov from '../assets/novelties1.svg';
 import product1 from '../assets/product1.png';
+import { ADDRESS, ADDRESS_PLACEHOLDER, BANK_LABEL, BIK_LABEL, BIK_PLACEHOLDER, CHECK_ACCOUNT_LABEL, CHECK_ACCOUNT_PLACEHOLDER, CORP_ACCOUNT_LABEL, CORP_ACCOUNT_PLACEHOLDER, CURRENCY_SELECT_LABEL, EMAIL, EMAIL_PLACEHOLDER, ENTITY_PLACEHOLDER, INN_LABEL, INN_PLACEHOLDER, KPP_LABEL, KPP_PLACEHOLDER, LANG_SELECT_LABEL, LEGAL_ADDRESS_LABEL, LEGAL_ENTITY_LABEL, MESSAGES, NEWS, NEW_PASSWORD, OLD_PASSWORD, ORDERS, REPIT_PASSWORD, TELEPHONE, TEL_PLACEHOLDER } from '../constants';
 
 export const advertising = [
   { id: 1, image: sale1, link: '/page2' },
@@ -1409,5 +1410,201 @@ export const dropdownlistUserData = [
         value: 'Евро',
       },
     ],
+  },
+];
+
+export const languagesList = [
+  {
+    id: 1,
+    value: 'Русский',
+  },
+  {
+    id: 2,
+    value: 'Английский',
+  },
+];
+
+export const currencyList = [
+  {
+    id: 1,
+    value: 'Российский рубль (₽)',
+  },
+  {
+    id: 2,
+    value: 'Американский доллар ($)',
+  },
+  {
+    id: 3,
+    value: ' Белорусский рубль (₽)',
+  },
+  {
+    id: 2,
+    value: 'Армянский драм',
+  },
+];
+
+export const selectProps = [
+  {
+    label: LANG_SELECT_LABEL,
+    options: languagesList,
+    name: 'language',
+  },
+  {
+    label: CURRENCY_SELECT_LABEL,
+    options: currencyList,
+    name: 'currency',
+  },
+];
+
+export const contactsProps = [
+  {
+    label: TELEPHONE,
+    name: 'telephone',
+    placeholder: TEL_PLACEHOLDER,
+    type: 'tel',
+  },
+  {
+    label: EMAIL,
+    name: 'email',
+    placeholder: EMAIL_PLACEHOLDER,
+    type: 'email',
+  },
+  {
+    label: ADDRESS,
+    name: 'address',
+    placeholder: ADDRESS_PLACEHOLDER,
+    type: 'text',
+  },
+];
+
+export const legalEntityProps = [
+  {
+    label: LEGAL_ENTITY_LABEL,
+    name: 'legalEntity',
+    placeholder: ENTITY_PLACEHOLDER,
+    type: 'text',
+  },
+  {
+    label: INN_LABEL,
+    name: 'inn',
+    placeholder: INN_PLACEHOLDER,
+    type: 'number',
+  },
+  {
+    label: KPP_LABEL,
+    name: 'kpp',
+    placeholder: KPP_PLACEHOLDER,
+    type: 'number',
+  },
+  {
+    label: LEGAL_ADDRESS_LABEL,
+    name: 'legalAddress',
+    placeholder: ADDRESS_PLACEHOLDER,
+    type: 'text',
+  },
+];
+
+export const bankProps = [
+  {
+    label: BANK_LABEL,
+    name: 'bank',
+    placeholder: ENTITY_PLACEHOLDER,
+    type: 'text',
+  },
+  {
+    label: BIK_LABEL,
+    name: 'bik',
+    placeholder: BIK_PLACEHOLDER,
+    type: 'number',
+  },
+  {
+    label: CHECK_ACCOUNT_LABEL,
+    name: 'checkAccount',
+    placeholder: CHECK_ACCOUNT_PLACEHOLDER,
+    type: 'text',
+  },
+  {
+    label: CORP_ACCOUNT_LABEL,
+    name: 'corpAccount',
+    placeholder: CORP_ACCOUNT_PLACEHOLDER,
+    type: 'text',
+  },
+];
+
+export const sellerNotifications = [
+  {
+    label: 'Оповещать на E-mail',
+    name: 'notifyEmail',
+    list: [
+      {
+        label: ORDERS,
+        name: 'notifyEmail',
+      },
+      {
+        label: MESSAGES,
+        name: 'notifyEmail',
+      },
+      {
+        label: NEWS,
+        name: 'notifyEmail',
+      },
+    ],
+  },
+  {
+    label: 'Оповещать по Push-уведомлениям',
+    name: 'notifyPush',
+    list: [
+      {
+        label: ORDERS,
+        name: 'notifyPush',
+      },
+      {
+        label: MESSAGES,
+        name: 'notifyPush',
+      },
+      {
+        label: NEWS,
+        name: 'notifyPush',
+      },
+    ],
+  },
+  {
+    label: 'Оповещать на телефон',
+    name: 'notifyTelephone',
+    list: [
+      {
+        label: ORDERS,
+        name: 'notifyTelephone',
+      },
+      {
+        label: MESSAGES,
+        name: 'notifyTelephone',
+      },
+      {
+        label: NEWS,
+        name: 'notifyTelephone',
+      },
+    ],
+  },
+];
+
+export const passwordProps = [
+  {
+    label: OLD_PASSWORD,
+    name: 'oldPassword',
+    placeholder: OLD_PASSWORD,
+    type: 'password',
+  },
+  {
+    label: NEW_PASSWORD,
+    name: 'newPassword',
+    placeholder: NEW_PASSWORD,
+    type: 'password',
+  },
+  {
+    label: REPIT_PASSWORD,
+    name: 'repitPassword',
+    placeholder: REPIT_PASSWORD,
+    type: 'password',
   },
 ];

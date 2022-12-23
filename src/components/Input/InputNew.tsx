@@ -29,6 +29,7 @@ type TInputNew = {
   props?: string;
   withEdit?: boolean;
   isPassword?: boolean;
+  value: any;
   validate?: (e: string) => boolean;
 };
 

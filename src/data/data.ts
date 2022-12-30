@@ -6,7 +6,36 @@ import sale2 from '../assets/imageSaleGirls.svg';
 
 import nov from '../assets/novelties1.svg';
 import product1 from '../assets/product1.png';
-import { ADDRESS, ADDRESS_PLACEHOLDER, BANK_LABEL, BIK_LABEL, BIK_PLACEHOLDER, CHECK_ACCOUNT_LABEL, CHECK_ACCOUNT_PLACEHOLDER, CORP_ACCOUNT_LABEL, CORP_ACCOUNT_PLACEHOLDER, CURRENCY_SELECT_LABEL, EMAIL, EMAIL_PLACEHOLDER, ENTITY_PLACEHOLDER, INN_LABEL, INN_PLACEHOLDER, KPP_LABEL, KPP_PLACEHOLDER, LANG_SELECT_LABEL, LEGAL_ADDRESS_LABEL, LEGAL_ENTITY_LABEL, MESSAGES, NEWS, NEW_PASSWORD, OLD_PASSWORD, ORDERS, REPIT_PASSWORD, TELEPHONE, TEL_PLACEHOLDER } from '../constants';
+import {
+  ADDRESS,
+  ADDRESS_PLACEHOLDER,
+  BANK_LABEL,
+  BIK_LABEL,
+  BIK_PLACEHOLDER,
+  CHECK_ACCOUNT_LABEL,
+  CHECK_ACCOUNT_PLACEHOLDER,
+  CORP_ACCOUNT_LABEL,
+  CORP_ACCOUNT_PLACEHOLDER,
+  CURRENCY_SELECT_LABEL,
+  EMAIL,
+  EMAIL_PLACEHOLDER,
+  ENTITY_PLACEHOLDER,
+  INN_LABEL,
+  INN_PLACEHOLDER,
+  KPP_LABEL,
+  KPP_PLACEHOLDER,
+  LANG_SELECT_LABEL,
+  LEGAL_ADDRESS_LABEL,
+  LEGAL_ENTITY_LABEL,
+  MESSAGES,
+  NEWS,
+  NEW_PASSWORD,
+  OLD_PASSWORD,
+  ORDERS,
+  REPIT_PASSWORD,
+  TELEPHONE,
+  TEL_PLACEHOLDER,
+} from '../constants';
 
 export const advertising = [
   { id: 1, image: sale1, link: '/page2' },
@@ -1435,11 +1464,11 @@ export const currencyList = [
   },
   {
     id: 3,
-    value: ' Белорусский рубль (₽)',
+    value: ' Белорусский рубль (Br)',
   },
   {
-    id: 2,
-    value: 'Армянский драм',
+    id: 4,
+    value: 'Армянский драм (֏)',
   },
 ];
 
@@ -1537,16 +1566,19 @@ export const sellerNotifications = [
     name: 'notifyEmail',
     list: [
       {
+        id: 1,
         label: ORDERS,
-        name: 'notifyEmail',
+        name: 'ordersEmail',
       },
       {
+        id: 2,
         label: MESSAGES,
-        name: 'notifyEmail',
+        name: 'messagesEmail',
       },
       {
+        id: 3,
         label: NEWS,
-        name: 'notifyEmail',
+        name: 'newsEmail',
       },
     ],
   },
@@ -1555,16 +1587,19 @@ export const sellerNotifications = [
     name: 'notifyPush',
     list: [
       {
+        id: 4,
         label: ORDERS,
-        name: 'notifyPush',
+        name: 'ordersPush',
       },
       {
+        id: 5,
         label: MESSAGES,
-        name: 'notifyPush',
+        name: 'messagesPush',
       },
       {
+        id: 6,
         label: NEWS,
-        name: 'notifyPush',
+        name: 'newsPush',
       },
     ],
   },
@@ -1573,16 +1608,19 @@ export const sellerNotifications = [
     name: 'notifyTelephone',
     list: [
       {
+        id: 7,
         label: ORDERS,
-        name: 'notifyTelephone',
+        name: 'ordersPhone',
       },
       {
+        id: 8,
         label: MESSAGES,
-        name: 'notifyTelephone',
+        name: 'messagesPhone',
       },
       {
+        id: 9,
         label: NEWS,
-        name: 'notifyTelephone',
+        name: 'newsPhone',
       },
     ],
   },

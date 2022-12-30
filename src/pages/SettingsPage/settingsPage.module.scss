@@ -103,11 +103,19 @@
               width: 382px;
 
               .wallpaperBox {
-                color: white;
+                width: 360px;
+                height: 112px;
+                position: relative;
+
+                .wallpaperClose {
+                  position: absolute;
+                  top: 10px;
+                  right: 10px;
+                }
   
                 .wallpaper {
-                  height: 50px;
-                  width: 50px;
+                  height: 100%;
+                  width: 100%;
                   object-fit: cover;
                 }
               }
@@ -210,6 +218,10 @@
 
           .checkboxContainer {
             width: 345px;
+            
+            & > div:nth-child(4n + 1) {
+              font-weight: 500;
+            }
            }
          }
       }

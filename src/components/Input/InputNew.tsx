@@ -31,6 +31,7 @@ type TInputNew = {
   isPassword?: boolean;
   value: any;
   validate?: (e: string) => boolean;
+  onChange: (e) => void;
 };
 
 const maskPhoneNumber = (value: string): string => {
@@ -63,7 +64,7 @@ const InputNew = ({ label, ...props }: TInputNew, ref: any) => {
   const [visible, setVisible] = useState(false);
   const [visibleEmailSvg, setVisibleEmailSvg] = useState(false);
   const [error, setError] = useState(false);
-  const [field, meta] = useField(props);
+  const [field, meta] = useField(props.name);
   // console.log('props', props);
   const validate = (e) => {
     if (validateOuter && !validateOuter(e)) {

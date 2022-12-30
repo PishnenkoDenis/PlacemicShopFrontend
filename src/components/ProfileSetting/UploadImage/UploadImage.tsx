@@ -1,15 +1,47 @@
 import React, { memo, useState } from 'react';
+import { useField } from 'formik';
 import { ReactComponent as IconUser } from '../../../assets/IconUser.svg';
 import { ReactComponent as LogoIcon } from '../../../assets/Logo.svg';
 import { ReactComponent as WallpaperIcon } from '../../../assets/fill.svg';
-import { SHOP_LOGO, SHOP_WALLPAPER, USER_LOGO } from '../../../constants';
+import { SHOP_LOGO, SHOP_WALLPAPER } from '../../../constants';
 import Button from '../../Button';
 import Label from '../../Label';
 
 import styles from './uploadImage.module.scss';
 
-const uploadAvatar = ({ onClose, avatar, setAvatar, label, iconName }) => {
-  const [selectedImage, setSelectedImage] = useState(avatar);
+type TUploadImage = {
+  onClose?: () => void;
+  avatar?: any;
+  setAvatar: (val: any) => void;
+  label: string;
+  iconName: string;
+  wallpaper?: any;
+  setWallpaper?: (val: any) => void;
+  name: string;
+};
+
+const uploadAvatar = ({
+  label,
+  onClose,
+  setAvatar,
+  setWallpaper,
+  iconName,
+  name,
+}: TUploadImage) => {
+  const [selectedAvatar, setSelectedAvatar] = useState(null);
+  const [selectedWallpaper, setSelectedWallpaper] = useState(null);
+
+  // const [field] = useField(name);
+
+  const isImage = iconName === SHOP_LOGO;
+
+  const selectedImage = isImage ? selectedAvatar : selectedWallpaper;
+
+  const setSelectedImage = (value: any) =>
+    isImage ? setSelectedAvatar(value) : setSelectedWallpaper(value);
+
+  const setImage = (value: any) =>
+    isImage ? setAvatar(value) : setWallpaper(value);
 
   const switchIcon = (value: string) => {
     switch (value) {
@@ -39,17 +71,18 @@ const uploadAvatar = ({ onClose, avatar, setAvatar, label, iconName }) => {
         )}
       </label>
       <input
+        // {...field}
         id="input"
         hidden
         type="file"
-        name="myImage"
+        name={name}
         onChange={(event) => {
           setSelectedImage(event.target.files[0]);
         }}
       />
       <Button
         onClick={() => {
-          setAvatar(selectedImage);
+          setImage(selectedImage);
           onClose();
         }}
         className={styles.button}

@@ -1,7 +1,8 @@
 import React, { memo, useCallback, useState } from 'react';
-import { Formik } from 'formik';
-import { useNavigate } from 'react-router';
+import { Field, Form, Formik, FormikProps } from 'formik';
+import { useNavigate, useParams } from 'react-router';
 
+import { useMutation } from '@apollo/client';
 import styles from './settingsPage.module.scss';
 import { validateShopSettings } from '../../utils';
 import Button from '../../components/Button';
@@ -21,8 +22,9 @@ import {
 } from '../../constants';
 import { ReactComponent as LogoIcon } from '../../assets/Logo.svg';
 import { ReactComponent as WallpaperIcon } from '../../assets/fill.svg';
+import { ReactComponent as WallpaperClose } from '../../assets/CloseWallpaper.svg';
 import InputNew from '../../components/Input/InputNew';
-import Textarea from '../../components/Texarea';
+import Textarea from '../../components/Textarea';
 import Select from '../../components/Select';
 import {
   bankProps,
@@ -33,15 +35,23 @@ import {
   sellerNotifications,
 } from '../../data/data';
 import InputCheckbox from '../../components/Input/InputCheckbox';
+import ButtonNew from '../../components/Button/ButtonNew';
+import ADD_SHOP_SETTINGS from '../../graphQl/addShopSettings';
 
 const SettingsPage = () => {
   const navigate = useNavigate();
+  const { id } = useParams();
+  const paramId = Number(id);
 
   const [open, setOpen] = useState(false);
   const [avatar, setAvatar] = useState(null);
   const [wallpaper, setWallpaper] = useState(null);
   const [iconName, setIconName] = useState('');
   const [label, setLabel] = useState('');
+
+  console.log(avatar, wallpaper);
+
+  const [createShop] = useMutation(ADD_SHOP_SETTINGS);
 
   const handleOpen = () => {
     setOpen(true);
@@ -54,6 +64,11 @@ const SettingsPage = () => {
     setIconName(SHOP_WALLPAPER);
     setLabel(WALLPAPER);
   };
+
+  const imgName = iconName === SHOP_LOGO ? 'logo' : 'wallpaper';
+
+  const closeWallpaperPreview = () => setWallpaper(null);
+
   const handleClose = useCallback(() => setOpen(false), [setOpen]);
 
   const navigateToSupport = useCallback(
@@ -76,7 +91,7 @@ const SettingsPage = () => {
           title: '',
           description: '',
           logo: null,
-          userId: null,
+          userId: paramId,
           wallpaper: null,
           telephone: null,
           email: '',
@@ -90,23 +105,54 @@ const SettingsPage = () => {
           bank: '',
           bik: null,
           checkAccount: '',
-          corpAcount: '',
-          notifyEmail: ['', '', ''],
-          notifyPush: ['', '', ''],
-          notifyTelephone: ['', '', ''],
+          corpAccount: '',
+          notifyEmail: null,
+          notifyPush: null,
+          notifyTelephone: null,
           newPassword: '',
           oldPassword: '',
+          repitPassword: '',
+          orderEmail: null,
+          messagesEmail: null,
+          newsEmail: null,
+          orderPush: null,
+          messagesPush: null,
+          newsPush: null,
+          orderPhone: null,
+          messagesPhone: null,
+          newsPhone: null,
         }}
         validationSchema={validateShopSettings}
-        onSubmit={(values, { setSubmitting }) => {
-          setTimeout(() => {
-            alert(JSON.stringify(values, null, 2));
-            setSubmitting(false);
-          }, 400);
+        onSubmit={async (values, actions) => {
+          const {
+            orderEmail,
+            newsEmail,
+            messagesEmail,
+            orderPush,
+            newsPush,
+            messagesPush,
+            orderPhone,
+            newsPhone,
+            messagesPhone,
+            ...other
+          } = values;
+          await createShop({
+            variables: {
+              dto: {
+                ...other,
+                logo: avatar,
+                wallpaper,
+                notifyEmail: [orderEmail, newsEmail, messagesEmail],
+                notifyPush: [orderPush, newsPush, messagesPush],
+                notifyTelephone: [orderPhone, newsPhone, messagesPhone],
+              },
+            },
+          });
+          actions.resetForm();
         }}
       >
-        {(props) => (
-          <form className={styles.form} onSubmit={props.handleSubmit}>
+        {({ values, handleChange, setFieldValue }) => (
+          <Form className={styles.form}>
             <div className={styles.shop}>
               <div className={styles.common}>
                 <div className={styles.profileContainer}>
@@ -134,28 +180,33 @@ const SettingsPage = () => {
                     <UploadImage
                       onClose={handleClose}
                       avatar={avatar}
+                      name={imgName}
                       setAvatar={setAvatar}
+                      wallpaper={wallpaper}
+                      setWallpaper={setWallpaper}
                       label={label}
                       iconName={iconName}
                     />
                   </Modal>
                 )}
                 <div className={styles.inputContainer}>
-                  <InputNew
+                  <Field
+                    as={InputNew}
                     label={SHOP_NAME}
                     name="title"
                     key={SHOP_NAME}
                     placeholder={SHOP_NAME_PLACEHOLDER}
                     type="text"
-                    value={props.values.title}
+                    onChange={handleChange}
                   />
                 </div>
                 <div className={styles.areaContainer}>
-                  <Textarea
+                  <Field
+                    as={Textarea}
                     label={TEXTAREA_LABEL}
                     name="description"
                     placeholder={TEXTAREA_PLACEHOLDER}
-                    value={props.values.description}
+                    onChange={handleChange}
                     cols={50}
                     rows={30}
                   />
@@ -173,49 +224,49 @@ const SettingsPage = () => {
                           alt="not found"
                           src={URL.createObjectURL(wallpaper)}
                         />
+                        <WallpaperClose
+                          className={styles.wallpaperClose}
+                          onClick={closeWallpaperPreview}
+                        />
                       </div>
                     ) : (
-                      <WallpaperIcon
-                        className={styles.wallpaper}
-                        onClick={handleWallpaperOpen}
-                      />
+                      <>
+                        <WallpaperIcon
+                          className={styles.wallpaper}
+                          onClick={handleWallpaperOpen}
+                        />
+                        <span className={styles.wallpaperText}>
+                          {WALLPAPER_TEXT}
+                        </span>
+                      </>
                     )}
-                    <span className={styles.wallpaperText}>
-                      {WALLPAPER_TEXT}
-                    </span>
                   </div>
                 </div>
-                {open && wallpaper && (
-                  <Modal onClose={handleClose}>
-                    <UploadImage
-                      onClose={handleClose}
-                      avatar={wallpaper}
-                      setAvatar={setWallpaper}
-                      label={WALLPAPER}
-                      iconName={iconName}
-                    />
-                  </Modal>
-                )}
                 {selectProps.map((prop) => (
                   <div className={styles.inputContainer} key={prop.name}>
-                    <Select
+                    <Field
+                      as={Select}
                       label={prop.label}
                       options={prop.options}
                       name={prop.name}
+                      onChange={handleChange}
                     />
                   </div>
                 ))}
               </div>
+
               <div className={styles.contacts}>
                 <span className={styles.contactsTitle}>Контакты</span>
                 {contactsProps.map((prop) => (
                   <div className={styles.contactContainer}>
-                    <InputNew
+                    <Field
+                      as={InputNew}
                       label={prop.label}
                       name={prop.name}
                       key={prop.name}
                       placeholder={prop.placeholder}
                       type={prop.type}
+                      onChange={handleChange}
                     />
                   </div>
                 ))}
@@ -228,12 +279,14 @@ const SettingsPage = () => {
                 <span className={styles.legalTitle}>Юридическое лицо</span>
                 {legalEntityProps.map((prop) => (
                   <div className={styles.detailContainer}>
-                    <InputNew
+                    <Field
+                      as={InputNew}
                       label={prop.label}
                       name={prop.name}
                       key={prop.name}
                       placeholder={prop.placeholder}
                       type={prop.type}
+                      onChange={handleChange}
                     />
                   </div>
                 ))}
@@ -242,12 +295,14 @@ const SettingsPage = () => {
                 <span className={styles.bankTitle}>Банк</span>
                 {bankProps.map((prop) => (
                   <div className={styles.detailContainer}>
-                    <InputNew
+                    <Field
+                      as={InputNew}
                       label={prop.label}
                       name={prop.name}
                       key={prop.name}
                       placeholder={prop.placeholder}
                       type={prop.type}
+                      onChange={handleChange}
                     />
                   </div>
                 ))}
@@ -259,16 +314,22 @@ const SettingsPage = () => {
               <div className={styles.notifyContainer}>
                 {sellerNotifications.map((data) => (
                   <div className={styles.checkboxContainer}>
-                    <InputCheckbox
+                    <Field
+                      as={InputCheckbox}
                       key={data.name}
                       label={data.label}
                       name={data.name}
+                      onChange={handleChange}
                     />
                     {data?.list?.map((item) => (
-                      <InputCheckbox
+                      <Field
+                        as={InputCheckbox}
                         key={item.name}
                         label={item.label}
                         name={item.name}
+                        onChange={() =>
+                          setFieldValue(`${item.name}`, item.name)
+                        }
                       />
                     ))}
                   </div>
@@ -281,18 +342,22 @@ const SettingsPage = () => {
               <span className={styles.changePassword}>Смена пароля</span>
               {passwordProps.map((prop) => (
                 <div className={styles.passwordContainer}>
-                  <InputNew
+                  <Field
+                    as={InputNew}
                     label={prop.label}
                     name={prop.name}
                     key={prop.name}
                     placeholder={prop.placeholder}
                     type={prop.type}
+                    onChange={handleChange}
                   />
                 </div>
               ))}
             </div>
-            <Button size="large" className={styles.button}>Сохранить</Button>
-          </form>
+            <ButtonNew size="large" className={styles.button} type="submit">
+              Сохранить
+            </ButtonNew>
+          </Form>
         )}
       </Formik>
     </div>

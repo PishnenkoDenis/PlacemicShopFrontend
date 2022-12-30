@@ -11,10 +11,11 @@ type TSelect = {
   props?: string;
   value?: string;
   options: { id: number; value: string }[];
+  onChange?: (e) => void;
 };
 
 const Select = ({ label, ...props }: TSelect) => {
-  const [field, meta] = useField(props);
+  const [field, meta] = useField(props.name);
   return (
     <div className={styles.container}>
       <label className={styles.label} htmlFor={props.id || props.name}>

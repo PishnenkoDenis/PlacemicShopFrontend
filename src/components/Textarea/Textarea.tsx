@@ -12,10 +12,11 @@ type TTextarea = {
   value: string;
   cols: number;
   rows: number;
+  onChange?: (e) => void;
 };
 
 const Textarea = ({ label, ...props }: TTextarea) => {
-  const [field, meta] = useField(props);
+  const [field, meta] = useField(props.name);
   return (
     <div className={styles.container}>
       <label className={styles.label} htmlFor={props.id || props.name}>

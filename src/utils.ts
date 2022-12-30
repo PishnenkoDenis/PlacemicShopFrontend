@@ -57,17 +57,19 @@ export const validateShopSettings = Yup.object().shape({
   logo: Yup.mixed().nullable(),
   userId: Yup.number().required('Required'),
   wallpaper: Yup.mixed().nullable(),
-  telephone: Yup.number().required('Required'),
+  telephone: Yup.string()
+    .matches(/^\+7 \(\d{3}\) \d{3}-\d{2}-\d{2}$/, 'Некорректные данные')
+    .required('Required'),
   email: Yup.string().email('Invalid email address').required('Required'),
   address: Yup.string().required('Required'),
   language: Yup.string().required('Required'),
   currency: Yup.string().required('Required'),
   legalEntity: Yup.string().required('Required'),
   inn: Yup.number().min(10, 'INN must have 10 numbers').required('Required'),
-  kpp: Yup.number().min(9, 'INN must have 9 numbers').required('Required'),
+  kpp: Yup.number().min(9, 'KPP must have 9 numbers').required('Required'),
   legalAddress: Yup.string().required('Required'),
   bank: Yup.string().required('Required'),
-  bik: Yup.number().min(9, 'INN must have 9 numbers').required('Required'),
+  bik: Yup.number().min(9, 'BIK must have 9 numbers').required('Required'),
   checkAccount: Yup.string()
     .length(20, 'Account must have 20 numbers')
     .required('Required'),

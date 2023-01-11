@@ -18,6 +18,8 @@ const ADD_SHOP_SETTINGS = gql`
       check_account
       corp_account
       user_id
+      logo
+      wallpaper
     }
   }
 `;

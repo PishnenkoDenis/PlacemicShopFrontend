@@ -1517,13 +1517,13 @@ export const legalEntityProps = [
     label: INN_LABEL,
     name: 'inn',
     placeholder: INN_PLACEHOLDER,
-    type: 'number',
+    type: 'text',
   },
   {
     label: KPP_LABEL,
     name: 'kpp',
     placeholder: KPP_PLACEHOLDER,
-    type: 'number',
+    type: 'text',
   },
   {
     label: LEGAL_ADDRESS_LABEL,
@@ -1544,7 +1544,7 @@ export const bankProps = [
     label: BIK_LABEL,
     name: 'bik',
     placeholder: BIK_PLACEHOLDER,
-    type: 'number',
+    type: 'text',
   },
   {
     label: CHECK_ACCOUNT_LABEL,
@@ -1562,8 +1562,7 @@ export const bankProps = [
 
 export const sellerNotifications = [
   {
-    label: 'Оповещать на E-mail',
-    name: 'notifyEmail',
+    title: 'Оповещать на E-mail',
     list: [
       {
         id: 1,
@@ -1583,8 +1582,7 @@ export const sellerNotifications = [
     ],
   },
   {
-    label: 'Оповещать по Push-уведомлениям',
-    name: 'notifyPush',
+    title: 'Оповещать по Push-уведомлениям',
     list: [
       {
         id: 4,
@@ -1604,8 +1602,7 @@ export const sellerNotifications = [
     ],
   },
   {
-    label: 'Оповещать на телефон',
-    name: 'notifyTelephone',
+    title: 'Оповещать на телефон',
     list: [
       {
         id: 7,

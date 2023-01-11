@@ -74,3 +74,7 @@ export const NEWS = 'Новости ресурса';
 export const OLD_PASSWORD = 'Старый пароль';
 export const NEW_PASSWORD = 'Новый пароль';
 export const REPIT_PASSWORD = 'Повторите пароль';
+
+export const UPLOAD_URL = 'http://localhost:4337/graphql';
+
+export const PASSWORDS_MISMATCH = 'Пароли не совпадают';

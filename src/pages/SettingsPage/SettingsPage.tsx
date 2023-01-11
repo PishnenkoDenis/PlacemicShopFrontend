@@ -1,5 +1,5 @@
 import React, { memo, useCallback, useState } from 'react';
-import { Field, Form, Formik, FormikProps } from 'formik';
+import { Field, Form, Formik } from 'formik';
 import { useNavigate, useParams } from 'react-router';
 
 import { useMutation } from '@apollo/client';
@@ -19,6 +19,7 @@ import {
   SHOP_WALLPAPER,
   WALLPAPER,
   WALLPAPER_TEXT,
+  PASSWORDS_MISMATCH,
 } from '../../constants';
 import { ReactComponent as LogoIcon } from '../../assets/Logo.svg';
 import { ReactComponent as WallpaperIcon } from '../../assets/fill.svg';
@@ -37,6 +38,7 @@ import {
 import InputCheckbox from '../../components/Input/InputCheckbox';
 import ButtonNew from '../../components/Button/ButtonNew';
 import ADD_SHOP_SETTINGS from '../../graphQl/addShopSettings';
+import UPLOAD_FILE from '../../graphQl/uploadFile';
 
 const SettingsPage = () => {
   const navigate = useNavigate();
@@ -49,9 +51,9 @@ const SettingsPage = () => {
   const [iconName, setIconName] = useState('');
   const [label, setLabel] = useState('');
 
-  console.log(avatar, wallpaper);
-
   const [createShop] = useMutation(ADD_SHOP_SETTINGS);
+
+  const [uploadFiles] = useMutation(UPLOAD_FILE);
 
   const handleOpen = () => {
     setOpen(true);
@@ -90,9 +92,7 @@ const SettingsPage = () => {
         initialValues={{
           title: '',
           description: '',
-          logo: null,
           userId: paramId,
-          wallpaper: null,
           telephone: null,
           email: '',
           address: '',
@@ -125,6 +125,7 @@ const SettingsPage = () => {
         validationSchema={validateShopSettings}
         onSubmit={async (values, actions) => {
           const {
+            repitPassword,
             orderEmail,
             newsEmail,
             messagesEmail,
@@ -136,6 +137,24 @@ const SettingsPage = () => {
             messagesPhone,
             ...other
           } = values;
+
+          // const files = [avatar, wallpaper];
+          // const { data } = await uploadFiles({
+          //   variables: {
+          //     input: {
+          //       ...other,
+          //       notifyEmail: [orderEmail, newsEmail, messagesEmail],
+          //       notifyPush: [orderPush, newsPush, messagesPush],
+          //       notifyTelephone: [orderPhone, newsPhone, messagesPhone],
+          //       logo: files[0],
+          //       wallpaper: files[1],
+          //       data: 'asd',
+          //       data2: [12, 23],
+          //     },
+          //   },
+          // });
+          // const [avatarUrl, wallpaperUrl] = data.uploadFiles;
+
           await createShop({
             variables: {
               dto: {
@@ -151,7 +170,7 @@ const SettingsPage = () => {
           actions.resetForm();
         }}
       >
-        {({ values, handleChange, setFieldValue }) => (
+        {({ values, handleChange, setFieldValue, errors, touched }) => (
           <Form className={styles.form}>
             <div className={styles.shop}>
               <div className={styles.common}>
@@ -314,21 +333,18 @@ const SettingsPage = () => {
               <div className={styles.notifyContainer}>
                 {sellerNotifications.map((data) => (
                   <div className={styles.checkboxContainer}>
-                    <Field
-                      as={InputCheckbox}
-                      key={data.name}
-                      label={data.label}
-                      name={data.name}
-                      onChange={handleChange}
-                    />
+                    <div>{data.title}</div>
                     {data?.list?.map((item) => (
                       <Field
                         as={InputCheckbox}
                         key={item.name}
                         label={item.label}
                         name={item.name}
-                        onChange={() =>
-                          setFieldValue(`${item.name}`, item.name)
+                        onChange={(e) =>
+                          setFieldValue(
+                            `${item.name}`,
+                            e.target.checked ? item.name : null
+                          )
                         }
                       />
                     ))}
@@ -353,6 +369,12 @@ const SettingsPage = () => {
                   />
                 </div>
               ))}
+              {touched.repitPassword &&
+                values.newPassword !== values.repitPassword && (
+                  <span className={styles.passwordMismatch}>
+                    {PASSWORDS_MISMATCH}
+                  </span>
+                )}
             </div>
             <ButtonNew size="large" className={styles.button} type="submit">
               Сохранить

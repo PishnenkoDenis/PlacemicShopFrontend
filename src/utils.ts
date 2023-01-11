@@ -54,9 +54,9 @@ export const signupSchema = Yup.object().shape({
 export const validateShopSettings = Yup.object().shape({
   title: Yup.string().required('Required'),
   description: Yup.string().required('Required'),
-  logo: Yup.mixed().nullable(),
+  logo: Yup.string().nullable(),
   userId: Yup.number().required('Required'),
-  wallpaper: Yup.mixed().nullable(),
+  wallpaper: Yup.string().nullable(),
   telephone: Yup.string()
     .matches(/^\+7 \(\d{3}\) \d{3}-\d{2}-\d{2}$/, 'Некорректные данные')
     .required('Required'),
@@ -65,11 +65,11 @@ export const validateShopSettings = Yup.object().shape({
   language: Yup.string().required('Required'),
   currency: Yup.string().required('Required'),
   legalEntity: Yup.string().required('Required'),
-  inn: Yup.number().min(10, 'INN must have 10 numbers').required('Required'),
-  kpp: Yup.number().min(9, 'KPP must have 9 numbers').required('Required'),
+  inn: Yup.string().length(10, 'INN must have 10 numbers').required('Required'),
+  kpp: Yup.string().length(9, 'KPP must have 9 numbers').required('Required'),
   legalAddress: Yup.string().required('Required'),
   bank: Yup.string().required('Required'),
-  bik: Yup.number().min(9, 'BIK must have 9 numbers').required('Required'),
+  bik: Yup.string().length(9, 'BIK must have 9 numbers').required('Required'),
   checkAccount: Yup.string()
     .length(20, 'Account must have 20 numbers')
     .required('Required'),

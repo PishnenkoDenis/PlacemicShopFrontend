@@ -221,6 +221,11 @@
             
             & > div:nth-child(4n + 1) {
               font-weight: 500;
+              font-size: 14px;
+              line-height: 16px;
+              display: flex;
+              align-items: center;
+              margin-top: 10px;
             }
            }
          }
@@ -252,11 +257,21 @@
          .passwordContainer {
           width: 345px;
          }
+
+         .passwordMismatch {
+          color: red;
+          font-size: 12px;
+         }
       }
 
       .button {
         width: 187px;
         height: 44px;
       }
+    }
+
+    .invalid {
+      color: red;
+      font-size: 12px;
     }
 }

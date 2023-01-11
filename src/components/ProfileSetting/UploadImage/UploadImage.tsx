@@ -1,5 +1,4 @@
 import React, { memo, useState } from 'react';
-import { useField } from 'formik';
 import { ReactComponent as IconUser } from '../../../assets/IconUser.svg';
 import { ReactComponent as LogoIcon } from '../../../assets/Logo.svg';
 import { ReactComponent as WallpaperIcon } from '../../../assets/fill.svg';
@@ -18,6 +17,7 @@ type TUploadImage = {
   wallpaper?: any;
   setWallpaper?: (val: any) => void;
   name: string;
+  onChange?: () => void;
 };
 
 const uploadAvatar = ({
@@ -27,6 +27,7 @@ const uploadAvatar = ({
   setWallpaper,
   iconName,
   name,
+  onChange
 }: TUploadImage) => {
   const [selectedAvatar, setSelectedAvatar] = useState(null);
   const [selectedWallpaper, setSelectedWallpaper] = useState(null);

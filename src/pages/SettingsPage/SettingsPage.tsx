@@ -38,7 +38,11 @@ import {
 import InputCheckbox from '../../components/Input/InputCheckbox';
 import ButtonNew from '../../components/Button/ButtonNew';
 import ADD_SHOP_SETTINGS from '../../graphQl/addShopSettings';
-import UPLOAD_FILE from '../../graphQl/uploadFile';
+import {
+  NOTIFICATION_RESOURCE,
+  NOTIFICATION_TYPE,
+} from '../../notificationsEnums';
+import { INotification } from '../../types';
 
 const SettingsPage = () => {
   const navigate = useNavigate();
@@ -53,8 +57,6 @@ const SettingsPage = () => {
 
   const [createShop] = useMutation(ADD_SHOP_SETTINGS);
 
-  const [uploadFiles] = useMutation(UPLOAD_FILE);
-
   const handleOpen = () => {
     setOpen(true);
     setIconName(SHOP_LOGO);
@@ -66,6 +68,64 @@ const SettingsPage = () => {
     setIconName(SHOP_WALLPAPER);
     setLabel(WALLPAPER);
   };
+
+  const setNotifications = (
+    orderEmail: boolean,
+    messagesEmail: boolean,
+    newsEmail: boolean,
+    orderPhone: boolean,
+    messagesPhone: boolean,
+    newsPhone: boolean,
+    orderPush: boolean,
+    messagesPush: boolean,
+    newsPush: boolean
+  ): INotification[] => [
+    {
+      type: NOTIFICATION_TYPE.email,
+      resource: NOTIFICATION_RESOURCE.orders,
+      is_active: orderEmail,
+    },
+    {
+      type: NOTIFICATION_TYPE.email,
+      resource: NOTIFICATION_RESOURCE.message,
+      is_active: messagesEmail,
+    },
+    {
+      type: NOTIFICATION_TYPE.email,
+      resource: NOTIFICATION_RESOURCE.news,
+      is_active: newsEmail,
+    },
+    {
+      type: NOTIFICATION_TYPE.phone,
+      resource: NOTIFICATION_RESOURCE.orders,
+      is_active: orderPhone,
+    },
+    {
+      type: NOTIFICATION_TYPE.phone,
+      resource: NOTIFICATION_RESOURCE.message,
+      is_active: messagesPhone,
+    },
+    {
+      type: NOTIFICATION_TYPE.phone,
+      resource: NOTIFICATION_RESOURCE.news,
+      is_active: newsPhone,
+    },
+    {
+      type: NOTIFICATION_TYPE.push,
+      resource: NOTIFICATION_RESOURCE.orders,
+      is_active: orderPush,
+    },
+    {
+      type: NOTIFICATION_TYPE.push,
+      resource: NOTIFICATION_RESOURCE.message,
+      is_active: messagesPush,
+    },
+    {
+      type: NOTIFICATION_TYPE.push,
+      resource: NOTIFICATION_RESOURCE.news,
+      is_active: newsPush,
+    },
+  ];
 
   const imgName = iconName === SHOP_LOGO ? 'logo' : 'wallpaper';
 
@@ -93,67 +153,47 @@ const SettingsPage = () => {
           title: '',
           description: '',
           userId: paramId,
-          telephone: null,
+          telephone: '',
           email: '',
           address: '',
           language: '',
           currency: '',
           legalEntity: '',
-          inn: null,
-          kpp: null,
+          inn: '',
+          kpp: '',
           legalAddress: '',
           bank: '',
-          bik: null,
+          bik: '',
           checkAccount: '',
           corpAccount: '',
-          notifyEmail: null,
-          notifyPush: null,
-          notifyTelephone: null,
           newPassword: '',
           oldPassword: '',
           repitPassword: '',
-          orderEmail: null,
-          messagesEmail: null,
-          newsEmail: null,
-          orderPush: null,
-          messagesPush: null,
-          newsPush: null,
-          orderPhone: null,
-          messagesPhone: null,
-          newsPhone: null,
+          ordersEmail: false,
+          messagesEmail: false,
+          newsEmail: false,
+          ordersPush: false,
+          messagesPush: false,
+          newsPush: false,
+          ordersPhone: false,
+          messagesPhone: false,
+          newsPhone: false,
         }}
         validationSchema={validateShopSettings}
         onSubmit={async (values, actions) => {
           const {
             repitPassword,
-            orderEmail,
-            newsEmail,
+            ordersEmail,
             messagesEmail,
-            orderPush,
-            newsPush,
+            newsEmail,
+            ordersPush,
             messagesPush,
-            orderPhone,
-            newsPhone,
+            newsPush,
+            ordersPhone,
             messagesPhone,
+            newsPhone,
             ...other
           } = values;
-
-          // const files = [avatar, wallpaper];
-          // const { data } = await uploadFiles({
-          //   variables: {
-          //     input: {
-          //       ...other,
-          //       notifyEmail: [orderEmail, newsEmail, messagesEmail],
-          //       notifyPush: [orderPush, newsPush, messagesPush],
-          //       notifyTelephone: [orderPhone, newsPhone, messagesPhone],
-          //       logo: files[0],
-          //       wallpaper: files[1],
-          //       data: 'asd',
-          //       data2: [12, 23],
-          //     },
-          //   },
-          // });
-          // const [avatarUrl, wallpaperUrl] = data.uploadFiles;
 
           await createShop({
             variables: {
@@ -161,16 +201,24 @@ const SettingsPage = () => {
                 ...other,
                 logo: avatar,
                 wallpaper,
-                notifyEmail: [orderEmail, newsEmail, messagesEmail],
-                notifyPush: [orderPush, newsPush, messagesPush],
-                notifyTelephone: [orderPhone, newsPhone, messagesPhone],
+                notifications: setNotifications(
+                  ordersEmail,
+                  messagesEmail,
+                  newsEmail,
+                  ordersPhone,
+                  messagesPhone,
+                  newsPhone,
+                  ordersPush,
+                  messagesPush,
+                  newsPush
+                ),
               },
             },
           });
           actions.resetForm();
         }}
       >
-        {({ values, handleChange, setFieldValue, errors, touched }) => (
+        {({ values, handleChange, touched }) => (
           <Form className={styles.form}>
             <div className={styles.shop}>
               <div className={styles.common}>
@@ -333,19 +381,14 @@ const SettingsPage = () => {
               <div className={styles.notifyContainer}>
                 {sellerNotifications.map((data) => (
                   <div className={styles.checkboxContainer}>
-                    <div>{data.title}</div>
+                     <div>{data.title}</div>
                     {data?.list?.map((item) => (
                       <Field
                         as={InputCheckbox}
                         key={item.name}
                         label={item.label}
                         name={item.name}
-                        onChange={(e) =>
-                          setFieldValue(
-                            `${item.name}`,
-                            e.target.checked ? item.name : null
-                          )
-                        }
+                        onChange={handleChange}
                       />
                     ))}
                   </div>

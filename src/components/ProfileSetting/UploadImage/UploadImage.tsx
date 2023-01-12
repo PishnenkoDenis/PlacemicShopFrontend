@@ -27,12 +27,9 @@ const uploadAvatar = ({
   setWallpaper,
   iconName,
   name,
-  onChange
 }: TUploadImage) => {
   const [selectedAvatar, setSelectedAvatar] = useState(null);
   const [selectedWallpaper, setSelectedWallpaper] = useState(null);
-
-  // const [field] = useField(name);
 
   const isImage = iconName === SHOP_LOGO;
 
@@ -72,7 +69,6 @@ const uploadAvatar = ({
         )}
       </label>
       <input
-        // {...field}
         id="input"
         hidden
         type="file"

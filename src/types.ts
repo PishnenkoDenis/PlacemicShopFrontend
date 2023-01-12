@@ -47,3 +47,9 @@ export interface IUser {
   avatar: string;
   fullName: string;
 }
+
+export interface INotification {
+  type: string;
+  resource: string;
+  is_active: boolean;
+}

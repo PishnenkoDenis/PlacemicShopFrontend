@@ -1490,7 +1490,7 @@ export const contactsProps = [
     label: TELEPHONE,
     name: 'telephone',
     placeholder: TEL_PLACEHOLDER,
-    type: 'tel',
+    type: 'text',
   },
   {
     label: EMAIL,

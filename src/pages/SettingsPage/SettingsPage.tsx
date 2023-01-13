@@ -381,7 +381,7 @@ const SettingsPage = () => {
               <div className={styles.notifyContainer}>
                 {sellerNotifications.map((data) => (
                   <div className={styles.checkboxContainer}>
-                     <div>{data.title}</div>
+                    <div>{data.title}</div>
                     {data?.list?.map((item) => (
                       <Field
                         as={InputCheckbox}

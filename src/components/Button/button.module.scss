@@ -87,3 +87,19 @@
 .isRounded {
   border-radius: 4px;
 }
+
+.add {
+  display: flex;
+  align-items: center;
+  padding: 15px;
+  background: linear-gradient(96.78deg, rgba(246, 77, 77, 0.2) -57.09%, rgba(77, 94, 246, 0.2) 101.17%);
+  border-radius: 4px;
+  // &:hover {
+  //   background: #ffffff;
+  //   border: 0.8px solid #000000;
+  //   transition: translate 0.5s;
+  // }
+}
+.addSvg {
+  margin-right: 10px;
+}

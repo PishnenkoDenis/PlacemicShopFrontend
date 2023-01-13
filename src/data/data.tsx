@@ -1173,6 +1173,30 @@ export const recomProducts = [
   },
 ];
 
+export const headerDropdownlistData = [
+  {
+    id: 1,
+    name: 'customer',
+    options: [
+      { id: 0, value: 'Покупателям' },
+      { id: 1, value: 'Защита покупателя' },
+      { id: 2, value: 'Условия оплаты' },
+      { id: 3, value: 'Условия использования' },
+      { id: 4, value: 'Регистрация аккаунта' },
+    ],
+  },
+  {
+    id: 2,
+    name: 'seller',
+    options: [
+      { id: 0, value: 'Как стать продавцом' },
+      { id: 1, value: 'Правила участия' },
+      { id: 2, value: 'Личный кабинет продавца' },
+      { id: 3, value: 'Поставщикам' },
+    ],
+  },
+];
+
 export const services = [
   {
     id: 1,
@@ -1304,7 +1328,7 @@ export const userDataInfo = [
 export const notificationsData = [
   {
     label: 'Оповещать на E-mail',
-    name: 'notifyEmail',
+    // name: 'notifyEmail',
     list: [
       {
         label: 'Информация о заказах',
@@ -1385,7 +1409,7 @@ export const dropdownlistUserData = [
   {
     label: 'Выбрать язык',
     name: 'language',
-    lists: [
+    options: [
       {
         id: 1,
         value: 'Русский',
@@ -1399,7 +1423,7 @@ export const dropdownlistUserData = [
   {
     label: 'Выбрать валюту',
     name: 'currency',
-    lists: [
+    options: [
       {
         id: 1,
         value: 'Российский рубль (₽)',
@@ -1409,5 +1433,178 @@ export const dropdownlistUserData = [
         value: 'Евро',
       },
     ],
+  },
+];
+
+export const securityData = [
+  {
+    label: 'Старый пароль',
+    name: 'oldPassword',
+    placeholder: 'Старый пароль',
+    type: 'password',
+  },
+  {
+    label: 'Новый пароль',
+    name: 'newPassword',
+    placeholder: 'Новый пароль',
+    type: 'password',
+  },
+  {
+    label: 'Повторите пароль',
+    name: 'confirmPassword',
+    placeholder: 'Повторите пароль',
+    type: 'password',
+  },
+];
+
+export const signInFormData = [
+  {
+    name: 'fullName',
+    label: 'Имя',
+    placeholder: 'Имя',
+    type: 'text',
+  },
+  {
+    name: 'email',
+    label: 'E-mail',
+    placeholder: 'Введите E-mail',
+    type: 'text',
+  },
+  {
+    name: 'password',
+    label: 'Пароль',
+    placeholder: 'Введите пароль',
+    type: 'password',
+  },
+];
+
+// export const registrationFormData = {
+//   isEmail: [
+//     {
+//       name: 'fullName',
+//       label: 'Имя',
+//       placeholder: 'Имя',
+//       type: 'text',
+//     },
+//     {
+//       name: 'email',
+//       label: 'E-mail',
+//       placeholder: 'Введите E-mail',
+//     },
+//     {
+//       name: 'password',
+//       label: 'Пароль',
+//       placeholder: 'Введите пароль',
+//       type: 'password',
+//     },
+//     {
+//       name: 'confirmPassword',
+//       label: 'Пароль',
+//       placeholder: 'Введите пароль',
+//       type: 'password',
+//     },
+//   ],
+//   isPhone: [
+//     {
+//       name: 'fullName',
+//       label: 'Имя',
+//       placeholder: 'Имя',
+//       type: 'text',
+//     },
+//     {
+//       name: 'phone',
+//       label: 'По телефону',
+//       placeholder: 'Введите телефон',
+//       type: 'tel',
+//     },
+//     {
+//       name: 'password',
+//       label: 'Пароль',
+//       placeholder: 'Введите пароль',
+//       type: 'password',
+//     },
+//     {
+//       name: 'confirmPassword',
+//       label: 'Пароль',
+//       placeholder: 'Введите пароль',
+//       type: 'password',
+//     },
+//   ],
+// };
+
+export const registrationFormData = [
+  {
+    label: 'isEmail',
+    fields: [
+      {
+        name: 'fullName',
+        label: 'Имя',
+        placeholder: 'Имя',
+        type: 'text',
+      },
+      {
+        name: 'email',
+        label: 'E-mail',
+        placeholder: 'Введите E-mail',
+      },
+      {
+        name: 'password',
+        label: 'Пароль',
+        placeholder: 'Введите пароль',
+        type: 'password',
+      },
+      {
+        name: 'confirmPassword',
+        label: 'Пароль',
+        placeholder: 'Введите пароль',
+        type: 'password',
+      },
+    ],
+  },
+  {
+    label: 'isPhone',
+    isPhone: [
+      {
+        name: 'fullName',
+        label: 'Имя',
+        placeholder: 'Имя',
+        type: 'text',
+      },
+      {
+        name: 'phone',
+        label: 'По телефону',
+        placeholder: 'Введите телефон',
+        type: 'tel',
+      },
+      {
+        name: 'password',
+        label: 'Пароль',
+        placeholder: 'Введите пароль',
+        type: 'password',
+      },
+      {
+        name: 'confirmPassword',
+        label: 'Пароль',
+        placeholder: 'Введите пароль',
+        type: 'password',
+      },
+    ],
+  },
+];
+
+export const paymentFormData = [
+  {
+    name: 'ccmonth',
+    label: 'Срок действия',
+    placeholder: 'MM',
+  },
+  {
+    name: 'ccyear',
+    placeholder: 'ГГ',
+  },
+  {
+    name: 'cvc',
+    label: '3 цифры на обороте ',
+    placeholder: 'CVC',
   },
 ];

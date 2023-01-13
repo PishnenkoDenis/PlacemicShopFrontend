@@ -6,9 +6,7 @@ import Button from '../Button';
 import styles from './headerprofile.module.scss';
 
 type THeaderProfile = {
-  labels: string;
-  type?: string;
-  text?: string;
+  selectedId: number;
 };
 
 const labels = {
@@ -19,16 +17,18 @@ const labels = {
   5: 'Настройка профиля',
 };
 
-const HeaderProfile = ({
-  selectedId,
-  type = 'help',
-  text = 'primary',
-}: THeaderProfile) => {
-  const typeClass = styles[type];
-  const textClass = styles[text];
+const HeaderProfile = ({ selectedId }: THeaderProfile) => {
+  // const typeClass = styles[type];
+
   return (
     <div className={styles.container}>
-      <div className={cn(styles.label, typeClass, textClass)}>
+      <div
+        className={cn( {
+          [styles.label]: true,
+          [styles.help]: true,
+          [styles.primary]: true,
+        })}
+      >
         {labels[selectedId]}
       </div>
       <Link to="/feedback">

@@ -3,24 +3,14 @@
   align-items: center;
   position: relative;
   justify-content: space-between;
-  gap:12px
-}
-
-.inputInner {
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 16px;
-  color: #000000;
-  display: flex;
-  flex-direction: row;
-  align-items: baseline;
-  justify-content: space-between;
+  width: 100%;
 }
 
 .input {
   border: 0.5px solid rgba(70, 70, 70, 0.55);
   border-radius: 4px;
   padding: 6px 10px;
+  width: 100%;
   &.invalid {
     border: 0.5px solid red;
     border-radius: 4px;
@@ -28,71 +18,76 @@
 }
 
 .label {
-  font-weight: 400;
-  font-size: 14px;
   line-height: 16px;
   color: #000000;
+  width: 50%;
 }
 
-.messageError {
-  position: absolute;
-  top: -2px;
-  left: 50%;
-  transform: translate(-50%, -100%);
-  font-size: 14px;
-  color: red;
-  white-space: nowrap;
+.labelNone {
+  display: none;
 }
 
 .validateStyle {
   position: absolute;
-  top: -2px;
-  left: 50%;
-  transform: translate(-50%, -100%);
   font-size: 14px;
   color: red;
   white-space: nowrap;
+  transform: translate(10px, -24px);
+}
+
+.buttonInner {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.buttonSvg {
+  height: 43px;
 }
 
 .passwordIcon {
   position: absolute;
-  right: 72px;
+  right: 20px;
   top: 11px;
 }
 
-.buttonEmailBox {
-  display: flex;
+.input::placeholder {
+  font-size: 12px;
+  color: hsla(0, 0%, 0%, 0.6);
 }
 
-.svgButtonStyle {
-  display: block;
-  &:hover {
-    box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.08);
-  }
-}
+// .svgButtonStyle {
+//   display: block;
+//   &:hover {
+//     box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.08);
+//   }
+// }
 
-input::-webkit-calendar-picker-indicator {
-  position: absolute;
-  background: transparent;
-  right: 0;
-  top: 2;
-  width: 100%;
-  height: 100%;
-  margin: 0;
-  padding: 0;
-  cursor: pointer;
-}
-.buttonInner {
-  display: flex;
-  align-items: center;
-}
+// input::-webkit-calendar-picker-indicator {
+//   position: absolute;
+//   background: transparent;
+//   right: 0;
+//   top: 2;
+//   width: 100%;
+//   height: 100%;
+//   margin: 0;
+//   padding: 0;
+//   cursor: pointer;
+// }
 
-.validateStyleUpperError {
-  position: absolute;
-  left: 24%;
-  top: 2%;
-  font-size: 14px;
-  color: red;
-  z-index: 5;
-  white-space: nowrap;
-}
+// .buttonInner {
+//   display: flex;
+//   align-items: center;
+//   width: 50%;
+// }
+
+// .inputInner {
+//   font-weight: 400;
+//   font-size: 14px;
+//   line-height: 16px;
+//   color: #000000;
+//   display: flex;
+//   flex-direction: row;
+//   align-items: baseline;
+//   justify-content: space-between;
+// }

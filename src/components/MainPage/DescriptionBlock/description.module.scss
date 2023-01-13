@@ -8,6 +8,7 @@
   margin-top: 20px;
   position: relative;
 }
+
 .description::after {
   content: '';
   position: absolute;
@@ -21,6 +22,7 @@
     height: 96px;
   }
 }
+
 .background {
   background: none;
 }

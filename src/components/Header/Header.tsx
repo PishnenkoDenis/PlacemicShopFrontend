@@ -62,7 +62,6 @@ const Header = () => {
         <LogoHeader className={styles.logo} />
       </div>
       {sidebar && <Sidebar />}
-
       <div className={styles.headerCenter}>
         <div className={styles.centerTop}>
           <DropDownList
@@ -71,6 +70,7 @@ const Header = () => {
             onChange={setValue}
             options={options}
             className={styles.dropdownlist}
+            isBorder
           />
           <DropDownList
             padding="0 5px 0 0"
@@ -78,6 +78,7 @@ const Header = () => {
             onChange={setSuppliers}
             options={options2}
             className={styles.dropdownlist}
+            isBorder
           />
           <div className={styles.FAQ}>Частые вопросы</div>
         </div>
@@ -85,7 +86,7 @@ const Header = () => {
       </div>
       <div className={styles.headerRight}>
         <div className={styles.headerRightTop}>
-          <DropDownListLanguage value={value} onChange={undefined} />
+          <DropDownListLanguage value={value} onChange={undefined} isBorder />
         </div>
         <div className={styles.headerRightBottom}>
           <Profile onClick={() => setOpen(true)} />
@@ -93,7 +94,10 @@ const Header = () => {
           <Basket count={1} />
           {open && (
             <Modal onClose={handleClose}>
-              <RegistrationForm setModalCondition={setOpen} />
+              <RegistrationForm
+                setModalCondition={setOpen}
+                onClose={handleClose}
+              />
             </Modal>
           )}
         </div>

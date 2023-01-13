@@ -1,33 +1,47 @@
 export type TCardProducts = {
-  id: number;
-  image: string;
-  discount?: number;
-  currentPrice: number;
-  oldPrice?: number;
-  rating: number;
-  review: number;
-  shortDesc: string;
-  longDesc: string;
+  item: {
+    id: number;
+    image: string;
+    discount?: number;
+    currentPrice: number;
+    oldPrice?: number;
+    rating: number;
+    review: number;
+    shortDesc: string;
+    longDesc: string;
+  };
 };
 
 export type TAdvertisingCard = {
-  id: number;
-  link: string;
-  image: string;
+  item: {
+    id: number;
+    link: string;
+    image: string;
+  };
 };
 
 export type TCardShop = {
+  item: {
+    id: number;
+    link: string;
+    logo: string;
+    name: string;
+    products: TProducts[];
+  };
+};
+
+export type TProducts = {
   id: number;
   link: string;
-  logo: string;
-  name: string;
-  products: [];
+  icon: string;
 };
 
 export type TPreviouslyWatchedCard = {
-  image: string;
-  shortDesc: string;
-  currentPrice: number;
+  item: {
+    image: string;
+    shortDesc: string;
+    currentPrice: number;
+  };
 };
 
 export type TSubService = {
@@ -42,8 +56,3 @@ export type TFooterService = {
   link: string;
   subservices: TSubService[];
 };
-export interface IUser {
-  id: number;
-  avatar: string;
-  fullName: string;
-}

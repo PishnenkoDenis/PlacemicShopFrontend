@@ -5,7 +5,7 @@ import Label from '../../Label';
 
 import styles from './uploadImage.module.scss';
 
-const uploadAvatar = ({ onClose, avatar, setAvatar }) => {
+const uploadAvatar = ({ onClose, avatar, setAvatar }: TUser) => {
   const [selectedImage, setSelectedImage] = useState(avatar);
 
   return (
@@ -30,7 +30,7 @@ const uploadAvatar = ({ onClose, avatar, setAvatar }) => {
         type="file"
         name="myImage"
         onChange={(event) => {
-          setSelectedImage(event.target.files[0]);
+          setSelectedImage(event.target.files?.[0] || null);
         }}
       />
       <Button

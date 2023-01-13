@@ -1,16 +1,10 @@
-import React, {
-  memo,
-  // useId,
-  useState,
-  forwardRef,
-  useImperativeHandle,
-} from 'react';
+import React, { memo, useState } from 'react';
 import { useField } from 'formik';
 import cn from 'classnames';
 import { ReactComponent as PasswordSvgActive } from '../../assets/passwordActive.svg';
 import { ReactComponent as PasswordSvg } from '../../assets/password.svg';
 import { ReactComponent as СalendarSvg } from '../../assets/сalendarSvg.svg';
-import { ReactComponent as PenSvg } from '../../assets/pen.svg';
+import { ReactComponent as PenSvg } from '../../assets/btn-pen.svg';
 import { ReactComponent as SuccessfullySvg } from '../../assets/button_ok.svg';
 import {
   COUNTRY_CODE,
@@ -21,14 +15,15 @@ import {
 import styles from './input.module.scss';
 
 type TInputNew = {
-  label?: string;
-  id?: number;
+  label?: string | boolean;
   name: string;
   type?: string;
   placeholder?: string;
-  props?: string;
+  mask?: any;
   withEdit?: boolean;
+  isDirection?: boolean;
   isPassword?: boolean;
+  className?: string;
   validate?: (e: string) => boolean;
 };
 
@@ -58,59 +53,39 @@ const maskPhoneNumber = (value: string): string => {
   }
   return `${COUNTRY_CODE} (${zoneCode}`;
 };
-const InputNew = ({ label, ...props }: TInputNew, ref: any) => {
+
+const InputNew = ({ label, isDirection = false, ...props }: TInputNew) => {
   const [visible, setVisible] = useState(false);
   const [visibleEmailSvg, setVisibleEmailSvg] = useState(false);
   const [error, setError] = useState(false);
   const [field, meta] = useField(props);
-  // console.log('props', props);
-  const validate = (e) => {
-    if (validateOuter && !validateOuter(e)) {
-      setError(true);
-    }
-  };
-  const onChangeInner = (e) => {
-    if (type === 'tel') {
-      onchange(maskPhoneNumber(e));
-    } else {
-      onChange(e);
-    }
-    // if (type === 'tel') {
-    //   onChange(maskPhoneNumber(e.target.value));
-    // } else {
-    //   onChange(e.target.value);
-    // }
-    if (validateOuter && validateOuter(e)) {
-      setError(false);
-    }
-  };
+
   const visibleHandler = () => {
     setVisible(!visible);
   };
   const visibleEmailSvgHandler = () => {
     if (error) return;
+    if (!error) {
+      setError(true);
+    }
     setVisibleEmailSvg(!visibleEmailSvg);
   };
-  useImperativeHandle(ref, () => ({
-    validate: () => {
-      if (validateOuter) {
-        if (validateOuter(e.target.value)) {
-          setError(false);
-        } else {
-          setError(true);
-        }
-      }
-    },
-  }));
-  // console.log(meta);
+
   return (
-    <div className={styles.container}>
-      <label className={styles.label} htmlFor={props.id || props.name}>
+    <div className={cn(!isDirection ? styles.container : styles.directionRow)}>
+      <label
+        className={cn(!label ? styles.labelNone : styles.label)}
+        htmlFor={props.name}
+      >
         {label}
       </label>
       <div className={styles.buttonInner}>
         <input
-          className={cn(styles.input, error && styles.invalid)}
+          className={cn(
+            styles.input,
+            error && styles.invalid,
+            styles.className
+          )}
           {...field}
           {...props}
           type={props.isPassword && !visible ? 'password' : props.type}
@@ -120,7 +95,12 @@ const InputNew = ({ label, ...props }: TInputNew, ref: any) => {
           <div className={cn(styles.validateStyle)}>{meta.error}</div>
         ) : null}
         {props.withEdit && (
-          <div onClick={visibleEmailSvgHandler} role="button" tabIndex={0}>
+          <div
+            className={styles.buttonSvg}
+            onClick={visibleEmailSvgHandler}
+            role="button"
+            tabIndex={0}
+          >
             {visibleEmailSvg ? (
               <SuccessfullySvg className={styles.successfullySvg} />
             ) : (
@@ -141,4 +121,4 @@ const InputNew = ({ label, ...props }: TInputNew, ref: any) => {
     </div>
   );
 };
-export default memo(forwardRef(InputNew));
+export default memo(InputNew);

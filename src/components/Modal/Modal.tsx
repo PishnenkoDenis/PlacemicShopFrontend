@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 import { createPortal } from 'react-dom';
 
 import crossIcon from '../../assets/cross.svg';
@@ -6,7 +6,12 @@ import styles from './modal.module.scss';
 
 const modalElement = document.body;
 
-const Modal = ({ children, onClose }) => {
+type TModal = {
+  children?: ReactNode;
+  onClose: () => void;
+};
+
+const Modal = ({ children, onClose }: TModal) => {
   return createPortal(
     <div
       role="button"

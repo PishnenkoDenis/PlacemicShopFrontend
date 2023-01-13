@@ -4,13 +4,20 @@ import styles from './label.module.scss';
 
 type TLabel = {
   label: string;
-  style?: string;
   className?: string;
 };
 
-const Label = ({ label, style = 'primary', className }: TLabel) => {
-  const styleClass = styles[style];
-  return <div className={cn(styles.label, styleClass, className)}>{label}</div>;
+const Label = ({ label, className }: TLabel) => {
+  return (
+    <div
+      className={cn(className, {
+        [styles.label]: true,
+        [styles.primary]: true,
+      })}
+    >
+      {label}
+    </div>
+  );
 };
 
 export default memo(Label);

@@ -8,22 +8,24 @@ import styles from './dropdownlist.module.scss';
 
 interface IDropDownList {
   value: string;
+  label?: string;
   options: any[];
   onChange: any;
   className?: string;
   padding?: string;
   fontSize?: 'md' | 'lg';
-  border?: string;
+  isBorder?: boolean;
   alignText?: string;
 }
 
 const DropDownList = ({
   value,
+  label,
   options,
   onChange,
   className,
   padding,
-  border,
+  isBorder = false,
   alignText,
   fontSize = 'md',
 }: IDropDownList) => {
@@ -33,9 +35,17 @@ const DropDownList = ({
 
   return (
     <div className={cn(styles.dropDownList, className)}>
+      <label
+        className={cn({ [styles.labelNone]: !label, [styles.label]: label })}
+      >
+        {label}
+      </label>
       <button
         style={{ padding, fontSize }}
-        className={cn(styles.button, sizeClass, border, alignText)}
+        className={cn(sizeClass, alignText, {
+          [styles.button]: true,
+          [styles.noneBorder]: isBorder,
+        })}
         onClick={handleOpen}
         type="button"
       >

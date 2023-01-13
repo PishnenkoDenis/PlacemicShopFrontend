@@ -11,7 +11,7 @@ import cn from 'classnames';
 import { ReactComponent as PasswordSvgActive } from '../../assets/passwordActive.svg';
 import { ReactComponent as PasswordSvg } from '../../assets/password.svg';
 import { ReactComponent as СalendarSvg } from '../../assets/сalendarSvg.svg';
-import { ReactComponent as PenSvg } from '../../assets/pen.svg';
+import { ReactComponent as PenSvg } from '../../assets/btn-pen.svg';
 import { ReactComponent as SuccessfullySvg } from '../../assets/button_ok.svg';
 import {
   COUNTRY_CODE,

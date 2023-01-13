@@ -8,11 +8,18 @@ type TWrapper = {
   children: ReactNode;
   isLine?: boolean;
   className?: string;
+  id?: string | number;
 };
 
-const Wrapper = ({ label, children, className, isLine = false }: TWrapper) => {
+const Wrapper = ({
+  label,
+  children,
+  className,
+  isLine = false,
+  id,
+}: TWrapper) => {
   return (
-    <section className={cn(styles.container, className)}>
+    <section className={cn(styles.container, className, id)}>
       <div className={cn(styles.title, className)}>{label}</div>
       {children}
       {isLine && <div className={cn(styles.line)} />}

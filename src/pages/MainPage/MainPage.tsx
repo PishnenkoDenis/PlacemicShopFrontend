@@ -8,7 +8,7 @@ import React, {
 } from 'react';
 import { Link } from 'react-router-dom';
 import { throttle } from 'lodash';
-import Slider from '../../components/Slider/Slider';
+import Slider from '../../components/Slider';
 import {
   products,
   shops,
@@ -16,13 +16,13 @@ import {
   noveltiesProducts,
   recomProducts,
 } from '../../data/data';
-import PopularCategories from '../../components/MainPage/PopularCategories/PopularCategories';
-import CardProduct from '../../components/Card/CardProduct/CardProduct';
-import Button from '../../components/Button/Button';
-import CardShop from '../../components/Card/CardShop/CardShop';
-import AdvertisingCard from '../../components/Card/AdvertisingCard/AdvertisingCard';
-import Wrapper from '../../components/Wrapper/Wrapper';
-import DescriptionBlock from '../../components/MainPage/DescriptionBlock/DescriptionBlock';
+import PopularCategories from '../../components/MainPage/PopularCategories';
+import CardProduct from '../../components/Card/CardProduct';
+import Button from '../../components/Button';
+import CardShop from '../../components/Card/CardShop';
+import AdvertisingCard from '../../components/Card/AdvertisingCard';
+import Wrapper from '../../components/Wrapper';
+import DescriptionBlock from '../../components/MainPage/DescriptionBlock';
 import banner from '../../assets/baner1.svg';
 import dog from '../../assets/imgShopSale.svg';
 import { SCREEN_WIDTH } from '../../constants';

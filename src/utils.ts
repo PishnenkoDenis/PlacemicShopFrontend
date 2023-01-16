@@ -1,8 +1,8 @@
 import React, { ChangeEvent } from 'react';
 import * as Yup from 'yup';
-import { INPUT_NUMBER } from './constants';
 import { NOTIFICATION_RESOURCE, NOTIFICATION_TYPE } from './notificationsEnums';
 import { INotification } from './types';
+import { INPUT_NUMBER, PASSWORD_REG } from './constants';
 
 export const validateEmail = (value: string) => {
   return /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g.test(value);
@@ -51,6 +51,16 @@ export const signupSchema = Yup.object().shape({
   apartament: Yup.string()
     .matches(/^\d+$/, 'Некорректные данные')
     .required('Required'),
+  oldPassword: Yup.string()
+    .matches(PASSWORD_REG, 'Некорректные данные')
+    .required('Required'),
+  newPassword: Yup.string()
+    .matches(PASSWORD_REG, 'Некорректные данные')
+    .required('Required'),
+  confirmPassword: Yup.string().oneOf(
+    [Yup.ref('newPassword'), null],
+    'Пароли должны совпадать'
+  ),
 });
 
 export const validateShopSettings = Yup.object().shape({
@@ -86,7 +96,7 @@ export const validateShopSettings = Yup.object().shape({
 });
 
 export const validatePassword = (value: string) => {
-  return /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/.test(value);
+  return PASSWORD_REG.test(value);
 };
 
 export const isEmpty = (value: string) => value.trim().length;
@@ -96,14 +106,6 @@ export const validatePasswordConfirm = (password: string) => {
 };
 
 export const validateFirstName = (value: string) => {
-  return /[а-яёА-ЯЁ]+/.test(value);
-};
-
-export const validatLastName = (value: string) => {
-  return /[а-яёА-ЯЁ]+/.test(value);
-};
-
-export const validateMiddleName = (value: string) => {
   return /[а-яёА-ЯЁ]+/.test(value);
 };
 

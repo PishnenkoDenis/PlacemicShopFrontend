@@ -1,37 +1,47 @@
-import React, { memo, useState } from 'react';
-import Button from '../../../Button/Button';
-import Input from '../../../Input/Input';
-import { validateEmail } from '../../../../utils';
+import React, { memo } from 'react';
+import { Form, Formik } from 'formik';
+import Button from '../../../Button';
+import InputNew from '../../../Input/InputNew';
 
 import styles from './connection.module.scss';
+import { signupSchema } from '../../../../utils';
 
 const EmailBlock = () => {
-  const [email, setEmail] = useState('');
   return (
     <div className={styles.emailBox}>
       <span className={styles.labelEmail}>
         Хотите быть в курсе последних новостей и акций?
       </span>
-      <div className={styles.inputBox}>
-        <div className={styles.inputInner}>
-          <Input
-            value={email}
-            onChange={setEmail}
+      <Formik
+        initialValues={{
+          email: '',
+        }}
+        validationSchema={signupSchema}
+        onSubmit={(values, { setSubmitting }) => {
+          // TODO: I'll deleted it when I connect the bac
+          setTimeout(() => {
+            alert(JSON.stringify(values, null, 2));
+            setSubmitting(false);
+          }, 400);
+        }}
+      >
+        <Form className={styles.inputBox}>
+          <InputNew
+            name="email"
             placeholder="konstantinkonstantinov@yandex.ru"
             type="email"
-            borderClass={styles.border}
-            validate={validateEmail}
+            className={styles.border}
           />
-        </div>
-        <Button
-          className={styles.buttonStyle}
-          size="medium"
-          type="contained"
-          text="gradient"
-        >
-          Подписаться
-        </Button>
-      </div>
+          <Button
+            className={styles.buttonStyle}
+            size="medium"
+            type="contained"
+            text="gradient"
+          >
+            Подписаться
+          </Button>
+        </Form>
+      </Formik>
     </div>
   );
 };

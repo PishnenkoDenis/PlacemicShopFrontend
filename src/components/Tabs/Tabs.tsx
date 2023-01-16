@@ -9,7 +9,7 @@ type TOptions = {
 };
 
 type TTabs = {
-  onChange: () => {};
+  onChange: (id: number | string) => void;
   options: TOptions[];
   selectedId: string | number;
   className?: string;

@@ -27,6 +27,7 @@ const SearchBar = () => {
           onChange={setValue}
           options={options}
           alignText={styles.textCenter}
+          isBorder
         />
       </div>
       <input className={styles.serchBoxInput} />

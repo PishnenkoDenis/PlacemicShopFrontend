@@ -28,14 +28,14 @@ const allCategories = [
   { id: 4, text: 'Одежда для мужчин', link: '/page2', icon: men },
 ];
 
-type TPopularCategories = {
-  id: number;
-  text?: string;
-  link?: string;
-  icon?: string;
-};
+// type TPopularCategories = {
+//   id: number;
+//   text?: string;
+//   link?: string;
+//   icon?: string;
+// };
 
-const PopularCategories = ({ id, text, link, icon }: TPopularCategories) => {
+const PopularCategories = () => {
   const [open, setOpen] = useState(false);
 
   const isAllCatalogies = open === true;

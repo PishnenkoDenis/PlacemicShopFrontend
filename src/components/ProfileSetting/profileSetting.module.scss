@@ -1,15 +1,13 @@
 @import '../../mixin';
 
+.container {
+  position: relative;
+  text-align: left;
+}
+
 .alignText {
   text-align: left;
   font-size: 22px;
-}
-
-.subTitle {
-  display: block;
-  margin-top: 21px;
-  font-size: 16px;
-  font-weight: 400;
 }
 
 .profileContainer {
@@ -25,105 +23,18 @@
   width: 150px;
 }
 
-.inputsBox {
-  display: flex;
-  gap: 40px;
-  margin-top: 22px;
-
-  @include md {
-    gap: 20px;
-  }
-  @include sm {
-    flex-direction: column;
-  }
-}
-
-.margin {
-  margin-bottom: 63px;
-
-  @include sm {
-    margin-bottom: 21px;
-  }
-}
-
-.dateBox {
-  display: flex;
-  align-items: center;
-  margin-top: 26px;
-
-  @include sm {
-    display: block;
-  }
-}
-
-.inputsInfo {
-  display: flex;
-  margin-top: 17px;
-  margin-bottom: 69px;
-  flex-direction: column;
-  gap: 20px;
-  width: 50%;
-}
-
-.labelWidth {
-  width: unset;
-  margin-right: 12px;
-
-  @include sm {
-    margin-right: 0;
-    width: 148px;
-  }
-}
-
-.labelWidthLarge {
-  margin-right: 40px;
-}
-
-.inputWidth {
-  width: 127px;
-
-  @include md {
-    width: 110px;
-  }
-  @include sm {
-    width: 187px;
-  }
-}
-
-.inputWidthDeliveryAddress {
-  width: 85px;
-}
-
-.inputWidthData {
-  width: 143px;
-
-  @include sm {
-    width: 187px;
-  }
-}
-
-.inputWidthTelephone {
-  width: 187px;
-}
-
-.border {
-  border: 0.5px solid #00000099;
-  border-radius: 4px;
-}
-
-.borderColorNone {
-  border: unset;
-}
-.borderGrey {
-  border: 0.5px solid rgba(70, 70, 70, 0.55);
-  border-radius: 4px;
-}
-
 .dropdownlistBox {
   display: flex;
-  margin-top: 17px;
+  flex-direction: column;
+  margin-top: 20px;
+  gap: 20px;
+  width: 340px;
   &:nth-last-child(2) {
-    margin-bottom: 42px;
+    margin-bottom: 40px;
+  }
+
+  @include sm {
+    width: 325px;
   }
 }
 
@@ -131,12 +42,11 @@
   border: 0.5px solid rgba(70, 70, 70, 0.55);
   border-radius: 4px;
   padding: 7px 10px;
-  width: 187px;
   justify-content: space-between;
 }
 
 .button {
-  margin-top: 60px;
+  margin: 40px 0 40px;
   padding: 9px 54px;
 }
 
@@ -152,17 +62,139 @@
   object-fit: cover;
 }
 
-//block notifications
-
-.labelCheckboxTitleStyle {
-  font-weight: 400;
+.form {
+  margin-bottom: 36px;
+  font-size: 14px;
+  line-height: 16px;
+  margin-bottom: 15px;
+  font-weight: 300;
 }
+
+.inputsBox {
+  display: flex;
+  gap: 40px;
+  margin-top: 22px;
+  justify-content: space-between;
+  width: 566px;
+  align-items: center;
+}
+
+.errors {
+  color: red;
+  font-weight: 500;
+  font-size: 10px;
+}
+
+.inputBoxRow {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  margin-top: 20px;
+  width: 100%;
+  max-width: 850px;
+  font-size: 14px;
+  line-height: 16px;
+  font-weight: 300;
+  margin-bottom: 40px;
+
+  @include sm {
+    flex-direction: column;
+    gap: 26px;
+    width: 325px;
+  }
+}
+
+.inputBoxColumn {
+  display: flex;
+  align-items: center;
+  margin-top: 16px;
+  width: 291px;
+  justify-content: space-between;
+}
+
+.inputBoxInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 360px;
+  margin-top: 26px;
+  font-size: 14px;
+  line-height: 16px;
+  font-weight: 300;
+  margin-bottom: 40px;
+
+  @include sm {
+    width: 100%;
+    width: 325px;
+  }
+}
+
+//block notifications
 
 .inputCheckboxInner {
   width: 350px;
-  margin-bottom: 36px;
+  margin-bottom: 40px;
+
+  @include sm {
+    width: 290px;
+  }
 }
 
-.inputCheckbox {
+.labelCheckboxTitle {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 16px;
+  margin-top: 17px;
+}
+
+.inputCheckboxInner {
+  & > div:nth-child(4n + 1) {
+    font-weight: 500;
+  }
+}
+
+.inputCheckboxInner {
+  & > div:not(:first-child):nth-child(4n + 1) {
+    margin-top: 38px;
+  }
+}
+
+//Delivery Address
+
+.formDeliveryAddress {
+  font-size: 14px;
+  margin-bottom: 40px;
+}
+
+// finance block
+.subTitle {
+  font-size: 14px;
+  line-height: 16px;
+  margin-bottom: 15px;
+  font-weight: 400;
+}
+
+.description {
+  font-size: 14px;
+  line-height: 16px;
+  margin-bottom: 15px;
+  font-weight: 300;
+}
+
+.buttonFinance {
+  margin: 15px 0 40px;
+}
+
+// Security block
+
+.formSecurity {
+  width: 340px;
+  font-size: 14px;
+}
+
+.inputInner {
   margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }

@@ -15,6 +15,7 @@ import {
   validatePassword,
   validatePasswordConfirm,
 } from '../../../../utils';
+
 import styles from './registrationForm.module.scss';
 import {
   ALREADY_REGISTERED,
@@ -128,10 +129,6 @@ const RegistrationForm = ({ setModalCondition, onClose }) => {
   const loginOrRegisterUser = (e: Event) => {
     if (isLoginFormType) login(e);
     else register(e);
-  };
-
-  const onChangeEmail = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setEmail(e.target.value);
   };
 
   const resetForm = useCallback(() => {

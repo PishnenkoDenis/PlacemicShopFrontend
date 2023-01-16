@@ -1,0 +1,58 @@
+.formPaymentSystem {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+}
+
+.alignText {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.cardLogo {
+  display: flex;
+  gap: 30px;
+  margin-top: 20px;
+}
+
+.inputsBox {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 360px;
+  margin: 30px 0 30px;
+  padding: 23px 30px 42px;
+  background: #ffffff;
+  box-shadow: 0px 4px 40px rgba(0, 0, 0, 0.12);
+  border-radius: 4px;
+}
+
+.input {
+  padding: 15px 10px;
+  border: 0.5px solid rgba(70, 70, 70, 0.55);
+  border-radius: 4px;
+  width: 100%;
+  margin: 20px 0;
+}
+
+.inputBoxFree {
+  display: flex;
+  align-items: flex-end;
+  font-size: 11px;
+  line-height: 13px;
+  gap: 13px;
+}
+
+.inputBoxFree {
+  & > div:nth-child(-n + 2) {
+    width: 85px;
+  }
+  & > div:nth-child(3) {
+    width: 104px;
+  }
+}
+
+.button {
+  padding: 12px 32px;
+}

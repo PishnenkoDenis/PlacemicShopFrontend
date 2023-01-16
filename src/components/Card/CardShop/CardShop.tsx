@@ -15,11 +15,11 @@ const CardShop = ({ item }: TCardShop) => {
       </div>
       <div className={styles.shopBottom}>
         <div className={styles.imageBox}>
-          {item?.products.map((products) => (
+          {item?.products?.map((products) => (
             <Link
               className={styles.imageLink}
-              to={products.link}
               key={products.id}
+              to={products.link}
             >
               <img
                 className={styles.imageItem}

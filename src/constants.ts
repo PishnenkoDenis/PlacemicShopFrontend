@@ -6,6 +6,8 @@ export const SCREEN_WIDTH = {
   sm: 732,
   md: 1262,
 };
+
+export const PASSWORD_REG = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/;
 export const SELLER_ROLE = 'seller';
 export const CUSTOMER_ROLE = 'Покупатель';
 

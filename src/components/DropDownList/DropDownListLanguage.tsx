@@ -24,22 +24,30 @@ interface IDropDownListLanguage {
   options?: IOption[];
   onChange: any;
   className?: string;
+  isBorder?: boolean;
 }
 const DropDownListLanguage = ({
   value,
   options = DEFAULT_OPTIONS,
   onChange,
   className,
+  isBorder = false,
 }: IDropDownListLanguage) => {
   const selectedOption = useMemo(
     () => options.find((item) => item.value === value) ?? options[0],
     [options, value]
   );
   const { open, handleOpen, handleClose } = useDropDownList();
-
   return (
     <div className={cn(styles.dropDownList, className)}>
-      <button className={styles.button} onClick={handleOpen} type="button">
+      <button
+        className={cn({
+          [styles.button]: true,
+          [styles.noneBorder]: isBorder,
+        })}
+        onClick={handleOpen}
+        type="button"
+      >
         <FlagRu className={styles.flagIcon} />
         <span className={styles.selectOption}>{selectedOption.value}</span>
         <RubleIcon className={styles.currencyIcon} />

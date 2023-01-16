@@ -1,30 +1,48 @@
-import React, { memo } from 'react';
+import React, { memo, ReactNode } from 'react';
 import cn from 'classnames';
 import { useField } from 'formik';
-import useDropDownList from '../../hook/useDropDownList';
-import arrow from '../../assets/arrow.svg';
-import { ReactComponent as CheckSvg } from '../../assets/check.svg';
 
 import styles from './dropdownlist.module.scss';
 
 interface IDropDownListNew {
-  id?: number;
-  label?: string;
-  value: string;
   name: string;
-  options: any[];
-  onChange: any;
-  className?: string;
+  label?: string;
+  options?: any[];
+  isBorder?: boolean;
+  placeholder?: string;
+  alignText?: string;
+  children?: ReactNode;
 }
 
-const DropDownListNew = ({ label, ...props }: IDropDownListNew) => {
+const DropDownListNew = ({
+  label,
+  isBorder = false,
+  ...props
+}: IDropDownListNew) => {
   const [field] = useField(props);
+
   return (
-    <div className={cn(styles.dropDownList)}>
-      <label className={cn(styles.label)} htmlFor={props.id || props.name}>
+    <div className={styles.dropDownList}>
+      <label
+        className={cn({
+          [styles.labelNone]: !label,
+          [styles.label]: label,
+        })}
+        htmlFor={props.name}
+      >
         {label}
       </label>
-      <select {...field} {...props} />
+      <select
+        className={cn({ [styles.select]: true, [styles.noneBorder]: isBorder })}
+        {...field}
+        {...props}
+      >
+        {props?.options?.map((option) => (
+          <option value={option.value} key={option.id}>
+            {option.value}
+          </option>
+        ))}
+      </select>
     </div>
   );
 };

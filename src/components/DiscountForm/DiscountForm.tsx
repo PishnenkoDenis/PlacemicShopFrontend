@@ -2,6 +2,7 @@ import React, { memo, useState } from 'react';
 import { useParams } from 'react-router';
 import { useMutation } from '@apollo/client';
 
+import { GraphQLError } from 'graphql';
 import Button from '../Button';
 import {
   setAndValidateInputs,
@@ -19,7 +20,19 @@ import {
   ADD_DISCOUNT,
 } from '../../constants';
 
-const DiscountForm = ({ isEdit, propId, closeModal, refetch }) => {
+type TDiscountCode = {
+  isEdit: boolean;
+  propId: number;
+  closeModal: () => void;
+  refetch: () => void;
+};
+
+const DiscountForm = ({
+  isEdit,
+  propId,
+  closeModal,
+  refetch,
+}: TDiscountCode) => {
   const { id } = useParams();
   const userId = Number(id);
 
@@ -58,7 +71,9 @@ const DiscountForm = ({ isEdit, propId, closeModal, refetch }) => {
       });
       executeAfterResponse();
     } catch (error) {
-      setValidateError(error.message);
+      if (error instanceof GraphQLError) {
+        setValidateError(error.message);
+      }
     }
   };
 
@@ -76,7 +91,9 @@ const DiscountForm = ({ isEdit, propId, closeModal, refetch }) => {
       });
       executeAfterResponse();
     } catch (error) {
-      setValidateError(error.message);
+      if (error instanceof GraphQLError) {
+        setValidateError(error.message);
+      }
     }
   };
 

@@ -74,7 +74,7 @@ const uploadAvatar = ({
         type="file"
         name={name}
         onChange={(event) => {
-          setSelectedImage(event.target.files[0]);
+          setSelectedImage(event.target.files?.[0] || null);
         }}
       />
       <Button

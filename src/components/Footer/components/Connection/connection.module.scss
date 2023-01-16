@@ -10,9 +10,12 @@
     margin-top: 14px;
   }
 }
+
 .labelEmail {
   color: #ffffff;
+  font-size: 14px;
 }
+
 .border {
   font-style: italic;
   color: #ffffff;
@@ -22,6 +25,7 @@
   background: transparent;
   border: 0.7px solid #ffffff;
   border-radius: unset;
+  width: 100%;
 
   &::-webkit-input-placeholder {
     color: #ffffff;
@@ -32,10 +36,12 @@
 }
 
 .buttonStyle {
-  width: 130px;
+  display: flex;
+  align-items: center;
+  padding: 10px 22px;
 }
 
-//SocialNetwork
+//SocialNetwork block
 .socialBox {
   margin-top: 21px;
   color: #ffffff;
@@ -46,6 +52,7 @@
     margin-right: 62px;
   }
 }
+
 .iconsBox {
   display: flex;
   margin-top: 19px;

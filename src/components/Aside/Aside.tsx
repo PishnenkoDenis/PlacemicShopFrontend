@@ -1,5 +1,6 @@
 import React, { memo } from 'react';
 import cn from 'classnames';
+
 import styles from './aside.module.scss';
 
 const list = {
@@ -19,13 +20,19 @@ const list = {
   ],
 };
 
-const Aside = ({ selectedId, setSelectedId }) => {
+export type TAsideProps = {
+  selectedId: number;
+  setSelectedId: (id: number) => void;
+};
+
+const Aside = ({ selectedId, setSelectedId }: TAsideProps) => {
   const currentRole = 'user';
 
   return (
     <div className={styles.container}>
       {list[currentRole].map((item) => (
-        <li
+        <button
+          type="button"
           className={cn(
             styles.list,
             selectedId === item.id && styles.activeListItems
@@ -35,8 +42,8 @@ const Aside = ({ selectedId, setSelectedId }) => {
             setSelectedId(item.id);
           }}
         >
-          <div className={styles.item}>{item.tab}</div>
-        </li>
+          {item.tab}
+        </button>
       ))}
     </div>
   );

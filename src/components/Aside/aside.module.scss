@@ -6,17 +6,26 @@
   margin-top: 67px;
 
   @include md {
-   width: 200px;
-}
+    width: 200px;
+  }
 }
 .list {
   margin-bottom: 17px;
+  display: flex;
+  background: transparent;
+  width: 100%;
+  cursor: pointer;
+  font-size: 16px;
+  line-height: 19px;
+  color: #000000;
 }
+
 .item {
   font-size: 16px;
   line-height: 19px;
   color: #000000;
 }
+
 .activeListItems {
   font-weight: 500;
 }

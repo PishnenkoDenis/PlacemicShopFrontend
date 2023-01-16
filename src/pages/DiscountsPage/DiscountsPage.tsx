@@ -4,7 +4,7 @@ import { useParams } from 'react-router';
 import { useMutation, useQuery } from '@apollo/client';
 
 import Button from '../../components/Button/Button';
-import penIcon from '../../assets/Pen.svg';
+import penIcon from '../../assets/pen.svg';
 import basketIcon from '../../assets/Basket.svg';
 
 import styles from './discountsPage.module.scss';

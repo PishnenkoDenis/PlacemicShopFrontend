@@ -36,6 +36,7 @@ import {
   TELEPHONE,
   TEL_PLACEHOLDER,
 } from '../constants';
+import LANGUAGES from '../languagesEnum';
 
 export const advertising = [
   { id: 1, image: sale1, link: '/page2' },
@@ -1445,11 +1446,11 @@ export const dropdownlistUserData = [
 export const languagesList = [
   {
     id: 1,
-    value: 'Русский',
+    value: LANGUAGES.russian,
   },
   {
     id: 2,
-    value: 'Английский',
+    value: LANGUAGES.english,
   },
 ];
 

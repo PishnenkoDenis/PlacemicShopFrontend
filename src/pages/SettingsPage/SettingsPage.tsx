@@ -4,7 +4,7 @@ import { useNavigate, useParams } from 'react-router';
 
 import { useMutation } from '@apollo/client';
 import styles from './settingsPage.module.scss';
-import { validateShopSettings } from '../../utils';
+import { setNotifications, validateShopSettings } from '../../utils';
 import Button from '../../components/Button';
 import APP_ROUTE_PATHS from '../../appRoutePaths';
 import UploadImage from '../../components/ProfileSetting/UploadImage';
@@ -38,11 +38,6 @@ import {
 import InputCheckbox from '../../components/Input/InputCheckbox';
 import ButtonNew from '../../components/Button/ButtonNew';
 import ADD_SHOP_SETTINGS from '../../graphQl/addShopSettings';
-import {
-  NOTIFICATION_RESOURCE,
-  NOTIFICATION_TYPE,
-} from '../../notificationsEnums';
-import { INotification } from '../../types';
 
 const SettingsPage = () => {
   const navigate = useNavigate();
@@ -69,63 +64,36 @@ const SettingsPage = () => {
     setLabel(WALLPAPER);
   };
 
-  const setNotifications = (
-    orderEmail: boolean,
-    messagesEmail: boolean,
-    newsEmail: boolean,
-    orderPhone: boolean,
-    messagesPhone: boolean,
-    newsPhone: boolean,
-    orderPush: boolean,
-    messagesPush: boolean,
-    newsPush: boolean
-  ): INotification[] => [
-    {
-      type: NOTIFICATION_TYPE.email,
-      resource: NOTIFICATION_RESOURCE.orders,
-      is_active: orderEmail,
-    },
-    {
-      type: NOTIFICATION_TYPE.email,
-      resource: NOTIFICATION_RESOURCE.message,
-      is_active: messagesEmail,
-    },
-    {
-      type: NOTIFICATION_TYPE.email,
-      resource: NOTIFICATION_RESOURCE.news,
-      is_active: newsEmail,
-    },
-    {
-      type: NOTIFICATION_TYPE.phone,
-      resource: NOTIFICATION_RESOURCE.orders,
-      is_active: orderPhone,
-    },
-    {
-      type: NOTIFICATION_TYPE.phone,
-      resource: NOTIFICATION_RESOURCE.message,
-      is_active: messagesPhone,
-    },
-    {
-      type: NOTIFICATION_TYPE.phone,
-      resource: NOTIFICATION_RESOURCE.news,
-      is_active: newsPhone,
-    },
-    {
-      type: NOTIFICATION_TYPE.push,
-      resource: NOTIFICATION_RESOURCE.orders,
-      is_active: orderPush,
-    },
-    {
-      type: NOTIFICATION_TYPE.push,
-      resource: NOTIFICATION_RESOURCE.message,
-      is_active: messagesPush,
-    },
-    {
-      type: NOTIFICATION_TYPE.push,
-      resource: NOTIFICATION_RESOURCE.news,
-      is_active: newsPush,
-    },
-  ];
+  const initialValues = {
+    title: '',
+    description: '',
+    userId: paramId,
+    telephone: '',
+    email: '',
+    address: '',
+    language: '',
+    currency: '',
+    legalEntity: '',
+    inn: '',
+    kpp: '',
+    legalAddress: '',
+    bank: '',
+    bik: '',
+    checkAccount: '',
+    corpAccount: '',
+    newPassword: '',
+    oldPassword: '',
+    repitPassword: '',
+    ordersEmail: false,
+    messagesEmail: false,
+    newsEmail: false,
+    ordersPush: false,
+    messagesPush: false,
+    newsPush: false,
+    ordersPhone: false,
+    messagesPhone: false,
+    newsPhone: false,
+  };
 
   const imgName = iconName === SHOP_LOGO ? 'logo' : 'wallpaper';
 
@@ -149,36 +117,7 @@ const SettingsPage = () => {
         <span className={styles.aboutShop}>О магазине</span>
       </div>
       <Formik
-        initialValues={{
-          title: '',
-          description: '',
-          userId: paramId,
-          telephone: '',
-          email: '',
-          address: '',
-          language: '',
-          currency: '',
-          legalEntity: '',
-          inn: '',
-          kpp: '',
-          legalAddress: '',
-          bank: '',
-          bik: '',
-          checkAccount: '',
-          corpAccount: '',
-          newPassword: '',
-          oldPassword: '',
-          repitPassword: '',
-          ordersEmail: false,
-          messagesEmail: false,
-          newsEmail: false,
-          ordersPush: false,
-          messagesPush: false,
-          newsPush: false,
-          ordersPhone: false,
-          messagesPhone: false,
-          newsPhone: false,
-        }}
+        initialValues={initialValues}
         validationSchema={validateShopSettings}
         onSubmit={async (values, actions) => {
           const {

@@ -1,6 +1,8 @@
 import React, { ChangeEvent } from 'react';
 import * as Yup from 'yup';
 import { INPUT_NUMBER } from './constants';
+import { NOTIFICATION_RESOURCE, NOTIFICATION_TYPE } from './notificationsEnums';
+import { INotification } from './types';
 
 export const validateEmail = (value: string) => {
   return /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g.test(value);
@@ -126,3 +128,61 @@ export const setAndValidateInputs = (
   else setCallback(value);
   validateCallback(valid);
 };
+
+export const setNotifications = (
+  orderEmail: boolean,
+  messagesEmail: boolean,
+  newsEmail: boolean,
+  orderPhone: boolean,
+  messagesPhone: boolean,
+  newsPhone: boolean,
+  orderPush: boolean,
+  messagesPush: boolean,
+  newsPush: boolean
+): INotification[] => [
+  {
+    type: NOTIFICATION_TYPE.email,
+    resource: NOTIFICATION_RESOURCE.orders,
+    is_active: orderEmail,
+  },
+  {
+    type: NOTIFICATION_TYPE.email,
+    resource: NOTIFICATION_RESOURCE.message,
+    is_active: messagesEmail,
+  },
+  {
+    type: NOTIFICATION_TYPE.email,
+    resource: NOTIFICATION_RESOURCE.news,
+    is_active: newsEmail,
+  },
+  {
+    type: NOTIFICATION_TYPE.phone,
+    resource: NOTIFICATION_RESOURCE.orders,
+    is_active: orderPhone,
+  },
+  {
+    type: NOTIFICATION_TYPE.phone,
+    resource: NOTIFICATION_RESOURCE.message,
+    is_active: messagesPhone,
+  },
+  {
+    type: NOTIFICATION_TYPE.phone,
+    resource: NOTIFICATION_RESOURCE.news,
+    is_active: newsPhone,
+  },
+  {
+    type: NOTIFICATION_TYPE.push,
+    resource: NOTIFICATION_RESOURCE.orders,
+    is_active: orderPush,
+  },
+  {
+    type: NOTIFICATION_TYPE.push,
+    resource: NOTIFICATION_RESOURCE.message,
+    is_active: messagesPush,
+  },
+  {
+    type: NOTIFICATION_TYPE.push,
+    resource: NOTIFICATION_RESOURCE.news,
+    is_active: newsPush,
+  },
+];

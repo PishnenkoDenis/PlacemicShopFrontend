@@ -9,18 +9,6 @@ import Button from '../../components/Button';
 import APP_ROUTE_PATHS from '../../appRoutePaths';
 import UploadImage from '../../components/ProfileSetting/UploadImage';
 import Modal from '../../components/Modal';
-import {
-  SHOP_LOGO,
-  LOGO,
-  SHOP_NAME,
-  SHOP_NAME_PLACEHOLDER,
-  TEXTAREA_LABEL,
-  TEXTAREA_PLACEHOLDER,
-  SHOP_WALLPAPER,
-  WALLPAPER,
-  WALLPAPER_TEXT,
-  PASSWORDS_MISMATCH,
-} from '../../constants';
 import { ReactComponent as LogoIcon } from '../../assets/Logo.svg';
 import { ReactComponent as WallpaperIcon } from '../../assets/fill.svg';
 import { ReactComponent as WallpaperClose } from '../../assets/CloseWallpaper.svg';
@@ -38,6 +26,49 @@ import {
 import InputCheckbox from '../../components/Input/InputCheckbox';
 import ButtonNew from '../../components/Button/ButtonNew';
 import ADD_SHOP_SETTINGS from '../../graphQl/addShopSettings';
+import {
+  SHOP_LOGO,
+  LOGO,
+  SHOP_WALLPAPER,
+  SHOP_NAME,
+  SHOP_NAME_PLACEHOLDER,
+  TEXTAREA_LABEL,
+  TEXTAREA_PLACEHOLDER,
+  WALLPAPER,
+  WALLPAPER_TEXT,
+  PASSWORDS_MISMATCH,
+} from '../../locale/ru.json';
+
+const initialValues = {
+  title: '',
+  description: '',
+  userId: null,
+  telephone: '',
+  email: '',
+  address: '',
+  language: '',
+  currency: '',
+  legalEntity: '',
+  inn: '',
+  kpp: '',
+  legalAddress: '',
+  bank: '',
+  bik: '',
+  checkAccount: '',
+  corpAccount: '',
+  newPassword: '',
+  oldPassword: '',
+  repitPassword: '',
+  ordersEmail: false,
+  messagesEmail: false,
+  newsEmail: false,
+  ordersPush: false,
+  messagesPush: false,
+  newsPush: false,
+  ordersPhone: false,
+  messagesPhone: false,
+  newsPhone: false,
+};
 
 const SettingsPage = () => {
   const navigate = useNavigate();
@@ -62,37 +93,6 @@ const SettingsPage = () => {
     setOpen(true);
     setIconName(SHOP_WALLPAPER);
     setLabel(WALLPAPER);
-  };
-
-  const initialValues = {
-    title: '',
-    description: '',
-    userId: paramId,
-    telephone: '',
-    email: '',
-    address: '',
-    language: '',
-    currency: '',
-    legalEntity: '',
-    inn: '',
-    kpp: '',
-    legalAddress: '',
-    bank: '',
-    bik: '',
-    checkAccount: '',
-    corpAccount: '',
-    newPassword: '',
-    oldPassword: '',
-    repitPassword: '',
-    ordersEmail: false,
-    messagesEmail: false,
-    newsEmail: false,
-    ordersPush: false,
-    messagesPush: false,
-    newsPush: false,
-    ordersPhone: false,
-    messagesPhone: false,
-    newsPhone: false,
   };
 
   const imgName = iconName === SHOP_LOGO ? 'logo' : 'wallpaper';
@@ -131,6 +131,7 @@ const SettingsPage = () => {
             ordersPhone,
             messagesPhone,
             newsPhone,
+            userId,
             ...other
           } = values;
 
@@ -138,6 +139,7 @@ const SettingsPage = () => {
             variables: {
               dto: {
                 ...other,
+                userId: paramId,
                 logo: avatar,
                 wallpaper,
                 notifications: setNotifications(

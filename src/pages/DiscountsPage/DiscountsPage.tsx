@@ -12,7 +12,7 @@ import Modal from '../../components/Modal';
 import DiscountForm from '../../components/DiscountForm';
 import GET_DISCOUNTS from '../../graphQl/getDiscounts';
 import DELETE_DISCOUNT from '../../graphQl/deleteDiscount';
-import { NONE_OF_DISCOUNTS } from '../../constants';
+import { NONE_OF_DISCOUNTS } from '../../locale/ru.json';
 
 interface IDiscount {
   id: number;

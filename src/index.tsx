@@ -6,7 +6,6 @@ import { createUploadLink } from 'apollo-upload-client';
 import App from './App';
 
 import './index.scss';
-import { UPLOAD_URL } from './constants';
 
 const container = document.getElementById('root')!;
 const root = createRoot(container);
@@ -15,7 +14,7 @@ const client = new ApolloClient({
   uri: process.env.REACT_APP_URL,
   cache: new InMemoryCache(),
   link: createUploadLink({
-    uri: UPLOAD_URL,
+    uri: process.env.REACT_APP_URL,
   }),
 });
 

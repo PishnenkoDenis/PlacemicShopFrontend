@@ -20,7 +20,7 @@ import {
   dropdownlistUserData,
   securityData,
 } from '../../data/data';
-import NavigationBlock from '../NavigationBlock';
+// import NavigationBlock from '../NavigationBlock';
 
 import { signupSchema } from '../../utils';
 
@@ -60,7 +60,7 @@ const ProfileSetting = () => {
 
   return (
     <div className={styles.container}>
-      <NavigationBlock />
+      {/* <NavigationBlock /> */}
       <Formik
         initialValues={{
           firstName: '',

@@ -6,7 +6,12 @@ import sale2 from '../assets/imageSaleGirls.svg';
 
 import nov from '../assets/novelties1.svg';
 import product1 from '../assets/product1.png';
+import LANGUAGES from '../languagesEnum';
 import {
+  RUBLE,
+  DOLLAR,
+  BR_RUBLE,
+  DRAM,
   ADDRESS,
   ADDRESS_PLACEHOLDER,
   BANK_LABEL,
@@ -35,8 +40,10 @@ import {
   REPIT_PASSWORD,
   TELEPHONE,
   TEL_PLACEHOLDER,
-} from '../constants';
-import LANGUAGES from '../languagesEnum';
+  EMAIL_TITLE,
+  PUSH_TITLE,
+  PHONE_TITLE,
+} from '../locale/ru.json';
 
 export const advertising = [
   { id: 1, image: sale1, link: '/page2' },
@@ -1438,7 +1445,7 @@ export const deliveryAddressData = [
 
 export const dropdownlistUserData = [
   {
-    label: 'Выбрать язык',
+    label: LANG_SELECT_LABEL,
     name: 'language',
     options: [
       {
@@ -1452,12 +1459,12 @@ export const dropdownlistUserData = [
     ],
   },
   {
-    label: 'Выбрать валюту',
+    label: CURRENCY_SELECT_LABEL,
     name: 'currency',
     options: [
       {
         id: 1,
-        value: 'Российский рубль (₽)',
+        value: RUBLE,
       },
       {
         id: 2,
@@ -1481,19 +1488,19 @@ export const languagesList = [
 export const currencyList = [
   {
     id: 1,
-    value: 'Российский рубль (₽)',
+    value: RUBLE,
   },
   {
     id: 2,
-    value: 'Американский доллар ($)',
+    value: DOLLAR,
   },
   {
     id: 3,
-    value: ' Белорусский рубль (Br)',
+    value: BR_RUBLE,
   },
   {
     id: 4,
-    value: 'Армянский драм (֏)',
+    value: DRAM,
   },
 ];
 
@@ -1587,7 +1594,7 @@ export const bankProps = [
 
 export const sellerNotifications = [
   {
-    title: 'Оповещать на E-mail',
+    title: EMAIL_TITLE,
     list: [
       {
         id: 1,
@@ -1607,7 +1614,7 @@ export const sellerNotifications = [
     ],
   },
   {
-    title: 'Оповещать по Push-уведомлениям',
+    title: PUSH_TITLE,
     list: [
       {
         id: 4,
@@ -1627,7 +1634,7 @@ export const sellerNotifications = [
     ],
   },
   {
-    title: 'Оповещать на телефон',
+    title: PHONE_TITLE,
     list: [
       {
         id: 7,

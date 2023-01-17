@@ -19,6 +19,7 @@ import {
   userDataInfo,
   dropdownlistUserData,
   securityData,
+  stepsDataUser,
 } from '../../data/data';
 // import NavigationBlock from '../NavigationBlock';
 
@@ -60,7 +61,11 @@ const ProfileSetting = () => {
 
   return (
     <div className={styles.container}>
+<<<<<<< HEAD
       {/* <NavigationBlock /> */}
+=======
+      <NavigationBlock steps={stepsDataUser} />
+>>>>>>> develop
       <Formik
         initialValues={{
           firstName: '',

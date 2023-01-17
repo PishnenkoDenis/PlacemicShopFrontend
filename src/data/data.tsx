@@ -1697,60 +1697,6 @@ export const signInFormData = [
   },
 ];
 
-// export const registrationFormData = {
-//   isEmail: [
-//     {
-//       name: 'fullName',
-//       label: 'Имя',
-//       placeholder: 'Имя',
-//       type: 'text',
-//     },
-//     {
-//       name: 'email',
-//       label: 'E-mail',
-//       placeholder: 'Введите E-mail',
-//     },
-//     {
-//       name: 'password',
-//       label: 'Пароль',
-//       placeholder: 'Введите пароль',
-//       type: 'password',
-//     },
-//     {
-//       name: 'confirmPassword',
-//       label: 'Пароль',
-//       placeholder: 'Введите пароль',
-//       type: 'password',
-//     },
-//   ],
-//   isPhone: [
-//     {
-//       name: 'fullName',
-//       label: 'Имя',
-//       placeholder: 'Имя',
-//       type: 'text',
-//     },
-//     {
-//       name: 'phone',
-//       label: 'По телефону',
-//       placeholder: 'Введите телефон',
-//       type: 'tel',
-//     },
-//     {
-//       name: 'password',
-//       label: 'Пароль',
-//       placeholder: 'Введите пароль',
-//       type: 'password',
-//     },
-//     {
-//       name: 'confirmPassword',
-//       label: 'Пароль',
-//       placeholder: 'Введите пароль',
-//       type: 'password',
-//     },
-//   ],
-// };
-
 export const registrationFormData = [
   {
     label: 'isEmail',
@@ -1847,4 +1793,12 @@ export const paymentFormData = [
     label: '3 цифры на обороте ',
     placeholder: 'CVC',
   },
+];
+
+export const stepsDataUser = [
+  { id: 1, value: 'Личная информация' },
+  { id: 2, value: 'Адрес доставки' },
+  { id: 3, value: 'Уведомления' },
+  { id: 4, value: 'Финансы' },
+  { id: 5, value: 'Безопасность' },
 ];

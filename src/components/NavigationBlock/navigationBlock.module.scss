@@ -1,0 +1,98 @@
+@import '../../mixin';
+
+.background {
+  background: white;
+  width: 209px;
+  height: 155px;
+  position: fixed;
+  left: 81%;
+  z-index: 5;
+
+  @include md {
+    left: 78%;
+  }
+
+  @include sm {
+    left: 70%;
+  }
+}
+
+.stickyBox {
+  position: fixed;
+  left: 81%;
+  background: linear-gradient(
+    96.78deg,
+    hsla(0deg, 90%, 63%, 0.1) -57.09%,
+    hsla(234deg, 90%, 63%, 0.1) 101.17%
+  );
+  box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.08);
+  border-radius: 4px;
+  z-index: 5;
+  padding: 22px;
+
+  @include md {
+    left: 78%;
+  }
+
+  @include sm {
+    left: 70%;
+  }
+}
+
+.listInner {
+  display: flex;
+  flex-direction: column;
+  gap: 11px;
+  font-weight: 300;
+  font-size: 14px;
+  line-height: 16px;
+  align-items: flex-end;
+}
+
+.dotInner {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.label {
+  font-weight: 300;
+  font-size: 14px;
+  line-height: 16px;
+  width: 100%;
+  text-align: end;
+}
+
+.labelActive {
+  font-weight: 400;
+  white-space: nowrap;
+}
+
+.stepItem {
+  display: flex;
+  justify-content: space-between;
+  gap: 18px;
+}
+
+.dotsBox:last-child::before {
+  content: '';
+  position: absolute;
+  right: 8%;
+  z-index: -5;
+  width: 23px;
+  height: 3px;
+  background: linear-gradient(
+    96.78deg,
+    hsla(0deg, 90%, 63%, 0.2) -57.09%,
+    hsla(234deg, 90%, 63%, 0.2) 101.17%
+  );
+  transform: rotate(-90deg);
+
+  @include sm {
+    right: 7.6%;
+  }
+}
+
+.stepItem:first-child .dotsBox::before {
+  display: none;
+}

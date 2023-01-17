@@ -27,18 +27,7 @@ import NavigationBlock from '../../components/NavigationBlock';
 import InputCheckbox from '../../components/Input/InputCheckbox';
 import ButtonNew from '../../components/Button/ButtonNew';
 import ADD_SHOP_SETTINGS from '../../graphQl/addShopSettings';
-import {
-  shopLogo,
-  logo,
-  shopWallpaper,
-  shopName,
-  shopNamePlaceholder,
-  textareaLabel,
-  textareaPlaceholder,
-  wallpapers,
-  wallpaperText,
-  passwordMismatch,
-} from '../../locale/ru.json';
+import textData from '../../locale/ru.json';
 
 const initialValues = {
   title: '',
@@ -94,17 +83,17 @@ const SettingsPage = () => {
 
   const handleOpen = () => {
     setOpen(true);
-    setIconName(shopLogo);
-    setLabel(logo);
+    setIconName(textData.shopLogo);
+    setLabel(textData.logo);
   };
 
   const handleWallpaperOpen = () => {
     setOpen(true);
-    setIconName(shopWallpaper);
-    setLabel(wallpapers);
+    setIconName(textData.shopWallpaper);
+    setLabel(textData.wallpapers);
   };
 
-  const imgName = iconName === shopLogo ? 'logo' : 'wallpaper';
+  const imgName = iconName === textData.shopLogo ? 'logo' : 'wallpaper';
 
   const closeWallpaperPreview = () => setWallpaper(null);
 
@@ -212,10 +201,10 @@ const SettingsPage = () => {
                 <div className={styles.inputContainer}>
                   <Field
                     as={InputNew}
-                    label={shopName}
+                    label={textData.shopName}
                     name="title"
-                    key={shopName}
-                    placeholder={shopNamePlaceholder}
+                    key={textData.shopName}
+                    placeholder={textData.shopNamePlaceholder}
                     type="text"
                     onChange={handleChange}
                   />
@@ -223,9 +212,9 @@ const SettingsPage = () => {
                 <div className={styles.areaContainer}>
                   <Field
                     as={Textarea}
-                    label={textareaLabel}
+                    label={textData.textareaLabel}
                     name="description"
-                    placeholder={textareaPlaceholder}
+                    placeholder={textData.textareaPlaceholder}
                     onChange={handleChange}
                     cols={50}
                     rows={30}
@@ -256,7 +245,7 @@ const SettingsPage = () => {
                           onClick={handleWallpaperOpen}
                         />
                         <span className={styles.wallpaperText}>
-                          {wallpaperText}
+                          {textData.wallpaperText}
                         </span>
                       </>
                     )}
@@ -376,7 +365,7 @@ const SettingsPage = () => {
               {touched.repitPassword &&
                 values.newPassword !== values.repitPassword && (
                   <span className={styles.passwordMismatch}>
-                    {passwordMismatch}
+                    {textData.passwordMismatch}
                   </span>
                 )}
             </div>

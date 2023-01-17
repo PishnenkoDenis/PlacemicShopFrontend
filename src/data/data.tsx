@@ -7,43 +7,7 @@ import sale2 from '../assets/imageSaleGirls.svg';
 import nov from '../assets/novelties1.svg';
 import product1 from '../assets/product1.png';
 import LANGUAGES from '../languagesEnum';
-import {
-  ruble,
-  dollar,
-  brRuble,
-  dram,
-  address,
-  addressPlaceholder,
-  bankLabel,
-  bikLabel,
-  bikPlaceholder,
-  checkAccountLabel,
-  checkAccountPlaceholder,
-  corpAccountLabel,
-  corpAccountPlaceholder,
-  currencySelectLabel,
-  email,
-  emailPlaceholder,
-  entityPlaceholder,
-  innLabel,
-  innPlaceholder,
-  kppLabel,
-  kppPlaceholder,
-  langSelectLabel,
-  legalAddressLabel,
-  legalEntityLabel,
-  messages,
-  news,
-  newPassword,
-  oldPassword,
-  orders,
-  repitPassword,
-  phone,
-  phonePlaceholder,
-  emailTitle,
-  pushTitle,
-  phoneTitle,
-} from '../locale/ru.json';
+import textData from '../locale/ru.json';
 
 export const advertising = [
   { id: 1, image: sale1, link: '/page2' },
@@ -1366,7 +1330,6 @@ export const userDataInfo = [
 export const notificationsData = [
   {
     label: 'Оповещать на E-mail',
-    // name: 'notifyEmail',
     list: [
       {
         label: 'Информация о заказах',
@@ -1445,7 +1408,7 @@ export const deliveryAddressData = [
 
 export const dropdownlistUserData = [
   {
-    label: langSelectLabel,
+    label: textData.langSelectLabel,
     name: 'language',
     options: [
       {
@@ -1459,12 +1422,12 @@ export const dropdownlistUserData = [
     ],
   },
   {
-    label: currencySelectLabel,
+    label: textData.currencySelectLabel,
     name: 'currency',
     options: [
       {
         id: 1,
-        value: ruble,
+        value: textData.ruble,
       },
       {
         id: 2,
@@ -1488,30 +1451,30 @@ export const languagesList = [
 export const currencyList = [
   {
     id: 1,
-    value: ruble,
+    value: textData.ruble,
   },
   {
     id: 2,
-    value: dollar,
+    value: textData.dollar,
   },
   {
     id: 3,
-    value: brRuble,
+    value: textData.brRuble,
   },
   {
     id: 4,
-    value: dram,
+    value: textData.dram,
   },
 ];
 
 export const selectProps = [
   {
-    label: langSelectLabel,
+    label: textData.langSelectLabel,
     options: languagesList,
     name: 'language',
   },
   {
-    label: currencySelectLabel,
+    label: textData.currencySelectLabel,
     options: currencyList,
     name: 'currency',
   },
@@ -1519,136 +1482,136 @@ export const selectProps = [
 
 export const contactsProps = [
   {
-    label: phone,
+    label: textData.phone,
     name: 'telephone',
-    placeholder: phonePlaceholder,
+    placeholder: textData.phonePlaceholder,
     type: 'text',
   },
   {
-    label: email,
+    label: textData.email,
     name: 'email',
-    placeholder: emailPlaceholder,
+    placeholder: textData.emailPlaceholder,
     type: 'email',
   },
   {
-    label: address,
+    label: textData.address,
     name: 'address',
-    placeholder: addressPlaceholder,
+    placeholder: textData.addressPlaceholder,
     type: 'text',
   },
 ];
 
 export const legalEntityProps = [
   {
-    label: legalEntityLabel,
+    label: textData.legalEntityLabel,
     name: 'legalEntity',
-    placeholder: entityPlaceholder,
+    placeholder: textData.entityPlaceholder,
     type: 'text',
   },
   {
-    label: innLabel,
+    label: textData.innLabel,
     name: 'inn',
-    placeholder: innPlaceholder,
+    placeholder: textData.innPlaceholder,
     type: 'text',
   },
   {
-    label: kppLabel,
+    label: textData.kppLabel,
     name: 'kpp',
-    placeholder: kppPlaceholder,
+    placeholder: textData.kppPlaceholder,
     type: 'text',
   },
   {
-    label: legalAddressLabel,
+    label: textData.legalAddressLabel,
     name: 'legalAddress',
-    placeholder: addressPlaceholder,
+    placeholder: textData.addressPlaceholder,
     type: 'text',
   },
 ];
 
 export const bankProps = [
   {
-    label: bankLabel,
+    label: textData.bankLabel,
     name: 'bank',
-    placeholder: entityPlaceholder,
+    placeholder: textData.entityPlaceholder,
     type: 'text',
   },
   {
-    label: bikLabel,
+    label: textData.bikLabel,
     name: 'bik',
-    placeholder: bikPlaceholder,
+    placeholder: textData.bikPlaceholder,
     type: 'text',
   },
   {
-    label: checkAccountLabel,
+    label: textData.checkAccountLabel,
     name: 'checkAccount',
-    placeholder: checkAccountPlaceholder,
+    placeholder: textData.checkAccountPlaceholder,
     type: 'text',
   },
   {
-    label: corpAccountLabel,
+    label: textData.corpAccountLabel,
     name: 'corpAccount',
-    placeholder: corpAccountPlaceholder,
+    placeholder: textData.corpAccountPlaceholder,
     type: 'text',
   },
 ];
 
 export const sellerNotifications = [
   {
-    title: emailTitle,
+    title: textData.emailTitle,
     list: [
       {
         id: 1,
-        label: orders,
+        label: textData.orders,
         name: 'ordersEmail',
       },
       {
         id: 2,
-        label: messages,
+        label: textData.messages,
         name: 'messagesEmail',
       },
       {
         id: 3,
-        label: news,
+        label: textData.news,
         name: 'newsEmail',
       },
     ],
   },
   {
-    title: pushTitle,
+    title: textData.pushTitle,
     list: [
       {
         id: 4,
-        label: orders,
+        label: textData.orders,
         name: 'ordersPush',
       },
       {
         id: 5,
-        label: messages,
+        label: textData.messages,
         name: 'messagesPush',
       },
       {
         id: 6,
-        label: news,
+        label: textData.news,
         name: 'newsPush',
       },
     ],
   },
   {
-    title: phoneTitle,
+    title: textData.phoneTitle,
     list: [
       {
         id: 7,
-        label: orders,
+        label: textData.orders,
         name: 'ordersPhone',
       },
       {
         id: 8,
-        label: messages,
+        label: textData.messages,
         name: 'messagesPhone',
       },
       {
         id: 9,
-        label: news,
+        label: textData.news,
         name: 'newsPhone',
       },
     ],
@@ -1759,21 +1722,21 @@ export const registrationFormData = [
 
 export const passwordProps = [
   {
-    label: oldPassword,
+    label: textData.oldPassword,
     name: 'oldPassword',
-    placeholder: oldPassword,
+    placeholder: textData.oldPassword,
     type: 'password',
   },
   {
-    label: newPassword,
+    label: textData.newPassword,
     name: 'newPassword',
-    placeholder: newPassword,
+    placeholder: textData.newPassword,
     type: 'password',
   },
   {
-    label: repitPassword,
+    label: textData.repitPassword,
     name: 'repitPassword',
-    placeholder: repitPassword,
+    placeholder: textData.repitPassword,
     type: 'password',
   },
 ];

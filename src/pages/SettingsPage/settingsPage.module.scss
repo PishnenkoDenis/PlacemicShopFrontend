@@ -1,4 +1,277 @@
 .pageWrapper{
-    height: 628px;
-    width: 100%;
+    width: 955px;
+    height: auto;
+
+    .header {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      gap: 18px;
+
+      .formHeader{
+        display: flex;
+        justify-content: space-between;
+
+        .title{
+          font-family: 'Roboto';
+          font-weight: 400;
+          font-size: 28px;
+          line-height: 33px;
+          color: #000000;
+        }
+      }
+
+        .aboutShop {
+          text-align: start;
+          font-family: 'Roboto';
+          font-weight: 400;
+          font-size: 22px;
+          line-height: 26px;
+          color: #000000;
+        }
+    }
+
+    .form {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 57px;
+
+      .shop {
+        margin-bottom: 37px;
+      }
+
+      .shop,
+      .common,
+      .contacts {
+        display: flex;
+        flex-direction: column;
+
+        .common {
+           gap: 20px;
+
+          .profileContainer{
+            display: flex;
+            align-items: center;
+            width: 205px;
+            justify-content: space-between;
+
+            .label {
+              font-family: 'Roboto';
+              font-weight: 400;
+              font-size: 14px;
+              line-height: 16px;
+              color: #000000;
+            }
+
+            .iconBox {
+              color: white;
+              border-radius: 50%;
+
+              .icon {
+                border-radius: 50%;
+                height: 50px;
+                width: 50px;
+                object-fit: cover;
+              }
+            }
+          }
+
+          .inputContainer {
+            width: 345px;
+         }
+
+          .areaContainer {
+            width: 505px;
+          }
+
+          .wallpaperContainer {
+             display: flex;
+             width: 542px;
+             gap: 45px;
+
+            .wallpaperLabel {
+              font-family: 'Roboto';
+              font-weight: 400;
+              font-size: 14px;
+              line-height: 16px;
+              color: #000000;
+
+            } 
+
+            .innerContainer {
+              display: flex;
+              width: 382px;
+
+              .wallpaperBox {
+                width: 360px;
+                height: 112px;
+                position: relative;
+
+                .wallpaperClose {
+                  position: absolute;
+                  top: 10px;
+                  right: 10px;
+                }
+  
+                .wallpaper {
+                  height: 100%;
+                  width: 100%;
+                  object-fit: cover;
+                }
+              }
+  
+              .wallpaperText {
+                font-family: 'Roboto';
+                font-weight: 300;
+                font-size: 12px;
+                line-height: 14px;
+                color: #000000;
+              }
+            }
+          }
+
+        }
+
+        .contacts {
+           display: flex;
+           flex-direction: column;
+           justify-content: flex-start;
+           gap: 23px;
+           margin-top: 40px;
+
+          .contactsTitle {
+            font-family: 'Roboto';
+            font-weight: 400;
+            font-size: 16px;
+            line-height: 19px;
+            color: #000000;
+            text-align: start;
+          } 
+
+          .contactContainer {
+            width: 345px;
+          }
+        }
+      }
+
+      .border{
+        height: 2px;
+        width: 624px;
+        background: linear-gradient(96.78deg, rgba(246, 77, 77, 0.2) -57.09%, rgba(77, 94, 246, 0.2) 101.17%);
+      }
+
+      .details,
+      .legalEntity,
+      .bank {
+        display: flex;
+        flex-direction: column;
+        align-items: start;
+        margin-top: 25px;
+        margin-bottom: 38px; 
+
+         .detailsTitle {
+          font-family: 'Roboto';
+          font-weight: 400;
+          font-size: 22px;
+          line-height: 26px;
+          color: #000000;
+         }
+
+         .legalEntity,
+         .bank{
+           margin-top: 1rem;
+           gap: 23px;
+           margin-bottom: 0;
+
+           .detailContainer {
+            width: 345px;
+           }
+
+           .legalTitle,
+           .bankTitle {
+            font-family: 'Roboto';
+            font-weight: 400;
+            font-size: 16px;
+            line-height: 19px;
+            color: #000000;
+           }
+         }
+      }
+
+      .notifications {
+        display: flex;
+        flex-direction: column;
+        align-items: start;
+        margin-top: 23px;
+        margin-bottom: 39px;
+
+         .notifyTitle {
+          font-family: 'Roboto';
+          font-weight: 400;
+          font-size: 22px;
+          line-height: 26px;
+          color: #000000;
+         }
+
+         .notifyContainer {
+          margin-bottom: 35px;
+
+          .checkboxContainer {
+            width: 345px;
+            
+            & > div:nth-child(4n + 1) {
+              font-weight: 500;
+              font-size: 14px;
+              line-height: 16px;
+              display: flex;
+              align-items: center;
+              margin-top: 10px;
+            }
+           }
+         }
+      }
+
+      .safety {
+        display: flex;
+        flex-direction: column;
+        align-items: start;
+        margin-top: 23px;
+        margin-bottom: 45px;
+        gap: 23px;
+
+        .safetyTitle,
+        .changePassword {
+          font-family: 'Roboto';
+          font-weight: 400;
+          font-size: 22px;
+          line-height: 26px;
+          color: #000000;
+         }
+
+         .changePassword {
+          font-size: 16px;
+          line-height: 19px;
+          margin-top: 1rem;
+         }
+
+         .passwordContainer {
+          width: 345px;
+         }
+
+         .passwordMismatch {
+          color: red;
+          font-size: 12px;
+         }
+      }
+
+      .button {
+        width: 187px;
+        height: 44px;
+      }
+    }
+
+    .invalid {
+      color: red;
+      font-size: 12px;
+    }
 }

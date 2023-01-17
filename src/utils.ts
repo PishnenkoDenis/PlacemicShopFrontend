@@ -1,7 +1,8 @@
 import React, { ChangeEvent } from 'react';
 import * as Yup from 'yup';
+import { NOTIFICATION_RESOURCE, NOTIFICATION_TYPE } from './notificationsEnums';
+import { INotification } from './types';
 import { INPUT_NUMBER, PASSWORD_REG } from './constants';
-import maskPhoneNumber from './components/ProfileSetting';
 
 export const validateEmail = (value: string) => {
   return /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g.test(value);
@@ -62,6 +63,38 @@ export const signupSchema = Yup.object().shape({
   ),
 });
 
+export const validateShopSettings = Yup.object().shape({
+  title: Yup.string().required('Required'),
+  description: Yup.string().required('Required'),
+  logo: Yup.string().nullable(),
+  userId: Yup.number().required('Required'),
+  wallpaper: Yup.string().nullable(),
+  telephone: Yup.string()
+    .matches(/^\+7 \(\d{3}\) \d{3}-\d{2}-\d{2}$/, 'Некорректные данные')
+    .required('Required'),
+  email: Yup.string().email('Invalid email address').required('Required'),
+  address: Yup.string().required('Required'),
+  language: Yup.string().required('Required'),
+  currency: Yup.string().required('Required'),
+  legalEntity: Yup.string().required('Required'),
+  inn: Yup.string().length(10, 'INN must have 10 numbers').required('Required'),
+  kpp: Yup.string().length(9, 'KPP must have 9 numbers').required('Required'),
+  legalAddress: Yup.string().required('Required'),
+  bank: Yup.string().required('Required'),
+  bik: Yup.string().length(9, 'BIK must have 9 numbers').required('Required'),
+  checkAccount: Yup.string()
+    .length(20, 'Account must have 20 numbers')
+    .required('Required'),
+  corpAccount: Yup.string()
+    .length(20, 'Account must have 20 numbers')
+    .required('Required'),
+  notifyEmail: Yup.array().ensure().max(3).nullable(),
+  notifyPush: Yup.array().ensure().max(3).nullable(),
+  notifyTelephone: Yup.array().ensure().max(3).nullable(),
+  newPassword: Yup.string().nullable(),
+  oldPassword: Yup.string().nullable(),
+});
+
 export const validatePassword = (value: string) => {
   return PASSWORD_REG.test(value);
 };
@@ -97,3 +130,61 @@ export const setAndValidateInputs = (
   else setCallback(value);
   validateCallback(valid);
 };
+
+export const setNotifications = (
+  orderEmail: boolean,
+  messagesEmail: boolean,
+  newsEmail: boolean,
+  orderPhone: boolean,
+  messagesPhone: boolean,
+  newsPhone: boolean,
+  orderPush: boolean,
+  messagesPush: boolean,
+  newsPush: boolean
+): INotification[] => [
+  {
+    type: NOTIFICATION_TYPE.email,
+    resource: NOTIFICATION_RESOURCE.orders,
+    is_active: orderEmail,
+  },
+  {
+    type: NOTIFICATION_TYPE.email,
+    resource: NOTIFICATION_RESOURCE.message,
+    is_active: messagesEmail,
+  },
+  {
+    type: NOTIFICATION_TYPE.email,
+    resource: NOTIFICATION_RESOURCE.news,
+    is_active: newsEmail,
+  },
+  {
+    type: NOTIFICATION_TYPE.phone,
+    resource: NOTIFICATION_RESOURCE.orders,
+    is_active: orderPhone,
+  },
+  {
+    type: NOTIFICATION_TYPE.phone,
+    resource: NOTIFICATION_RESOURCE.message,
+    is_active: messagesPhone,
+  },
+  {
+    type: NOTIFICATION_TYPE.phone,
+    resource: NOTIFICATION_RESOURCE.news,
+    is_active: newsPhone,
+  },
+  {
+    type: NOTIFICATION_TYPE.push,
+    resource: NOTIFICATION_RESOURCE.orders,
+    is_active: orderPush,
+  },
+  {
+    type: NOTIFICATION_TYPE.push,
+    resource: NOTIFICATION_RESOURCE.message,
+    is_active: messagesPush,
+  },
+  {
+    type: NOTIFICATION_TYPE.push,
+    resource: NOTIFICATION_RESOURCE.news,
+    is_active: newsPush,
+  },
+];

@@ -93,6 +93,7 @@ const RegistrationForm = ({ setModalCondition, onClose }) => {
           user: {
             email,
             password,
+            address: city,
             fullName: 'Name',
             role: optionsRole.find((item) => item.id === formRole)?.value,
           },

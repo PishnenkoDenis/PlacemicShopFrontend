@@ -22,5 +22,3 @@ export const REGISTER = 'Зарегистрироваться';
 
 export const FORGOT_PASSWORD = 'Забыли пароль?';
 export const ALREADY_REGISTERED = 'Уже зарегистрированы?';
-
-export const NONE_OF_DISCOUNTS = 'Нет ни одной скидки';

@@ -23,8 +23,10 @@ type TInputNew = {
   withEdit?: boolean;
   isDirection?: boolean;
   isPassword?: boolean;
+  value: any;
   className?: string;
   validate?: (e: string) => boolean;
+  onChange: (e) => void;
 };
 
 const maskPhoneNumber = (value: string): string => {

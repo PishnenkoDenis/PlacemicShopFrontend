@@ -12,7 +12,7 @@ import Modal from '../../components/Modal';
 import DiscountForm from '../../components/DiscountForm';
 import GET_DISCOUNTS from '../../graphQl/getDiscounts';
 import DELETE_DISCOUNT from '../../graphQl/deleteDiscount';
-import { NONE_OF_DISCOUNTS } from '../../constants';
+import { noneOfDiscounts } from '../../locale/ru.json';
 
 interface IDiscount {
   id: number;
@@ -112,7 +112,7 @@ const DiscountsPage = () => {
             </div>
           ))
         ) : (
-          <span className={styles.noDiscounts}>{NONE_OF_DISCOUNTS}</span>
+          <span className={styles.noDiscounts}>{noneOfDiscounts}</span>
         )}
       </div>
       {openModal && (

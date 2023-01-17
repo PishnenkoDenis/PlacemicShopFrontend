@@ -1,0 +1,49 @@
+.container {
+    display: flex;
+    position: relative;
+    align-items: center;
+    justify-content: space-between;
+    gap:12px;
+
+    .label {
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 16px;
+        color: #000000;
+      }
+
+    .validateStyle {
+        position: absolute;
+        top: -2px;
+        left: 50%;
+        transform: translate(-50%, -100%);
+        font-size: 14px;
+        color: red;
+        white-space: nowrap;
+    } 
+
+    .select {
+    width: 200px;
+    border: 0.5px solid rgba(70, 70, 70, 0.55);
+    border-radius: 4px;
+    padding: 6px 10px;
+    appearance: none;
+    background: url(/assets/Arrow.svg);
+    background-repeat: no-repeat;
+    background-position: right 18px center;
+    background-size: 16px;
+    background-color: var(--white);
+    padding-left: 1rem;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    -webkit-user-select: none;
+    -moz-user-select: -moz-none;
+    -ms-user-select: none;
+    user-select: none;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 14px;
+    }
+}

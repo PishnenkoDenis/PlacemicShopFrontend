@@ -56,3 +56,14 @@ export type TFooterService = {
   link: string;
   subservices: TSubService[];
 };
+export interface IUser {
+  id: number;
+  avatar: string;
+  fullName: string;
+}
+
+export interface INotification {
+  type: string;
+  resource: string;
+  is_active: boolean;
+}

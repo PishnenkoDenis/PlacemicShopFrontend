@@ -6,6 +6,8 @@ import sale2 from '../assets/imageSaleGirls.svg';
 
 import nov from '../assets/novelties1.svg';
 import product1 from '../assets/product1.png';
+import LANGUAGES from '../languagesEnum';
+import textData from '../locale/ru.json';
 
 export const advertising = [
   { id: 1, image: sale1, link: '/page2' },
@@ -1328,7 +1330,6 @@ export const userDataInfo = [
 export const notificationsData = [
   {
     label: 'Оповещать на E-mail',
-    // name: 'notifyEmail',
     list: [
       {
         label: 'Информация о заказах',
@@ -1407,7 +1408,7 @@ export const deliveryAddressData = [
 
 export const dropdownlistUserData = [
   {
-    label: 'Выбрать язык',
+    label: textData.langSelectLabel,
     name: 'language',
     options: [
       {
@@ -1421,16 +1422,197 @@ export const dropdownlistUserData = [
     ],
   },
   {
-    label: 'Выбрать валюту',
+    label: textData.currencySelectLabel,
     name: 'currency',
     options: [
       {
         id: 1,
-        value: 'Российский рубль (₽)',
+        value: textData.ruble,
       },
       {
         id: 2,
         value: 'Евро',
+      },
+    ],
+  },
+];
+
+export const languagesList = [
+  {
+    id: 1,
+    value: LANGUAGES.russian,
+  },
+  {
+    id: 2,
+    value: LANGUAGES.english,
+  },
+];
+
+export const currencyList = [
+  {
+    id: 1,
+    value: textData.ruble,
+  },
+  {
+    id: 2,
+    value: textData.dollar,
+  },
+  {
+    id: 3,
+    value: textData.brRuble,
+  },
+  {
+    id: 4,
+    value: textData.dram,
+  },
+];
+
+export const selectProps = [
+  {
+    label: textData.langSelectLabel,
+    options: languagesList,
+    name: 'language',
+  },
+  {
+    label: textData.currencySelectLabel,
+    options: currencyList,
+    name: 'currency',
+  },
+];
+
+export const contactsProps = [
+  {
+    label: textData.phone,
+    name: 'telephone',
+    placeholder: textData.phonePlaceholder,
+    type: 'text',
+  },
+  {
+    label: textData.email,
+    name: 'email',
+    placeholder: textData.emailPlaceholder,
+    type: 'email',
+  },
+  {
+    label: textData.address,
+    name: 'address',
+    placeholder: textData.addressPlaceholder,
+    type: 'text',
+  },
+];
+
+export const legalEntityProps = [
+  {
+    label: textData.legalEntityLabel,
+    name: 'legalEntity',
+    placeholder: textData.entityPlaceholder,
+    type: 'text',
+  },
+  {
+    label: textData.innLabel,
+    name: 'inn',
+    placeholder: textData.innPlaceholder,
+    type: 'text',
+  },
+  {
+    label: textData.kppLabel,
+    name: 'kpp',
+    placeholder: textData.kppPlaceholder,
+    type: 'text',
+  },
+  {
+    label: textData.legalAddressLabel,
+    name: 'legalAddress',
+    placeholder: textData.addressPlaceholder,
+    type: 'text',
+  },
+];
+
+export const bankProps = [
+  {
+    label: textData.bankLabel,
+    name: 'bank',
+    placeholder: textData.entityPlaceholder,
+    type: 'text',
+  },
+  {
+    label: textData.bikLabel,
+    name: 'bik',
+    placeholder: textData.bikPlaceholder,
+    type: 'text',
+  },
+  {
+    label: textData.checkAccountLabel,
+    name: 'checkAccount',
+    placeholder: textData.checkAccountPlaceholder,
+    type: 'text',
+  },
+  {
+    label: textData.corpAccountLabel,
+    name: 'corpAccount',
+    placeholder: textData.corpAccountPlaceholder,
+    type: 'text',
+  },
+];
+
+export const sellerNotifications = [
+  {
+    title: textData.emailTitle,
+    list: [
+      {
+        id: 1,
+        label: textData.orders,
+        name: 'ordersEmail',
+      },
+      {
+        id: 2,
+        label: textData.messages,
+        name: 'messagesEmail',
+      },
+      {
+        id: 3,
+        label: textData.news,
+        name: 'newsEmail',
+      },
+    ],
+  },
+  {
+    title: textData.pushTitle,
+    list: [
+      {
+        id: 4,
+        label: textData.orders,
+        name: 'ordersPush',
+      },
+      {
+        id: 5,
+        label: textData.messages,
+        name: 'messagesPush',
+      },
+      {
+        id: 6,
+        label: textData.news,
+        name: 'newsPush',
+      },
+    ],
+  },
+  {
+    title: textData.phoneTitle,
+    list: [
+      {
+        id: 7,
+        label: textData.orders,
+        name: 'ordersPhone',
+      },
+      {
+        id: 8,
+        label: textData.messages,
+        name: 'messagesPhone',
+      },
+      {
+        id: 9,
+        label: textData.news,
+        name: 'newsPhone',
       },
     ],
   },
@@ -1535,6 +1717,27 @@ export const registrationFormData = [
         type: 'password',
       },
     ],
+  },
+];
+
+export const passwordProps = [
+  {
+    label: textData.oldPassword,
+    name: 'oldPassword',
+    placeholder: textData.oldPassword,
+    type: 'password',
+  },
+  {
+    label: textData.newPassword,
+    name: 'newPassword',
+    placeholder: textData.newPassword,
+    type: 'password',
+  },
+  {
+    label: textData.repitPassword,
+    name: 'repitPassword',
+    placeholder: textData.repitPassword,
+    type: 'password',
   },
 ];
 

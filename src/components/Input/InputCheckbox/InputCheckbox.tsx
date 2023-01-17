@@ -7,10 +7,11 @@ import styles from './inputCheckbox.module.scss';
 type TInputCheckboxNew = {
   label?: string;
   name: string;
+  onChange?: () => {};
 };
 
-const InputCheckboxNew = ({ label, ...props }: TInputCheckboxNew) => {
-  const [field] = useField({ ...props, type: 'checkbox' });
+const InputCheckboxNew = ({ label, name, ...props }: TInputCheckboxNew) => {
+  const [field] = useField({ name, type: 'checkbox' });
   return (
     <div className={cn(styles.inputCheckboxInner)}>
       <label className={cn(styles.labelCheckbox)}>

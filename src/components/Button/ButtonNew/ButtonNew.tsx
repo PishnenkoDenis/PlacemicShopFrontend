@@ -30,7 +30,6 @@ const Button = ({
   const typeClass = styles[sort];
   const textClass = styles[text];
   const iconClass = styles[icon];
-  const roundClass = isRounded ? styles.isRounded : {};
 
   return (
     <button
@@ -38,9 +37,9 @@ const Button = ({
       onClick={onClick}
       className={cn(
         styles.main,
+        { [styles.isRounded]: isRounded },
         sizeClass,
         typeClass,
-        roundClass,
         className,
         iconClass
       )}

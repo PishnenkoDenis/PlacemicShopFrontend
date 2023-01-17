@@ -23,22 +23,22 @@ import {
   selectProps,
   sellerNotifications,
 } from '../../data/data';
+import NavigationBlock from '../../components/NavigationBlock';
 import InputCheckbox from '../../components/Input/InputCheckbox';
 import ButtonNew from '../../components/Button/ButtonNew';
 import ADD_SHOP_SETTINGS from '../../graphQl/addShopSettings';
 import {
-  SHOP_LOGO,
-  LOGO,
-  SHOP_WALLPAPER,
-  SHOP_NAME,
-  SHOP_NAME_PLACEHOLDER,
-  TEXTAREA_LABEL,
-  TEXTAREA_PLACEHOLDER,
-  WALLPAPER,
-  WALLPAPER_TEXT,
-  PASSWORDS_MISMATCH,
+  shopLogo,
+  logo,
+  shopWallpaper,
+  shopName,
+  shopNamePlaceholder,
+  textareaLabel,
+  textareaPlaceholder,
+  wallpapers,
+  wallpaperText,
+  passwordMismatch,
 } from '../../locale/ru.json';
-import NavigationBlock from '../../components/NavigationBlock';
 
 const initialValues = {
   title: '',
@@ -94,17 +94,17 @@ const SettingsPage = () => {
 
   const handleOpen = () => {
     setOpen(true);
-    setIconName(SHOP_LOGO);
-    setLabel(LOGO);
+    setIconName(shopLogo);
+    setLabel(logo);
   };
 
   const handleWallpaperOpen = () => {
     setOpen(true);
-    setIconName(SHOP_WALLPAPER);
-    setLabel(WALLPAPER);
+    setIconName(shopWallpaper);
+    setLabel(wallpapers);
   };
 
-  const imgName = iconName === SHOP_LOGO ? 'logo' : 'wallpaper';
+  const imgName = iconName === shopLogo ? 'logo' : 'wallpaper';
 
   const closeWallpaperPreview = () => setWallpaper(null);
 
@@ -212,10 +212,10 @@ const SettingsPage = () => {
                 <div className={styles.inputContainer}>
                   <Field
                     as={InputNew}
-                    label={SHOP_NAME}
+                    label={shopName}
                     name="title"
-                    key={SHOP_NAME}
-                    placeholder={SHOP_NAME_PLACEHOLDER}
+                    key={shopName}
+                    placeholder={shopNamePlaceholder}
                     type="text"
                     onChange={handleChange}
                   />
@@ -223,9 +223,9 @@ const SettingsPage = () => {
                 <div className={styles.areaContainer}>
                   <Field
                     as={Textarea}
-                    label={TEXTAREA_LABEL}
+                    label={textareaLabel}
                     name="description"
-                    placeholder={TEXTAREA_PLACEHOLDER}
+                    placeholder={textareaPlaceholder}
                     onChange={handleChange}
                     cols={50}
                     rows={30}
@@ -256,7 +256,7 @@ const SettingsPage = () => {
                           onClick={handleWallpaperOpen}
                         />
                         <span className={styles.wallpaperText}>
-                          {WALLPAPER_TEXT}
+                          {wallpaperText}
                         </span>
                       </>
                     )}
@@ -376,7 +376,7 @@ const SettingsPage = () => {
               {touched.repitPassword &&
                 values.newPassword !== values.repitPassword && (
                   <span className={styles.passwordMismatch}>
-                    {PASSWORDS_MISMATCH}
+                    {passwordMismatch}
                   </span>
                 )}
             </div>

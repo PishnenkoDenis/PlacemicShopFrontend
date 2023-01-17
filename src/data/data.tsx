@@ -8,41 +8,41 @@ import nov from '../assets/novelties1.svg';
 import product1 from '../assets/product1.png';
 import LANGUAGES from '../languagesEnum';
 import {
-  RUBLE,
-  DOLLAR,
-  BR_RUBLE,
-  DRAM,
-  ADDRESS,
-  ADDRESS_PLACEHOLDER,
-  BANK_LABEL,
-  BIK_LABEL,
-  BIK_PLACEHOLDER,
-  CHECK_ACCOUNT_LABEL,
-  CHECK_ACCOUNT_PLACEHOLDER,
-  CORP_ACCOUNT_LABEL,
-  CORP_ACCOUNT_PLACEHOLDER,
-  CURRENCY_SELECT_LABEL,
-  EMAIL,
-  EMAIL_PLACEHOLDER,
-  ENTITY_PLACEHOLDER,
-  INN_LABEL,
-  INN_PLACEHOLDER,
-  KPP_LABEL,
-  KPP_PLACEHOLDER,
-  LANG_SELECT_LABEL,
-  LEGAL_ADDRESS_LABEL,
-  LEGAL_ENTITY_LABEL,
-  MESSAGES,
-  NEWS,
-  NEW_PASSWORD,
-  OLD_PASSWORD,
-  ORDERS,
-  REPIT_PASSWORD,
-  TELEPHONE,
-  TEL_PLACEHOLDER,
-  EMAIL_TITLE,
-  PUSH_TITLE,
-  PHONE_TITLE,
+  ruble,
+  dollar,
+  brRuble,
+  dram,
+  address,
+  addressPlaceholder,
+  bankLabel,
+  bikLabel,
+  bikPlaceholder,
+  checkAccountLabel,
+  checkAccountPlaceholder,
+  corpAccountLabel,
+  corpAccountPlaceholder,
+  currencySelectLabel,
+  email,
+  emailPlaceholder,
+  entityPlaceholder,
+  innLabel,
+  innPlaceholder,
+  kppLabel,
+  kppPlaceholder,
+  langSelectLabel,
+  legalAddressLabel,
+  legalEntityLabel,
+  messages,
+  news,
+  newPassword,
+  oldPassword,
+  orders,
+  repitPassword,
+  phone,
+  phonePlaceholder,
+  emailTitle,
+  pushTitle,
+  phoneTitle,
 } from '../locale/ru.json';
 
 export const advertising = [
@@ -1445,7 +1445,7 @@ export const deliveryAddressData = [
 
 export const dropdownlistUserData = [
   {
-    label: LANG_SELECT_LABEL,
+    label: langSelectLabel,
     name: 'language',
     options: [
       {
@@ -1459,12 +1459,12 @@ export const dropdownlistUserData = [
     ],
   },
   {
-    label: CURRENCY_SELECT_LABEL,
+    label: currencySelectLabel,
     name: 'currency',
     options: [
       {
         id: 1,
-        value: RUBLE,
+        value: ruble,
       },
       {
         id: 2,
@@ -1488,30 +1488,30 @@ export const languagesList = [
 export const currencyList = [
   {
     id: 1,
-    value: RUBLE,
+    value: ruble,
   },
   {
     id: 2,
-    value: DOLLAR,
+    value: dollar,
   },
   {
     id: 3,
-    value: BR_RUBLE,
+    value: brRuble,
   },
   {
     id: 4,
-    value: DRAM,
+    value: dram,
   },
 ];
 
 export const selectProps = [
   {
-    label: LANG_SELECT_LABEL,
+    label: langSelectLabel,
     options: languagesList,
     name: 'language',
   },
   {
-    label: CURRENCY_SELECT_LABEL,
+    label: currencySelectLabel,
     options: currencyList,
     name: 'currency',
   },
@@ -1519,136 +1519,136 @@ export const selectProps = [
 
 export const contactsProps = [
   {
-    label: TELEPHONE,
+    label: phone,
     name: 'telephone',
-    placeholder: TEL_PLACEHOLDER,
+    placeholder: phonePlaceholder,
     type: 'text',
   },
   {
-    label: EMAIL,
+    label: email,
     name: 'email',
-    placeholder: EMAIL_PLACEHOLDER,
+    placeholder: emailPlaceholder,
     type: 'email',
   },
   {
-    label: ADDRESS,
+    label: address,
     name: 'address',
-    placeholder: ADDRESS_PLACEHOLDER,
+    placeholder: addressPlaceholder,
     type: 'text',
   },
 ];
 
 export const legalEntityProps = [
   {
-    label: LEGAL_ENTITY_LABEL,
+    label: legalEntityLabel,
     name: 'legalEntity',
-    placeholder: ENTITY_PLACEHOLDER,
+    placeholder: entityPlaceholder,
     type: 'text',
   },
   {
-    label: INN_LABEL,
+    label: innLabel,
     name: 'inn',
-    placeholder: INN_PLACEHOLDER,
+    placeholder: innPlaceholder,
     type: 'text',
   },
   {
-    label: KPP_LABEL,
+    label: kppLabel,
     name: 'kpp',
-    placeholder: KPP_PLACEHOLDER,
+    placeholder: kppPlaceholder,
     type: 'text',
   },
   {
-    label: LEGAL_ADDRESS_LABEL,
+    label: legalAddressLabel,
     name: 'legalAddress',
-    placeholder: ADDRESS_PLACEHOLDER,
+    placeholder: addressPlaceholder,
     type: 'text',
   },
 ];
 
 export const bankProps = [
   {
-    label: BANK_LABEL,
+    label: bankLabel,
     name: 'bank',
-    placeholder: ENTITY_PLACEHOLDER,
+    placeholder: entityPlaceholder,
     type: 'text',
   },
   {
-    label: BIK_LABEL,
+    label: bikLabel,
     name: 'bik',
-    placeholder: BIK_PLACEHOLDER,
+    placeholder: bikPlaceholder,
     type: 'text',
   },
   {
-    label: CHECK_ACCOUNT_LABEL,
+    label: checkAccountLabel,
     name: 'checkAccount',
-    placeholder: CHECK_ACCOUNT_PLACEHOLDER,
+    placeholder: checkAccountPlaceholder,
     type: 'text',
   },
   {
-    label: CORP_ACCOUNT_LABEL,
+    label: corpAccountLabel,
     name: 'corpAccount',
-    placeholder: CORP_ACCOUNT_PLACEHOLDER,
+    placeholder: corpAccountPlaceholder,
     type: 'text',
   },
 ];
 
 export const sellerNotifications = [
   {
-    title: EMAIL_TITLE,
+    title: emailTitle,
     list: [
       {
         id: 1,
-        label: ORDERS,
+        label: orders,
         name: 'ordersEmail',
       },
       {
         id: 2,
-        label: MESSAGES,
+        label: messages,
         name: 'messagesEmail',
       },
       {
         id: 3,
-        label: NEWS,
+        label: news,
         name: 'newsEmail',
       },
     ],
   },
   {
-    title: PUSH_TITLE,
+    title: pushTitle,
     list: [
       {
         id: 4,
-        label: ORDERS,
+        label: orders,
         name: 'ordersPush',
       },
       {
         id: 5,
-        label: MESSAGES,
+        label: messages,
         name: 'messagesPush',
       },
       {
         id: 6,
-        label: NEWS,
+        label: news,
         name: 'newsPush',
       },
     ],
   },
   {
-    title: PHONE_TITLE,
+    title: phoneTitle,
     list: [
       {
         id: 7,
-        label: ORDERS,
+        label: orders,
         name: 'ordersPhone',
       },
       {
         id: 8,
-        label: MESSAGES,
+        label: messages,
         name: 'messagesPhone',
       },
       {
         id: 9,
-        label: NEWS,
+        label: news,
         name: 'newsPhone',
       },
     ],
@@ -1759,21 +1759,21 @@ export const registrationFormData = [
 
 export const passwordProps = [
   {
-    label: OLD_PASSWORD,
+    label: oldPassword,
     name: 'oldPassword',
-    placeholder: OLD_PASSWORD,
+    placeholder: oldPassword,
     type: 'password',
   },
   {
-    label: NEW_PASSWORD,
+    label: newPassword,
     name: 'newPassword',
-    placeholder: NEW_PASSWORD,
+    placeholder: newPassword,
     type: 'password',
   },
   {
-    label: REPIT_PASSWORD,
+    label: repitPassword,
     name: 'repitPassword',
-    placeholder: REPIT_PASSWORD,
+    placeholder: repitPassword,
     type: 'password',
   },
 ];

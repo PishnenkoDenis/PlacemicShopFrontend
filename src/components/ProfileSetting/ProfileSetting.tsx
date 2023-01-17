@@ -21,7 +21,7 @@ import {
   securityData,
   stepsDataUser,
 } from '../../data/data';
-// import NavigationBlock from '../NavigationBlock';
+import NavigationBlock from '../NavigationBlock';
 
 import { signupSchema } from '../../utils';
 
@@ -61,15 +61,7 @@ const ProfileSetting = () => {
 
   return (
     <div className={styles.container}>
-<<<<<<< HEAD
-<<<<<<< HEAD
-      {/* <NavigationBlock /> */}
-=======
       <NavigationBlock steps={stepsDataUser} />
->>>>>>> develop
-=======
-      <NavigationBlock steps={stepsDataUser} />
->>>>>>> refs/remotes/origin/86_Profile_Settings
       <Formik
         initialValues={{
           firstName: '',

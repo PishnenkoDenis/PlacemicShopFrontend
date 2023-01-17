@@ -38,6 +38,7 @@ import {
   WALLPAPER_TEXT,
   PASSWORDS_MISMATCH,
 } from '../../locale/ru.json';
+import NavigationBlock from '../../components/NavigationBlock';
 
 const initialValues = {
   title: '',
@@ -69,6 +70,14 @@ const initialValues = {
   messagesPhone: false,
   newsPhone: false,
 };
+
+const navigateSteps = [
+  { id: 1, value: 'О магазине' },
+  { id: 2, value: 'Контакты' },
+  { id: 3, value: 'Реквизиты' },
+  { id: 4, value: 'Уведомления' },
+  { id: 5, value: 'Безопасность' },
+];
 
 const SettingsPage = () => {
   const navigate = useNavigate();
@@ -114,8 +123,11 @@ const SettingsPage = () => {
             Помощь
           </Button>
         </div>
-        <span className={styles.aboutShop}>О магазине</span>
+        <span className={styles.aboutShop} id="1">
+          О магазине
+        </span>
       </div>
+      <NavigationBlock steps={navigateSteps} />
       <Formik
         initialValues={initialValues}
         validationSchema={validateShopSettings}
@@ -264,7 +276,9 @@ const SettingsPage = () => {
               </div>
 
               <div className={styles.contacts}>
-                <span className={styles.contactsTitle}>Контакты</span>
+                <span className={styles.contactsTitle} id="2">
+                  Контакты
+                </span>
                 {contactsProps.map((prop) => (
                   <div className={styles.contactContainer}>
                     <Field
@@ -282,7 +296,9 @@ const SettingsPage = () => {
             </div>
             <div className={styles.border} />
             <div className={styles.details}>
-              <span className={styles.detailsTitle}>Реквизиты</span>
+              <span className={styles.detailsTitle} id="3">
+                Реквизиты
+              </span>
               <div className={styles.legalEntity}>
                 <span className={styles.legalTitle}>Юридическое лицо</span>
                 {legalEntityProps.map((prop) => (
@@ -318,7 +334,9 @@ const SettingsPage = () => {
             </div>
             <div className={styles.border} />
             <div className={styles.notifications}>
-              <span className={styles.notifyTitle}>Уведомления</span>
+              <span className={styles.notifyTitle} id="4">
+                Уведомления
+              </span>
               <div className={styles.notifyContainer}>
                 {sellerNotifications.map((data) => (
                   <div className={styles.checkboxContainer}>
@@ -338,7 +356,9 @@ const SettingsPage = () => {
             </div>
             <div className={styles.border} />
             <div className={styles.safety}>
-              <span className={styles.safetyTitle}>Безопасность</span>
+              <span className={styles.safetyTitle} id="5">
+                Безопасность
+              </span>
               <span className={styles.changePassword}>Смена пароля</span>
               {passwordProps.map((prop) => (
                 <div className={styles.passwordContainer}>
